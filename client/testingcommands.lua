@@ -205,6 +205,16 @@ RegisterCommand('removeitem', function(source, args, rawCommand)
 end)
 
 
+RegisterCommand('tp', function(source, args, rawCommand)
+    print(tonumber(args[1]), tonumber(args[2]), tonumber(args[3]))
+    if args[1] ~= nil and args[2] ~= nil and args[3] ~= nil then
+        
+        local pPed = GetPlayerPed(-1)
+        SetEntityCoordsNoOffset(pPed, tonumber(args[1]), tonumber(args[2]), tonumber(args[3]), 0.0, 0.0, 0.0, 0)
+    end
+end)
+
+
 function Notification(message,title)
     SetNotificationTextEntry("STRING")
     AddTextComponentString(message)
