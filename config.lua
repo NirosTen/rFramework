@@ -1,6 +1,6 @@
 framework = {
 
-    _language = "english", -- Languege
+    _language = "english", -- Language
 
     _display_logs = true, -- Display logs serveur (true / false)
 
