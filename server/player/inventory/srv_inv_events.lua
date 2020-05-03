@@ -2,16 +2,14 @@
 
 RegisterNetEvent("rF:GetPlayerInventory")
 AddEventHandler("rF:GetPlayerInventory", function()
-    local player = _player_get_identifier(source)
-    local inv = PlayersData[player].inventory
+    local inv = GetInventoryFromCache(source)
     TriggerClientEvent("rF:SendPlayerInventory", source, inv)
 end)
 
 
 RegisterNetEvent("rF:GetOtherPlayerInventory")
 AddEventHandler("rF:GetOtherPlayerInventory", function(target)
-    local player = _player_get_identifier(target)
-    local inv = PlayersData[player].inventory
+    local inv = GetInventoryFromCache(target)
     TriggerClientEvent("rF:SendPlayerInventory", source, inv)
 end)
 
