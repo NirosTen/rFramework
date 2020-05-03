@@ -19,7 +19,7 @@ function SaveSocietyCache()
     for k,v in pairs(SocietyCache) do
         MySQL.Async.execute("UPDATE society SET money = @money, player_money = @money, inventory = @inv WHERE society_name = @name", {
             ['@name'] = v.name,
-            ['@inv'] = json.encore(v.inventory),
+            ['@inv'] = json.encode(v.inventory),
             ['@money'] = v.money,
         })
     end
