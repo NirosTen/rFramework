@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `society` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `society_name` varchar(35) NOT NULL,
   `money` int(32) NOT NULL DEFAULT 0,
-  `inventory` text NOT NULL DEFAULT '{}',
+  `inventory` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
