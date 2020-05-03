@@ -1,12 +1,21 @@
 local firstspawn = 0
 local loaded = false
 
+
+local OldPos = nil
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(30000)
-        local LastPosX, LastPosY, LastPosZ = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+        Citizen.Wait(10*1000)
+        local pPos = GetEntityCoords(GetPlayerPed(-1))
         local LastPosH = GetEntityHeading(GetPlayerPed(-1))
-        TriggerServerEvent("OMG:save_position", LastPosX, LastPosY, LastPosZ, LastPosH)
+        if OldPos == nil then
+            OldPos = LastPosH
+        else
+            local dst = GetDistanceBetweenCoords(LastPosH, OldPos, true)
+            if dst >= 15.0 then
+                TriggerServerEvent("rF:save_position", LastPosX, LastPosY, LastPosZ, LastPosH)
+            end
+        end
     end
 end)
 
@@ -16,13 +25,13 @@ function DebugClient(arg)
     end
 end
 
-RegisterNetEvent('OMG:notification')
-AddEventHandler('OMG:notification', function(alert)
+RegisterNetEvent('rF:notification')
+AddEventHandler('rF:notification', function(alert)
     Notify(alert)
 end)
 
-RegisterNetEvent("OMG:spawn_last_position")
-AddEventHandler("OMG:spawn_last_position", function(data, PosX, PosY, PosZ)
+RegisterNetEvent("rF:spawn_last_position")
+AddEventHandler("rF:spawn_last_position", function(data, PosX, PosY, PosZ)
     if not loaded then
         if data == 0 then
             SetEntityCoords(GetPlayerPed(-1), PosX, PosY, PosZ + 1.0, 1, 0, 0, 1)
@@ -49,7 +58,7 @@ end)
 
 AddEventHandler('playerSpawned', function(spawn)
     if firstspawn == 0 then
-        TriggerServerEvent("OMG:SpawnPlayer")
+        TriggerServerEvent("rF:SpawnPlayer")
         firstspawn = 1
     end
 end)
