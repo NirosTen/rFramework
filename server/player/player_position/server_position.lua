@@ -11,11 +11,11 @@ function GetIdentifier(id)
 end
 
 RegisterServerEvent("rF:save_position")
-AddEventHandler("rF:save_position", function(LastPosX, LastPosY, LastPosZ, LastPosH)
+AddEventHandler("rF:save_position", function(LastPosX, LastPosY, LastPosZ)
     local source = source
     local player = GetIdentifier(source)
     local pCache = GetPlayerCache(source)
-    local lastPosition = "{" .. LastPosX .. ", " .. LastPosY .. ",  " .. LastPosZ .. ", " .. LastPosH .. "}"
+    local lastPosition = "{" .. LastPosX .. ", " .. LastPosY .. ",  " .. LastPosZ .. "}"
     PlayersData[pCache].pos = lastPosition
     if framework._display_logs == true then
         print('' .. _L("position_save") .. ' - ' .. _L("user") .. '' .. player .. ' - '..lastPosition)

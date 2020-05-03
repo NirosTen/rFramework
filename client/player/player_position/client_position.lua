@@ -7,13 +7,12 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(10*1000)
         local pPos = GetEntityCoords(GetPlayerPed(-1))
-        local LastPosH = GetEntityHeading(GetPlayerPed(-1))
         if OldPos == nil then
-            OldPos = LastPosH
+            OldPos = pPos
         else
-            local dst = GetDistanceBetweenCoords(LastPosH, OldPos, true)
+            local dst = GetDistanceBetweenCoords(pPos, OldPos, true)
             if dst >= 15.0 then
-                TriggerServerEvent("rF:save_position", LastPosX, LastPosY, LastPosZ, LastPosH)
+                TriggerServerEvent("rF:save_position", pPos.x, pPos.y, pPos.z)
             end
         end
     end
