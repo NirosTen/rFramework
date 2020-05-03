@@ -33,6 +33,7 @@ server_scripts {
     'server/anticheat/*.lua',
     'server/player/player_position/server_position.lua',
     'server/player/inventory/*.lua',
+    'server/society/*.lua',
     -- Locale
     'language/language.lua',
     'language/english.lua',
