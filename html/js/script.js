@@ -11,7 +11,7 @@ $(function() {
             $('#money').html('<img src="icons/money.png" style="padding-right: 3px;" height="25" width="35">' + mess.money + ' $');
             $('#dirtymoney').html('<img src="icons/dirtymoney.png" style="padding-right: 3px;" height="25" width="35">' + mess.dirtymoney + ' $');
             $('#bankbalance').html('<img src="icons/bank.png" style="padding-right: 3px;" height="25" width="35">' + mess.bankbalance + ' $');
-            $('#job').html('<img src="icons/job.png" style="padding-right: 3px;" height="25" width="35">' + mess.job + '');
+            $('#job').html(mess.job);
             moneyactuelle = mess.money;
             dirtymoneyactuelle = mess.dirtymoneyinfo;
             bankbalanceactuelle = mess.bankbalanceinfo;
