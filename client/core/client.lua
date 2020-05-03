@@ -156,3 +156,9 @@ Citizen.CreateThread(function()
 	RequestIpl('shr_int') -- Load vehicleshop
 	RequestIpl("rc12b_default") -- Pillbox Hospital (hole in map)
 end)
+
+ -- Exemple 
+RegisterNetEvent("rF:SendPlayerAccounts")
+AddEventHandler("rF:SendPlayerAccounts", function(money, bank, dirty)
+	print(money, bank, dirty)
+end)
