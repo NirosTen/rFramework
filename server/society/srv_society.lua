@@ -5,9 +5,25 @@ end)
 
 SocietyCache = {}
 
+local second = 1000
+local minute = 60*second
+Citizen.CreateThread(function()
+    while true do
+        Wait(3*minute)
+        SaveSocietyCache()
+    end
+end)
 
 
-
+function SaveSocietyCache()
+    for k,v in pairs(SocietyCache) do
+        MySQL.Async.execute("UPDATE society SET money = @money, player_money = @money, inventory = @inv WHERE society_name = @name", {
+            ['@name'] = v.name,
+            ['@inv'] = json.encore(v.inventory),
+            ['@money'] = v.money,
+        })
+    end
+end
 
 function GetSocietyToCache()
     local info = MySQL.Sync.fetchAll("SELECT society_name, money, inventory FROM society", {})
