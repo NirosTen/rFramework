@@ -1,8 +1,8 @@
 framework = {
 
-    _language = config.lang, -- Languege
+    _language = "english", -- Languege
 
-    _display_logs = config.debug, -- Display logs serveur (true / false)
+    _display_logs = true, -- Display logs serveur (true / false)
 
     _player_first_spawn_location = vector3(-1015.0816650391, -2752.2185058594,  0.80036240816116), -- First spawn location {x, y, z}
 

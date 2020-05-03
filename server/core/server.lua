@@ -49,10 +49,12 @@ end)
 
 PlayersData = {} -- Global for now, maybe turning it local later if not needed
 
+local second = 1000
+local minute = 60*second
 Citizen.CreateThread(function()
     while true do
         SaveDynamicCache()
-        Wait(framework._cacheSave*(60*1000))
+        Wait(3*minute)
     end
 end)
 
