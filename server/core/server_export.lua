@@ -43,6 +43,19 @@ function creation_utilisateur(id)
     })
 end
 
+function GetPlayerAccounts(id)
+    local pCache = GetPlayerCache(id) 
+    return PlayersData[pCache].money, PlayersData[pCache].bankBalance, PlayersData[pCache].dirtyMoney
+end
+
+RegisterNetEvent("rF:GetPlayerAccounts")
+AddEventHandler("rF:GetPlayerAccounts", function(tokenToCheck)
+    if CheckToken(tokenToCheck, source) then
+        local money, bank, dirty = GetPlayerAccounts(source)
+        TriggerClientEvent("rF:SendPlayerAccounts", source, money, bank, dirty)
+    end
+end)
+
 
 -- Setter 
 function _player_remove_money(id, rmv)
