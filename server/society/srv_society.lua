@@ -42,14 +42,63 @@ end
 
 
 function AddSocietyMoney(name, money)
-    local society, i = GetCachedSociety(name)
+    local _, i = GetCachedSociety(name)
     SocietyCache[i].money = SocietyCache[i].money + money
 end
 
 function RemoveSocietyMoney(name, money)
-    local society, i = GetCachedSociety(name)
+    local _, i = GetCachedSociety(name)
     SocietyCache[i].money = SocietyCache[i].money - money
 end
+
+
+function GetSocietyItems(name)
+    local _, i = GetCachedSociety(name)
+    return SocietyCache[i].inventory
+end
+
+
+function AddSocietyItems(_name, _item, _count)
+    local _, i = GetCachedSociety(name)
+    local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
+    if itemCount == 0 then
+        table.insert(SocietyCache[i].inventory, {name = _item, count = _count})
+    else
+        table.remove(SocietyCache[i].inventory, k)
+        table.insert(SocietyCache[i].inventory, {name = _item, count = itemCount + _count})
+    end
+end
+
+
+function RemoveSocietyItems(_name, _item, _count)
+    local _, i = GetCachedSociety(name)
+    local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
+    if itemCount == 0 then
+        -- Display error, the item do not exist
+    elseif itemCount - _count == 0 then
+        table.remove(SocietyCache[i].inventory, k)
+    else
+        table.remove(SocietyCache[i].inventory, k)
+        table.insert(SocietyCache[i].inventory, {name = _item, count = itemCount - _count})
+    end
+end
+
+function GetSocietyItemCount(item, inv)
+    local found = false
+    for k,v in pairs(inv) do 
+        if v.name == item then
+            found = true
+            return v.count, k
+        end
+    end
+    -- Not sure if the if is needed, i think the return stop the for, not sure tho
+    if not found then
+        return 0
+    end
+end
+
+
+
 
 function GetCachedSociety(name)
     for k,v in pairs(SocietyCache) do
