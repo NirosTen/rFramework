@@ -7,7 +7,7 @@ function AddItemToPlayerInv(id, item, _count)
         local invWeight = GetInvWeight(inv)
         local itemWeight = GetItemWeight(item, _count)
         DebugPrint(invWeight, itemWeight, invWeight + itemWeight)
-        if invWeight + itemWeight <= omg_framework._default_player_max_weight then
+        if invWeight + itemWeight <= framework._default_player_max_weight then
             local countOld, num = GetItemCount(item, inv)
             if countOld == 0 then
                 table.insert(inv, {name = item, count = _count})

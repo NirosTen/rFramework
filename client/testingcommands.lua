@@ -161,13 +161,13 @@ end)
 
 RegisterCommand('givemoney', function(source, args, rawCommand)
     if args[1] ~= nil then
-       TriggerServerEvent("OMG:AddMoney", token, tonumber(args[1])) 
+       TriggerServerEvent("rF:AddMoney", token, tonumber(args[1])) 
     end
 end)
 
 RegisterCommand('givebankmoney', function(source, args, rawCommand)
     if args[1] ~= nil then
-       TriggerServerEvent("OMG:AddBankMoney", token, tonumber(args[1])) 
+       TriggerServerEvent("rF:AddBankMoney", token, tonumber(args[1])) 
     end
 end)
 
@@ -178,7 +178,7 @@ RegisterCommand('giveitem', function(source, args, rawCommand)
         for k,v in pairs(items) do
             if tostring(args[1]) == v.name then
                 found = true
-                TriggerServerEvent("OMG:GiveItem", token, tostring(args[1]), tonumber(args[2])) 
+                TriggerServerEvent("rF:GiveItem", token, tostring(args[1]), tonumber(args[2])) 
                 break
             end
         end
@@ -194,7 +194,7 @@ RegisterCommand('removeitem', function(source, args, rawCommand)
         for k,v in pairs(items) do
             if tostring(args[1]) == v.name then
                 found = true
-                TriggerServerEvent("OMG:RemoveItem", token, tostring(args[1]), tonumber(args[2])) 
+                TriggerServerEvent("rF:RemoveItem", token, tostring(args[1]), tonumber(args[2])) 
                 break
             end
         end

@@ -49,14 +49,14 @@ function _player_remove_money(id, rmv)
     local player = _player_get_identifier(id)
     local pCache = GetPlayerCache(id) 
     PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
-    TriggerClientEvent('OMG:rmvMoney', id, rmv)
-    if omg_framework._display_logs == true then
+    TriggerClientEvent('rF:rmvMoney', id, rmv)
+    if framework._display_logs == true then
         print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
     end
 end
 
-RegisterNetEvent("OMG:RemoveMoney")
-AddEventHandler("OMG:RemoveMoney", function(tokenToCheck, rmv)
+RegisterNetEvent("rF:RemoveMoney")
+AddEventHandler("rF:RemoveMoney", function(tokenToCheck, rmv)
     _player_remove_money(tokenToCheck, source, rmv)
 end)
 
@@ -65,15 +65,15 @@ function _player_add_money(tokenToCheck, id, add)
         local player = _player_get_identifier(id)
         local pCache = GetPlayerCache(id) 
         PlayersData[pCache].money = tonumber(PlayersData[pCache].money + add)
-        TriggerClientEvent('OMG:addMoney', id, add)
-        if omg_framework._display_logs == true then
+        TriggerClientEvent('rF:addMoney', id, add)
+        if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("add_money_wallet") .. ' '..add)
         end
     end
 end
 
-RegisterNetEvent("OMG:AddMoney")
-AddEventHandler("OMG:AddMoney", function(tokenToCheck, add)
+RegisterNetEvent("rF:AddMoney")
+AddEventHandler("rF:AddMoney", function(tokenToCheck, add)
     _player_add_money(tokenToCheck, source, add)
 end)
 
@@ -82,15 +82,15 @@ function _player_add_bank_money(tokenToCheck, id, add)
         local player = _player_get_identifier(id)
         local pCache = GetPlayerCache(id)
         PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance + add)
-        TriggerClientEvent('OMG:addBank', id, add)
-        if omg_framework._display_logs == true then
+        TriggerClientEvent('rF:addBank', id, add)
+        if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("add_bank_money") .. ''..add)
         end
     end
 end
 
-RegisterNetEvent("OMG:AddBankMoney")
-AddEventHandler("OMG:AddBankMoney", function(tokenToCheck, add)
+RegisterNetEvent("rF:AddBankMoney")
+AddEventHandler("rF:AddBankMoney", function(tokenToCheck, add)
     _player_add_bank_money(tokenToCheck, source, add)
 end)
 
@@ -99,15 +99,15 @@ function _player_remove_bank_money(tokenToCheck, id, rmv)
         local player = _player_get_identifier(id)
         local pCache = GetPlayerCache(id)
         PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance - rmv)
-        TriggerClientEvent('OMG:rmvBank', id, rmv)
-        if omg_framework._display_logs == true then
+        TriggerClientEvent('rF:rmvBank', id, rmv)
+        if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("bank_money_removed") .. ' '..rmv..'')
         end
     end
 end
 
-RegisterNetEvent("OMG:RemoveBankMoney")
-AddEventHandler("OMG:RemoveBankMoney", function(tokenToCheck, rmv)
+RegisterNetEvent("rF:RemoveBankMoney")
+AddEventHandler("rF:RemoveBankMoney", function(tokenToCheck, rmv)
     _player_remove_bank_money(tokenToCheck, source, rmv)
 end)
 
@@ -116,15 +116,15 @@ function _player_remove_dirty_money(tokenToCheck, id, add)
         local player = _player_get_identifier(id)
         local pCache = GetPlayerCache(id)
         PlayersData[pCache].dirtyMoney = tonumber(PlayersData[pCache].dirtyMoney + add)
-        TriggerClientEvent('OMG:rmvDirtyMoney', id, add)
-        if omg_framework._display_logs == true then
+        TriggerClientEvent('rF:rmvDirtyMoney', id, add)
+        if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("remove_dirty_money") .. ' '..add)
         end
     end
 end
 
-RegisterNetEvent("OMG:RemoveDirtyMoney")
-AddEventHandler("OMG:RemoveDirtyMoney", function(tokenToCheck, rmv)
+RegisterNetEvent("rF:RemoveDirtyMoney")
+AddEventHandler("rF:RemoveDirtyMoney", function(tokenToCheck, rmv)
     _player_remove_dirty_money(tokenToCheck, source, rmv)
 end)
 
@@ -133,15 +133,15 @@ function _player_set_dirty_money(tokenToCheck, id, nb)
         local player = _player_get_identifier(id)
         local pCache = GetPlayerCache(id)
         PlayersData[pCache].dirtyMoney = tonumber(nb)
-        TriggerClientEvent('OMG:setDirtyMoney', id, nb)
-        if omg_framework._display_logs == true then
+        TriggerClientEvent('rF:setDirtyMoney', id, nb)
+        if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("add_dirty_money") .. ' '..nb)
         end
     end
 end
 
-RegisterNetEvent("OMG:SetDirtyMoney")
-AddEventHandler("OMG:SetDirtyMoney", function(tokenToCheck, set)
+RegisterNetEvent("rF:SetDirtyMoney")
+AddEventHandler("rF:SetDirtyMoney", function(tokenToCheck, set)
     _player_set_dirty_money(tokenToCheck, source, set)
 end)
 
@@ -151,12 +151,12 @@ function _player_remove_money_for_bank(tokenToCheck, id, rmv)
         local pCache = GetPlayerCache(id)
         PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
         PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance + rmv)
-        TriggerClientEvent('OMG:removeMoneyForBank', id, tonumber(rmv))
+        TriggerClientEvent('rF:removeMoneyForBank', id, tonumber(rmv))
     end
 end
 
-RegisterNetEvent("OMG:MoveMoneyToBank")
-AddEventHandler("OMG:MoveMoneyToBank", function(tokenToCheck, rmv)
+RegisterNetEvent("rF:MoveMoneyToBank")
+AddEventHandler("rF:MoveMoneyToBank", function(tokenToCheck, rmv)
     _player_remove_money_for_bank(tokenToCheck, source, rmv)
 end)
 
@@ -167,15 +167,15 @@ function _player_remove_bank_for_money(tokenToCheck, id, rmv)
         PlayersData[pCache].money = tonumber(PlayersData[pCache].money + rmv)
         PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance - rmv)
 
-        TriggerClientEvent('OMG:removeBankForMoney', id, tonumber(rmv))
+        TriggerClientEvent('rF:removeBankForMoney', id, tonumber(rmv))
     end
 end
 
-RegisterNetEvent("OMG:MoveMoneyFromBankToPlayer")
-AddEventHandler("OMG:MoveMoneyFromBankToPlayer", function(tokenToCheck, rmv)
+RegisterNetEvent("rF:MoveMoneyFromBankToPlayer")
+AddEventHandler("rF:MoveMoneyFromBankToPlayer", function(tokenToCheck, rmv)
     _player_remove_bank_for_money(tokenToCheck, source, rmv)
 end)
 
 function save_player_position(LastPosX, LastPosY, LastPosZ, LastPosH)
-    TriggerEvent('OMG:save_position', LastPosX, LastPosY, LastPosZ, LastPosH)
+    TriggerEvent('rF:save_position', LastPosX, LastPosY, LastPosZ, LastPosH)
 end

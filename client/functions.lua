@@ -31,8 +31,8 @@ function drawRct(x, y, width, height, r, g, b, a)
     DrawRect(x + width / 2, y + height / 2, width, height, r, g, b, a)
 end
 
-RegisterNetEvent("OMG:advenced_notication")
-AddEventHandler("OMG:advenced_notication", function(icon, sender, title, text)
+RegisterNetEvent("rF:advenced_notication")
+AddEventHandler("rF:advenced_notication", function(icon, sender, title, text)
     Citizen.CreateThread(function()
         Wait(1)
         SetNotificationTextEntry("STRING");

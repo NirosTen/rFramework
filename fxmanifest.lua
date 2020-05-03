@@ -1,10 +1,6 @@
 fx_version 'adamant'
-
 game 'gta5'
 
-description 'OMG Framework'
-
-version '1.0.0'
 
 files {
 	-- HUD
@@ -57,7 +53,7 @@ client_scripts {
     'language/portuguese.lua',
 }
 
-server_exports {
+server_exports { -- not going to use those, i suppose i will remove them
     'getIdentifier',
     '_player_get_identifier',
     '_server_get_player_all_money',

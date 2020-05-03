@@ -12,11 +12,11 @@ Locales['portuguese'] = {
 	["user_reconnect"] = "A Reconectar o Utilizador: ",
 	["user_reconnect2"] = "Gerar a última posição realizada",
 	-- Version
-	["startup"] = "^1A Tua Versão não está atualizada. Por Favor Vai a github.com/dev-omg para fazer o Download da nova Versão^2",
+	["startup"] = "^1A Tua Versão não está atualizada. Por Favor Vai a github.com/dev para fazer o Download da nova Versão^2",
 	["startup2"] = "^1Versão Atual:^7 ",
 	["startup3"] = "^1Versão Atualizada:^7 ",	
 	["startup4"] = "^1A Tua Versão parece ser superior á versão atual^2",
-	["startup5"] = "^2Tudo a Funcionar Corretamente, OMG Framework Iniciada^2",
+	["startup5"] = "^2Tudo a Funcionar Corretamente, Framework Iniciada^2",
 	["settings"] = "^2Linguagem:^7 ",
 	["settings2"] = "^2Logs:^7 ",
 	-- Notifications

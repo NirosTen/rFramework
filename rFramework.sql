@@ -1,5 +1,5 @@
-CREATE DATABASE `OMG`;
-USE `OMG`;
+CREATE DATABASE `rframework`;
+USE `rframework`;
 
 ----------------------------------------------------------
 

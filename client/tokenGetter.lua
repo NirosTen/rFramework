@@ -1,6 +1,6 @@
 token = ""
 
-RegisterNetEvent("OMG:SendToken")
-AddEventHandler("OMG:SendToken", function(NewToken)
+RegisterNetEvent("rF:SendToken")
+AddEventHandler("rF:SendToken", function(NewToken)
     token = NewToken
 end)

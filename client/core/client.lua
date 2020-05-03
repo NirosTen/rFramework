@@ -2,7 +2,7 @@ local firstSpawn = true
 
 AddEventHandler("playerSpawned", function(spawn)
 	if firstSpawn == true then
-		TriggerServerEvent('OMG:spawn')
+		TriggerServerEvent('rF:spawn')
 		firstSpawn = false
 	end
 end)
@@ -19,8 +19,8 @@ AddEventHandler("playerSpawned", function(spawn)
 	SetModelAsNoLongerNeeded(defaultModel)
 end)
 
-RegisterNetEvent('OMG:initializeinfo')
-AddEventHandler('OMG:initializeinfo', function(money,dirtymoney,bankbalance, job)
+RegisterNetEvent('rF:initializeinfo')
+AddEventHandler('rF:initializeinfo', function(money,dirtymoney,bankbalance, job)
 
 	SendNUIMessage({
 		initialise = true,
@@ -32,8 +32,8 @@ AddEventHandler('OMG:initializeinfo', function(money,dirtymoney,bankbalance, job
 
 end)
 
-RegisterNetEvent('OMG:job')
-AddEventHandler('OMG:job', function(rslt)
+RegisterNetEvent('rF:job')
+AddEventHandler('rF:job', function(rslt)
 
 	SendNUIMessage({
 		jobinfo = rslt
@@ -41,8 +41,8 @@ AddEventHandler('OMG:job', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:bankbalance')
-AddEventHandler('OMG:bankbalance', function(rslt)
+RegisterNetEvent('rF:bankbalance')
+AddEventHandler('rF:bankbalance', function(rslt)
 
 	SendNUIMessage({
 		bankbalanceinfo = rslt
@@ -50,8 +50,8 @@ AddEventHandler('OMG:bankbalance', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:dirtymoney')
-AddEventHandler('OMG:dirtymoney', function(rslt)
+RegisterNetEvent('rF:dirtymoney')
+AddEventHandler('rF:dirtymoney', function(rslt)
 
 	SendNUIMessage({
 		dirtymoneyinfo = rlst
@@ -59,8 +59,8 @@ AddEventHandler('OMG:dirtymoney', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:money')
-AddEventHandler('OMG:money', function(rslt)
+RegisterNetEvent('rF:money')
+AddEventHandler('rF:money', function(rslt)
 
 	SendNUIMessage({
 		moneyinfo = rslt
@@ -68,8 +68,8 @@ AddEventHandler('OMG:money', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:rmvMoney')
-AddEventHandler('OMG:rmvMoney', function(rslt)
+RegisterNetEvent('rF:rmvMoney')
+AddEventHandler('rF:rmvMoney', function(rslt)
 
 	SendNUIMessage({
 		rmvMoney = rslt
@@ -77,8 +77,8 @@ AddEventHandler('OMG:rmvMoney', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:addMoney')
-AddEventHandler('OMG:addMoney', function(rslt)
+RegisterNetEvent('rF:addMoney')
+AddEventHandler('rF:addMoney', function(rslt)
 
 	SendNUIMessage({
 		addMoney = rslt
@@ -86,8 +86,8 @@ AddEventHandler('OMG:addMoney', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:rmvBank')
-AddEventHandler('OMG:rmvBank', function(rslt)
+RegisterNetEvent('rF:rmvBank')
+AddEventHandler('rF:rmvBank', function(rslt)
 
 	SendNUIMessage({
 		rmvBank = rslt
@@ -95,8 +95,8 @@ AddEventHandler('OMG:rmvBank', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:addBank')
-AddEventHandler('OMG:addBank', function(rslt)
+RegisterNetEvent('rF:addBank')
+AddEventHandler('rF:addBank', function(rslt)
 
 	SendNUIMessage({
 		addBank = rslt
@@ -104,8 +104,8 @@ AddEventHandler('OMG:addBank', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:removeMoneyForBank')
-AddEventHandler('OMG:removeMoneyForBank', function(rslt)
+RegisterNetEvent('rF:removeMoneyForBank')
+AddEventHandler('rF:removeMoneyForBank', function(rslt)
 
 	SendNUIMessage({
 		rmvMoneyForBank = rslt
@@ -113,8 +113,8 @@ AddEventHandler('OMG:removeMoneyForBank', function(rslt)
 
 end)
 
-RegisterNetEvent('OMG:removeBankForMoney')
-AddEventHandler('OMG:removeBankForMoney', function(rslt)
+RegisterNetEvent('rF:removeBankForMoney')
+AddEventHandler('rF:removeBankForMoney', function(rslt)
 
 	SendNUIMessage({
 		rmvBankForMoney = rslt
@@ -123,8 +123,8 @@ AddEventHandler('OMG:removeBankForMoney', function(rslt)
 end)
 
 
-RegisterNetEvent('OMG:addDirtyMoney')
-AddEventHandler('OMG:addDirtyMoney', function(rslt)
+RegisterNetEvent('rF:addDirtyMoney')
+AddEventHandler('rF:addDirtyMoney', function(rslt)
 
 	SendNUIMessage({
 		addDirtyMoney = rslt
@@ -133,8 +133,8 @@ AddEventHandler('OMG:addDirtyMoney', function(rslt)
 end)
 
 
-RegisterNetEvent('OMG:rmvDirtyMoney')
-AddEventHandler('OMG:rmvDirtyMoney', function(rslt)
+RegisterNetEvent('rF:rmvDirtyMoney')
+AddEventHandler('rF:rmvDirtyMoney', function(rslt)
 
 	SendNUIMessage({
 		rmvDirtyMoney = rslt
@@ -143,8 +143,8 @@ AddEventHandler('OMG:rmvDirtyMoney', function(rslt)
 end)
 
 
-RegisterNetEvent('OMG:setDirtyMoney')
-AddEventHandler('OMG:rmvDirtyMoney', function(rslt)
+RegisterNetEvent('rF:setDirtyMoney')
+AddEventHandler('rF:rmvDirtyMoney', function(rslt)
 
 	SendNUIMessage({
 		dirtymoneyinfo = rslt
@@ -153,8 +153,6 @@ AddEventHandler('OMG:rmvDirtyMoney', function(rslt)
 end)
 
 Citizen.CreateThread(function()
-	if omg_framework._IPLs then
 	RequestIpl('shr_int') -- Load vehicleshop
 	RequestIpl("rc12b_default") -- Pillbox Hospital (hole in map)
-	end
 end)

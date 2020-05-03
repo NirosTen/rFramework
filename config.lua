@@ -1,18 +1,8 @@
-config = {
-    lang = "english",
-    debug = true
-}
-
-omg_framework = {
+framework = {
 
     _language = config.lang, -- Languege
-    _IPLs = true, -- Load IPLs (fix holes in the map)
-    _cacheSave = 3, -- Time in minutes
-    _positionSave = 10, -- Time in minutes
 
     _display_logs = config.debug, -- Display logs serveur (true / false)
-	
-    _sufix = 'OMG Framework', -- Sufix / Server Name
 
     _player_first_spawn_location = vector3(-1015.0816650391, -2752.2185058594,  0.80036240816116), -- First spawn location {x, y, z}
 
