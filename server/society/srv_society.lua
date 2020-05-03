@@ -39,3 +39,22 @@ function GetSocietyToCache()
         end
     end
 end
+
+
+function AddSocietyMoney(name, money)
+    local society, i = GetCachedSociety(name)
+    SocietyCache[i].money = SocietyCache[i].money + money
+end
+
+function RemoveSocietyMoney(name, money)
+    local society, i = GetCachedSociety(name)
+    SocietyCache[i].money = SocietyCache[i].money - money
+end
+
+function GetCachedSociety(name)
+    for k,v in pairs(SocietyCache) do
+        if v.name == name then
+            return v, k
+        end
+    end
+end
