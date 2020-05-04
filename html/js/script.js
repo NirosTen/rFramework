@@ -6,7 +6,6 @@ $(function() {
     window.addEventListener("message", function(event) {
         var mess = event.data;
 
-
         if (typeof mess.initialise !== 'undefined') {
             $('#money').html('<img src="icons/money.png" style="padding-right: 3px;" height="25" width="35">' + mess.money + ' $');
             $('#dirtymoney').html('<img src="icons/dirtymoney.png" style="padding-right: 3px;" height="25" width="35">' + mess.dirtymoney + ' $');
@@ -92,6 +91,24 @@ $(function() {
             $("#rmvMoney").fadeIn("slow", function() {
                 setTimeout(function() {
                     $("#rmvMoney").fadeOut("slow", function() {});
+                }, 2000);
+            });
+        }
+
+        if (typeof mess.addItem !== 'undefined') {
+            $('#addItem').html('+' + mess.addItem);
+            $("#addItem").fadeIn("slow", function() {
+                setTimeout(function() {
+                    $("#addItem").fadeOut("slow", function() {});
+                }, 2000);
+            });
+        }
+
+        if (typeof mess.rmvItem !== 'undefined') {
+            $('#rmvItem').html('-' + mess.rmvItem);
+            $("#rmvItem").fadeIn("slow", function() {
+                setTimeout(function() {
+                    $("#rmvItem").fadeOut("slow", function() {});
                 }, 2000);
             });
         }

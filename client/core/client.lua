@@ -80,7 +80,7 @@ end)
 RegisterNetEvent('rF:addMoney')
 AddEventHandler('rF:addMoney', function(rslt)
 
-	SendNUIMessage({
+	SendNUIMessage({ 
 		addMoney = rslt
 	})
 
@@ -148,6 +148,24 @@ AddEventHandler('rF:rmvDirtyMoney', function(rslt)
 
 	SendNUIMessage({
 		dirtymoneyinfo = rslt
+	})
+
+end)
+
+RegisterNetEvent('rF:rmvItem')
+AddEventHandler('rF:rmvItem', function(rslt)
+	print(rslt)
+	SendNUIMessage({
+		rmvItem = rslt
+	})
+
+end)
+
+RegisterNetEvent('rF:addItem')
+AddEventHandler('rF:addItem', function(rslt)
+	print(rslt)
+	SendNUIMessage({ 
+		addItem = rslt
 	})
 
 end)

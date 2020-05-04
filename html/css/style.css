@@ -60,6 +60,26 @@
     color: #07ca00;
 }
 
+#addItem {
+    display: none;
+    font-family: 'Bebas Neue', cursive;
+    position: absolute;
+    right: 1em;
+    top: 5em;
+    font-size: 2em;
+    color: #07ca00;
+}
+
+#rmvItem {
+    display: none;
+    font-family: 'Bebas Neue', cursive;
+    position: absolute;
+    right: 1em;
+    top: 5em;
+    font-size: 2em;
+    color: #ca0000;
+}
+
 #icon {
     height: 35px;
     width: auto;

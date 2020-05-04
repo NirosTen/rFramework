@@ -11,10 +11,12 @@ function AddItemToPlayerInv(id, item, _count)
             local countOld, num = GetItemCount(item, inv)
             if countOld == 0 then
                 table.insert(inv, {name = item, count = _count})
+                TriggerClientEvent("rF:addItem", id, item.." x".._count)
             else
                 DebugPrint(countOld, _count, countOld + _count)
                 table.remove(inv, num)
                 table.insert(inv, {name = item, count = countOld + _count})
+                TriggerClientEvent("rF:addItem", id, item.." x".._count)
             end
 
             PlayersData[place].inventory = inv
@@ -39,9 +41,11 @@ function RemoveItemFromPlayerInv(id, item, _count)
                 local count = v.count
                 if count - _count <= 0 then -- So we don't get player with negative items 
                     table.remove(inv, k)
+                    TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
                 else
                     table.remove(inv, k)
                     table.insert(inv, {name = item, count = count - _count})
+                    TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
                 end
             end
         end
