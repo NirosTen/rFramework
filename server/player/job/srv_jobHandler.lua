@@ -30,3 +30,15 @@ AddEventHandler("rF:ChangePlayerJobGrade", function(tokenToCheck, grade)
         ChangePlayerJobGrade(source, grade)
     end
 end)
+
+
+function GetPlayerJob(id)
+    local pCache = GetPlayerCache(id) 
+    return PlayersData[pCache].job, PlayersData[pCache].job_grade
+end
+
+RegisterNetEvent("rF:GetPlayerJob")
+AddEvetnHandler("rF:GetPlayerJob", function()
+    local job, grade = GetPlayerJob(source)
+    TriggerServerEvent("rF:JobRefresh", source, job, grade)
+end)
