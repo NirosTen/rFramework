@@ -24,10 +24,10 @@ end)
 
 RegisterCommand("suicide", function()
     local player = GetPlayerPed(-1)
-    RequestAnimDict('mp_suicide')
-    while not HasAnimDictLoaded('mp_suicide') do Wait(0) end
-    TaskPlayAnim(player, 'mp_suicide', 'pill', 8.0, 1.0, 5000, 0, 1, true, true, true)
-    Wait(4600)
+    --RequestAnimDict('mp_suicide')
+    --while not HasAnimDictLoaded('mp_suicide') do Wait(0) end
+    --TaskPlayAnim(player, 'mp_suicide', 'pill', 8.0, 1.0, 5000, 0, 1, true, true, true)
+    --Wait(4600)
     SetEntityHealth(player, 0)
 end)
 
