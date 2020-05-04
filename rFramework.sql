@@ -6,7 +6,7 @@ USE `rframework`;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 03, 2020 at 08:58 PM
+-- Generation Time: May 04, 2020 at 10:11 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 5.6.40
 
@@ -43,9 +43,10 @@ CREATE TABLE IF NOT EXISTS `player_account` (
   `player_bank_balance` int(32) DEFAULT 0,
   `player_dirty_money` double NOT NULL DEFAULT 0,
   `player_job` varchar(50) NOT NULL DEFAULT 'police',
+  `player_job_grade` int(32) NOT NULL,
   `player_inv` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `society` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `society_name` varchar(35) NOT NULL,
   `money` int(32) NOT NULL DEFAULT 0,
-  `inventory` text DEFAULT NULL,
+  `inventory` text NOT NULL DEFAULT '{}',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
