@@ -41,3 +41,15 @@ AddEventHandler("rF:advenced_notication", function(icon, sender, title, text)
         DrawNotification(false, true);
     end)
 end)
+
+
+
+RegisterNetEvent("rF:UseItem")
+AddEventHandler("rF:UseItem", function(item)
+    for k,v in pairs(items) do
+        if v.name == item then
+            TriggerEvent(v.event)
+            break
+        end
+    end
+end)
