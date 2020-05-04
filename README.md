@@ -5,3 +5,14 @@ Private RP Framework based of OMG Framework.
 *See the wiki for more info on how to use*
 
 **Wiki:** https://github.com/Rubylium/rFramework/wiki
+
+**Fully working**
+
+* Money
+* Bank money
+* Salty money
+* Inventory
+* Weight for inventory
+* Dynamic cache for Player Data
+* Dynamic cache for society Data
+* More soon... 
