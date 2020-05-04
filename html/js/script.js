@@ -53,12 +53,24 @@ $(function() {
 
         if (typeof mess.addBank !== 'undefined') {
             bankbalanceactuelle = Math.round(bankbalanceactuelle + mess.addBank);
+            $('#addBankMoney').html('+' + mess.addBank);
             $('#bankbalance').html('<img src="icons/bank.png" style="padding-right: 3px;" height="25" width="35">' + bankbalanceactuelle + ' $');
+            $("#addBankMoney").fadeIn("slow", function() {
+                setTimeout(function() {
+                    $("#addBankMoney").fadeOut("slow", function() {});
+                }, 2000);
+            });
         }
 
         if (typeof mess.rmvBank !== 'undefined') {
             bankbalanceactuelle = Math.round(bankbalanceactuelle - mess.rmvBank);
+            $('#rmvBankMoney').html('-' + mess.rmvBank);
             $('#bankbalance').html('<img src="icons/bank.png" style="padding-right: 3px;" height="25" width="35">' + bankbalanceactuelle + ' $');
+            $("#rmvBankMoney").fadeIn("slow", function() {
+                setTimeout(function() {
+                    $("#rmvBankMoney").fadeOut("slow", function() {});
+                }, 2000);
+            });
         }
 
         if (typeof mess.addDirtyMoney !== 'undefined') {

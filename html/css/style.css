@@ -80,6 +80,26 @@
     color: #ca0000;
 }
 
+#addBankMoney {
+    display: none;
+    font-family: 'Bebas Neue', cursive;
+    position: absolute;
+    right: 1em;
+    top: 5em;
+    font-size: 2em;
+    color: #00c3ff;
+}
+
+#rmvBankMoney {
+    display: none;
+    font-family: 'Bebas Neue', cursive;
+    position: absolute;
+    right: 1em;
+    top: 5em;
+    font-size: 2em;
+    color: #ff9900;
+}
+
 #icon {
     height: 35px;
     width: auto;
