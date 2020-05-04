@@ -1,11 +1,11 @@
 
 
--- Change the job and call rF:OnJobChange with the new job in argument
+-- Change the job and call rF:JobRefresh with the new job in argument
 function ChangePlayerJob(id, job)
     local pCache = GetPlayerCache(id) 
     PlayersData[pCache].job = job
     PlayersData[pCache].job_grade = 0
-    TriggerClientEvent("rF:OnJobChange", id, job)
+    TriggerClientEvent("rF:JobRefresh", id, job)
 end
 
 
@@ -20,7 +20,7 @@ end)
 function ChangePlayerJobGrade(id, grade)
     local pCache = GetPlayerCache(id) 
     PlayersData[pCache].job_grade = tonumber(grade)
-    TriggerClientEvent("rF:OnJobChange", id, job)
+    TriggerClientEvent("rF:JobRefresh", id, job)
 end
 
 
