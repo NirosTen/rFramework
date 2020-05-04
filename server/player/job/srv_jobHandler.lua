@@ -38,7 +38,7 @@ function GetPlayerJob(id)
 end
 
 RegisterNetEvent("rF:GetPlayerJob")
-AddEvetnHandler("rF:GetPlayerJob", function()
+AddEventHandler("rF:GetPlayerJob", function()
     local job, grade = GetPlayerJob(source)
     TriggerServerEvent("rF:JobRefresh", source, job, grade)
 end)
