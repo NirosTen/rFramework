@@ -58,13 +58,15 @@ end)
 
 
 -- Setter 
-function RemovePlayerMoney(id, rmv)
-    local player = _player_get_identifier(id)
-    local pCache = GetPlayerCache(id) 
-    PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
-    TriggerClientEvent('rF:rmvMoney', id, rmv)
-    if framework._display_logs == true then
-        print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
+function RemovePlayerMoney(tokenToCheck, id, rmv)
+    if CheckToken(tokenToCheck, id) then
+        local player = _player_get_identifier(id)
+        local pCache = GetPlayerCache(id) 
+        PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
+        TriggerClientEvent('rF:rmvMoney', id, rmv)
+        if framework._display_logs == true then
+            print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
+        end
     end
 end
 
