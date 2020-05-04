@@ -31,9 +31,14 @@ server_scripts {
     'server/core/*.lua',
     -- Anticheat
     'server/anticheat/*.lua',
+    -- Player pos update
     'server/player/player_position/server_position.lua',
+    -- Inventory
     'server/player/inventory/*.lua',
+    -- Society
     'server/society/*.lua',
+    -- job handler
+    'server/player/job/*.lua',
     -- Locale
     'language/language.lua',
     'language/english.lua',
