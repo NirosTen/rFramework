@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `player_account` (
   `player_bank_balance` int(32) DEFAULT 0,
   `player_dirty_money` double NOT NULL DEFAULT 0,
   `player_job` varchar(50) NOT NULL DEFAULT 'police',
-  `player_job_grade` int(32) NOT NULL,
+  `player_job_grade` int(32) DEFAULT NULL,
   `player_inv` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
