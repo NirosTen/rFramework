@@ -3,14 +3,16 @@
 RegisterNetEvent("rF:GetPlayerInventory")
 AddEventHandler("rF:GetPlayerInventory", function()
     local inv = GetInventoryFromCache(source)
-    TriggerClientEvent("rF:SendPlayerInventory", source, inv)
+    local weight = GetInvWeight(inv)
+    TriggerClientEvent("rF:SendPlayerInventory", source, inv, weight)
 end)
 
 
 RegisterNetEvent("rF:GetOtherPlayerInventory")
 AddEventHandler("rF:GetOtherPlayerInventory", function(target)
     local inv = GetInventoryFromCache(target)
-    TriggerClientEvent("rF:SendPlayerInventory", source, inv)
+    local weight = GetInvWeight(inv)
+    TriggerClientEvent("rF:SendPlayerInventory", source, inv, weight)
 end)
 
 
