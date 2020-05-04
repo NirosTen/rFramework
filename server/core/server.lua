@@ -27,7 +27,7 @@ AddEventHandler('rF:spawn', function()
     local source = source
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job)
+    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade)
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
 end)
 
