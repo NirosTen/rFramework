@@ -171,6 +171,19 @@ RegisterCommand('givebankmoney', function(source, args, rawCommand)
     end
 end)
 
+RegisterCommand('removemoney', function(source, args, rawCommand)
+    if args[1] ~= nil then
+       TriggerServerEvent("rF:RemoveMoney", token, tonumber(args[1])) 
+    end
+end)
+
+
+RegisterCommand('removebankmoney', function(source, args, rawCommand)
+    if args[1] ~= nil then
+       TriggerServerEvent("rF:RemoveBankMoney", token, tonumber(args[1])) 
+    end
+end)
+
 
 RegisterCommand('giveitem', function(source, args, rawCommand)
     if args[1] ~= nil then
