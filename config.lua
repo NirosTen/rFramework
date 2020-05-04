@@ -11,7 +11,6 @@ framework = {
     _default_player_dirty_money = 0, -- Default player dirty money
     _default_player_job = 'police',
     _default_player_group = "user",
-    _default_player_permission_level = 0,
 
     _default_player_max_weight = 50.0, -- Default player weight
 

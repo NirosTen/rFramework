@@ -90,7 +90,7 @@ end
 -- Call this to save user infos to database (identifier + cache table)
 function SavePlayerCache(id, cache)
     local encodedInv = EncodeInventory(cache.inventory)
-    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_group = @group, player_permission_level = @permission WHERE player_identifier = @identifier", {
+    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_group = @group WHERE player_identifier = @identifier", {
         ['@identifier'] = id,
         ['@inv'] = encodedInv,
         ['@money'] = cache.money,
@@ -98,12 +98,11 @@ function SavePlayerCache(id, cache)
         ['@dirtyMoney'] = cache.dirtyMoney,
         ['@job'] = cache.job,
         ['@group'] = cache.group,
-        ['@permission'] = cache.permission,
         ['@pos'] = cache.pos,
     })
 
     if framework._display_logs then
-        print("Saving "..id.." cache: "..encodedInv, cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group, cache.permission)
+        print("Saving "..id.." cache: "..encodedInv, cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
     end
 end
 
@@ -136,7 +135,6 @@ function GetPlayerInfoToCache(id)
                 v.dirtyMoney = info[1].player_dirty_money
                 v.job = info[1].player_job
                 v.group = info[1].player_group
-                v.permission = info[1].player_permission_level
                 v.pos = info[1].player_position
                 if framework._display_logs then
                     print("Adding ["..id.."] "..GetPlayerName(id).." to dynamic cache.")

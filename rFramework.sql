@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS `player_account` (
   `player_health` varchar(255) NOT NULL DEFAULT '200',
   `player_position` text DEFAULT NULL,
   `player_group` varchar(50) NOT NULL DEFAULT '0',
-  `player_permission_level` int(11) NOT NULL DEFAULT 0,
   `player_money` double NOT NULL DEFAULT 0,
   `player_bank_balance` int(32) DEFAULT 0,
   `player_dirty_money` double NOT NULL DEFAULT 0,
