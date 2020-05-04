@@ -58,7 +58,7 @@ end)
 
 
 -- Setter 
-function _player_remove_money(id, rmv)
+function RemovePlayerMoney(id, rmv)
     local player = _player_get_identifier(id)
     local pCache = GetPlayerCache(id) 
     PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
@@ -70,7 +70,7 @@ end
 
 RegisterNetEvent("rF:RemoveMoney")
 AddEventHandler("rF:RemoveMoney", function(tokenToCheck, rmv)
-    _player_remove_money(tokenToCheck, source, rmv)
+    RemovePlayerMoney(tokenToCheck, source, rmv)
 end)
 
 function _player_add_money(tokenToCheck, id, add)
