@@ -53,7 +53,7 @@ $(function() {
 
         if (typeof mess.addBank !== 'undefined') {
             bankbalanceactuelle = Math.round(bankbalanceactuelle + mess.addBank);
-            $('#addBankMoney').html('+' + mess.addBank);
+            $('#addBankMoney').html('+' + mess.addBank + '$');
             $('#bankbalance').html('<img src="icons/bank.png" style="padding-right: 3px;" height="25" width="35">' + bankbalanceactuelle + ' $');
             $("#addBankMoney").fadeIn("slow", function() {
                 setTimeout(function() {
@@ -64,7 +64,7 @@ $(function() {
 
         if (typeof mess.rmvBank !== 'undefined') {
             bankbalanceactuelle = Math.round(bankbalanceactuelle - mess.rmvBank);
-            $('#rmvBankMoney').html('-' + mess.rmvBank);
+            $('#rmvBankMoney').html('-' + mess.rmvBank + '$');
             $('#bankbalance').html('<img src="icons/bank.png" style="padding-right: 3px;" height="25" width="35">' + bankbalanceactuelle + ' $');
             $("#rmvBankMoney").fadeIn("slow", function() {
                 setTimeout(function() {
@@ -84,7 +84,7 @@ $(function() {
         }
 
         if (typeof mess.addMoney !== 'undefined') {
-            $('#addMoney').html('+' + mess.addMoney);
+            $('#addMoney').html('+' + mess.addMoney + '$');
             var newMoney = Math.round(moneyactuelle + mess.addMoney);
             moneyactuelle = newMoney;
             $('#money').html('<img src="icons/money.png" style="padding-right: 3px;" height="25" width="35">' + newMoney + ' $');
@@ -96,7 +96,7 @@ $(function() {
         }
 
         if (typeof mess.rmvMoney !== 'undefined') {
-            $('#rmvMoney').html('-' + mess.rmvMoney);
+            $('#rmvMoney').html('-' + mess.rmvMoney + '$');
             var newMoney = Math.round(moneyactuelle - mess.rmvMoney);
             moneyactuelle = newMoney;
             $('#money').html('<img src="icons/money.png" style="padding-right: 3px;" height="25" width="35">' + newMoney + ' $');
