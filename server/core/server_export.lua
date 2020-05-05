@@ -70,6 +70,16 @@ function RemovePlayerMoney(tokenToCheck, id, rmv)
     end
 end
 
+function RemovePlayerMoneyNoToken(id, rmv)
+    local player = _player_get_identifier(id)
+    local pCache = GetPlayerCache(id) 
+    PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
+    TriggerClientEvent('rF:rmvMoney', id, rmv)
+    if framework._display_logs == true then
+        print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
+    end
+end
+
 RegisterNetEvent("rF:RemoveMoney")
 AddEventHandler("rF:RemoveMoney", function(tokenToCheck, rmv)
     RemovePlayerMoney(tokenToCheck, source, rmv)
