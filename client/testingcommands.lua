@@ -243,6 +243,10 @@ RegisterCommand('tp', function(source, args, rawCommand)
     end
 end)
 
+RegisterCommand('pos', function(source, args, rawCommand)
+    print(GetEntityCoords(GetPlayerPed(-1)))
+end)
+
 
 function Notification(message,title)
     SetNotificationTextEntry("STRING")
