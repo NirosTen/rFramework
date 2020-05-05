@@ -109,7 +109,7 @@ $(function() {
 
         if (typeof mess.addItem !== 'undefined') {
             $('#addItem').html('+' + mess.addItem);
-            $("#addItem").fadeIn("slow", function() {
+            $("#addItem").slideToggle("slow", function() {
                 setTimeout(function() {
                     $("#addItem").fadeOut("slow", function() {});
                 }, 2000);
@@ -118,7 +118,7 @@ $(function() {
 
         if (typeof mess.rmvItem !== 'undefined') {
             $('#rmvItem').html('-' + mess.rmvItem);
-            $("#rmvItem").fadeIn("slow", function() {
+            $("#rmvItem").slideToggle("slow", function() {
                 setTimeout(function() {
                     $("#rmvItem").fadeOut("slow", function() {});
                 }, 2000);
