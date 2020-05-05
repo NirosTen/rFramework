@@ -26,7 +26,46 @@ function AddItemToPlayerInv(id, item, _count)
                 DebugPrint(v.name.." - x"..v.count)
             end
         else
-            -- To do notification if can not hold the item
+            TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
+        end
+    end
+end
+
+
+function BuyItemIfCanHoldIt(id, item, _count, price)
+    if DoesItemExist(item) then
+        local inv, place = GetInventoryFromCache(id)
+        local invWeight = GetInvWeight(inv)
+        local itemWeight = GetItemWeight(item, _count)
+        
+        DebugPrint(invWeight, itemWeight, invWeight + itemWeight)
+        if invWeight + itemWeight <= framework._default_player_max_weight then
+            local pCache = GetPlayerCache(id)
+            local pMoney = PlayersData[pCache].money
+            if pMoney >= price * _count then
+                RemovePlayerMoneyNoToken(id, price)
+                local countOld, num = GetItemCount(item, inv)
+                if countOld == 0 then
+                    table.insert(inv, {name = item, count = _count})
+                    TriggerClientEvent("rF:addItem", id, item.." x".._count)
+                else
+                    DebugPrint(countOld, _count, countOld + _count)
+                    table.remove(inv, num)
+                    table.insert(inv, {name = item, count = countOld + _count})
+                    TriggerClientEvent("rF:addItem", id, item.." x".._count)
+                end
+
+                PlayersData[place].inventory = inv
+
+                -- To remove later 
+                for k,v in pairs(PlayersData[place].inventory) do
+                    DebugPrint(v.name.." - x"..v.count)
+                end
+            else
+                TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu n'a pas assez d'argent.")
+            end
+        else
+            TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
         end
     end
 end
