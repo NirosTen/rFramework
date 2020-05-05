@@ -124,6 +124,27 @@ $(function() {
                 }, 2000);
             });
         }
+
+        if (typeof mess.hud !== 'undefined') {
+            console.log(mess.hud)
+            if (mess.hud == true) {
+                $('#money').fadeIn();
+                $('#bankbalance').fadeIn();
+                $('#dirtymoney').fadeIn();
+                $('#job').fadeIn();
+            } else {
+                $('#money').fadeOut();
+                $('#bankbalance').fadeOut();
+                $('#dirtymoney').fadeOut();
+                $('#job').fadeOut();
+                $('#rmvMoney').fadeOut();
+                $('#addMoney').fadeOut();
+                $('#addBankMoney').fadeOut();
+                $('#rmvBankMoney').fadeOut();
+                $('#addItem').fadeOut();
+                $('#rmvItem').fadeOut();
+            }
+        }
     });
 
 });

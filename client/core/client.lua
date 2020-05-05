@@ -170,6 +170,15 @@ AddEventHandler('rF:addItem', function(rslt)
 
 end)
 
+local hud = true
+RegisterNetEvent("rF:HudToogle")
+AddEventHandler("rF:HudToogle", function()
+	hud = not hud
+	SendNUIMessage({ 
+		hud = hud
+	})
+end)
+
 Citizen.CreateThread(function()
 	RequestIpl('shr_int') -- Load vehicleshop
 	RequestIpl("rc12b_default") -- Pillbox Hospital (hole in map)
