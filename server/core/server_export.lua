@@ -177,7 +177,7 @@ function _player_remove_money_for_bank(tokenToCheck, id, rmv)
         if PlayersData[pCache].money >= rmv then
             PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
             PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance + rmv)
-            TriggerClientEvent('rF:removeMoneyForBank', id, tonumber(rmv))
+            TriggerClientEvent("rF:MoneyToBank", id, tonumber(rmv))
         end
     end
 end
@@ -194,7 +194,7 @@ function _player_remove_bank_for_money(tokenToCheck, id, rmv)
         if PlayersData[pCache].bankBalance >= rmv then
             PlayersData[pCache].money = tonumber(PlayersData[pCache].money + rmv)
             PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance - rmv)
-            TriggerClientEvent('rF:removeBankForMoney', id, tonumber(rmv))
+            TriggerClientEvent("rF:BankToMoney", id, tonumber(rmv))
         end
     end
 end

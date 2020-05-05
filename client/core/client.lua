@@ -113,6 +113,26 @@ AddEventHandler('rF:removeMoneyForBank', function(rslt)
 
 end)
 
+RegisterNetEvent("rF:MoneyToBank")
+AddEventHandler("rF:MoneyToBank", function(money)
+	SendNUIMessage({
+		rmvMoney = money
+	})
+	SendNUIMessage({
+		addBank = money
+	})
+end)
+
+RegisterNetEvent("rF:BankToMoney")
+AddEventHandler("rF:BankToMoney", function(money)
+	SendNUIMessage({ 
+		addMoney = money
+	})
+	SendNUIMessage({
+		rmvBank = money
+	})
+end)
+
 RegisterNetEvent('rF:removeBankForMoney')
 AddEventHandler('rF:removeBankForMoney', function(rslt)
 
