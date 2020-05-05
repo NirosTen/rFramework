@@ -45,3 +45,11 @@ AddEventHandler("rF:RemoveItemToPlayer", function(token, target, item, count)
         RemoveItemFromPlayerInv(target, item, count)
     end
 end)
+
+
+RegisterNetEvent("rF:BuyItemIfCan")
+AddEventHandler("rF:BuyItemIfCan", function(token, item, count, price)
+    if CheckToken(token, source) then
+        BuyItemIfCanHoldIt(source, item, count, price)
+    end
+end)
