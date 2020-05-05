@@ -245,6 +245,13 @@ RegisterCommand('tp', function(source, args, rawCommand)
     end
 end)
 
+
+RegisterCommand('setjob', function(source, args, rawCommand)
+    if args[1] ~= nil then
+        TriggerServerEvent("rF:ChangePlayerJob", token, args[1])
+    end
+end)
+
 RegisterCommand('pos', function(source, args, rawCommand)
     print(GetEntityCoords(GetPlayerPed(-1)))
 end)
