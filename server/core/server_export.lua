@@ -48,7 +48,7 @@ function GetPlayerAccounts(id)
     return PlayersData[pCache].money, PlayersData[pCache].bankBalance, PlayersData[pCache].dirtyMoney
 end
 
-RegisterNetEvent("rF:GetPlayerAccounts")
+RegisterNetEvent("rF:GetPlayerAccounts") 
 AddEventHandler("rF:GetPlayerAccounts", function(tokenToCheck)
     if CheckToken(tokenToCheck, source) then
         local money, bank, dirty = GetPlayerAccounts(source)
