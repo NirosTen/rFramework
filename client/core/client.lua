@@ -1,6 +1,6 @@
 local firstSpawn = true
 
-AddEventHandler("playerSpawned", function(spawn)
+Citizen.CreateThread(function()
 	if firstSpawn == true then
 		TriggerServerEvent('rF:spawn')
 		firstSpawn = false
