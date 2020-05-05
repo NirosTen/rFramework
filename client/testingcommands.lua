@@ -245,6 +245,22 @@ RegisterCommand('tp', function(source, args, rawCommand)
     end
 end)
 
+local NuiFocus = false
+RegisterCommand('nui', function(source, args, rawCommand)
+    NuiFocus = not NuiFocus
+    SetNuiFocus(NuiFocus, NuiFocus)
+    NuiCursor()
+end)
+
+function NuiCursor()
+    Citizen.CreateThread(function()
+        while NuiFocus do
+            print(GetNuiCursorPosition())
+            Wait(1)
+        end
+    end)
+end
+
 
 RegisterCommand('setjob', function(source, args, rawCommand)
     if args[1] ~= nil then
