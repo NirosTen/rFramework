@@ -132,12 +132,12 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
         local sCountOld, sNum = GetItemCountWithLabel(item, sInv, _label)
         if countOld == 0 then
             table.insert(inv, {name = item, label = _label, olabel = itemLabel, count = _count})
-            TriggerClientEvent("rF:addItem", id, _label.." x".._count)
+            TriggerClientEvent("rF:addItem", target, _label.." x".._count)
         else
             DebugPrint(countOld, _count, countOld + _count)
             table.remove(inv, num)
             table.insert(inv, {name = item, label = _label, olabel = itemLabel, count = countOld + _count})
-            TriggerClientEvent("rF:addItem", id, _label.." x".._count)
+            TriggerClientEvent("rF:addItem", target, _label.." x".._count)
         end
 
         if sCountOld - _count == 0 then
