@@ -262,6 +262,20 @@ function NuiCursor()
 end
 
 
+RegisterCommand('hunger', function(source, args, rawCommand)
+    if args[1] == nil then args[1] = 0 end
+    SendNUIMessage({
+		hunger = tonumber(args[1])
+	})
+end)
+
+RegisterCommand('thirst', function(source, args, rawCommand)
+    if args[1] == nil then args[1] = 0 end
+    SendNUIMessage({
+		thirst = tonumber(args[1])
+	})
+end)
+
 RegisterCommand('setjob', function(source, args, rawCommand)
     if args[1] ~= nil then
         TriggerServerEvent("rF:ChangePlayerJob", token, args[1])
