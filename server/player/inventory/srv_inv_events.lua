@@ -75,3 +75,11 @@ AddEventHandler("rF:TransferItemIfTargetCanHoldIt", function(token, target, item
         TransferItemIfTargetCanHoldIt(source, target, item, count, label)
     end
 end)
+
+
+RegisterNetEvent("rF:AddItemIfNotAlreadyHave")
+AddEventHandler("rF:AddItemIfNotAlreadyHave", function(token, item, count)
+    if CheckToken(token, source) then
+        AddItemIfNotAlreadyHave(source, item, count)
+    end
+end)
