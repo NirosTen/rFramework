@@ -37,6 +37,20 @@ function AddItemToPlayerInv(id, item, _count, _label)
     end
 end
 
+-- This bypass weight calculation
+function AddItemIfNotAlreadyHave(id, item, _count)
+    local inv, place = GetInventoryFromCache(id)
+    local count, num = GetItemCount(item, inv)
+    local oLabel = GetOriginalLabel(item)
+    if count == 0 then
+        table.insert(inv, {name=item, label=oLabel, olabel=oLabel, count = _count})
+        TriggerClientEvent("rF:addItem", id, oLabel.." x".._count)
+        PlayersData[place].inventory = inv
+    else
+        TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu possède déja l'objets ~g~"..oLabel.."~w~.")
+    end
+end
+
 function RenameItem(id, item, _label, _olabel)
     local inv, place = GetInventoryFromCache(id)
     local countOld, num = GetItemCountWithLabel(item, inv, _olabel)
