@@ -60,6 +60,10 @@ client_scripts {
     'language/portuguese.lua',
 }
 
+exports {
+    "GetOriginalLabel",
+}
+
 server_exports { -- not going to use those, i suppose i will remove them
     'getIdentifier',
     '_player_get_identifier',
