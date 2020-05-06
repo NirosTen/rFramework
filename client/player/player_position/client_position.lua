@@ -5,13 +5,13 @@ local loaded = false
 local OldPos = nil
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(10*1000)
+        Citizen.Wait(5*1000)
         local pPos = GetEntityCoords(GetPlayerPed(-1))
         if OldPos == nil then
             OldPos = pPos
         else
             local dst = GetDistanceBetweenCoords(pPos, OldPos, true)
-            if dst >= 15.0 then
+            if dst >= 3.0 then
                 TriggerServerEvent("rF:save_position", pPos.x, pPos.y, pPos.z)
             end
         end
@@ -33,7 +33,7 @@ RegisterNetEvent("rF:spawn_last_position")
 AddEventHandler("rF:spawn_last_position", function(data, PosX, PosY, PosZ)
     if not loaded then
         if data == 0 then
-            SetEntityCoords(GetPlayerPed(-1), PosX, PosY, PosZ + 1.0, 1, 0, 0, 1)
+            SetEntityCoords(GetPlayerPed(-1), PosX, PosY, PosZ, 1, 0, 0, 1)
             FreezeEntityPosition(GetPlayerPed(-1), true)
             Wait(2500)
             FreezeEntityPosition(GetPlayerPed(-1), false)
@@ -42,7 +42,7 @@ AddEventHandler("rF:spawn_last_position", function(data, PosX, PosY, PosZ)
             PlaySoundFrontend(-1, "CHARACTER_SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0);
             loaded = true
         else
-            SetEntityCoords(GetPlayerPed(-1), PosX, PosY, PosZ + 1.0, 1, 0, 0, 1)
+            SetEntityCoords(GetPlayerPed(-1), PosX, PosY, PosZ, 1, 0, 0, 1)
             FreezeEntityPosition(GetPlayerPed(-1), true)
             Wait(2500)
             FreezeEntityPosition(GetPlayerPed(-1), false)
