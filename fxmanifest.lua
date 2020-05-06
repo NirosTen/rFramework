@@ -5,7 +5,7 @@ game 'gta5'
 files {
 	-- HUD
 	'html/index.html',
-    'html/js/script.js',
+    'html/js/*.js',
     'html/font/pricedown.ttf',
     'html/css/style.css',
 	'html/icons/money.png',
