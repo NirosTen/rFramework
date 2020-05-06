@@ -5,17 +5,17 @@ function AddItemToPlayerInv(id, item, _count)
         local player = _player_get_identifier(id)
         local inv, place = GetInventoryFromCache(id)
         local invWeight = GetInvWeight(inv)
-        local itemWeight = GetItemWeight(item, _count)
+        local itemWeight, itemLabel = GetItemWeight(item, _count)
         DebugPrint(invWeight, itemWeight, invWeight + itemWeight)
         if invWeight + itemWeight <= framework._default_player_max_weight then
             local countOld, num = GetItemCount(item, inv)
             if countOld == 0 then
-                table.insert(inv, {name = item, count = _count})
+                table.insert(inv, {name = item, label = itemLabel, count = _count})
                 TriggerClientEvent("rF:addItem", id, item.." x".._count)
             else
                 DebugPrint(countOld, _count, countOld + _count)
                 table.remove(inv, num)
-                table.insert(inv, {name = item, count = countOld + _count})
+                table.insert(inv, {name = item, label = itemLabel, count = countOld + _count})
                 TriggerClientEvent("rF:addItem", id, item.." x".._count)
             end
 
@@ -36,7 +36,7 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
     if DoesItemExist(item) then
         local inv, place = GetInventoryFromCache(id)
         local invWeight = GetInvWeight(inv)
-        local itemWeight = GetItemWeight(item, _count)
+        local itemWeight, itemLabel = GetItemWeight(item, _count)
         
         DebugPrint(invWeight, itemWeight, invWeight + itemWeight)
         if invWeight + itemWeight <= framework._default_player_max_weight then
@@ -46,12 +46,12 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
                 RemovePlayerMoneyNoToken(id, price)
                 local countOld, num = GetItemCount(item, inv)
                 if countOld == 0 then
-                    table.insert(inv, {name = item, count = _count})
+                    table.insert(inv, {name = item, label = itemLabel, count = _count})
                     TriggerClientEvent("rF:addItem", id, item.." x".._count)
                 else
                     DebugPrint(countOld, _count, countOld + _count)
                     table.remove(inv, num)
-                    table.insert(inv, {name = item, count = countOld + _count})
+                    table.insert(inv, {name = item, label = itemLabel, count = countOld + _count})
                     TriggerClientEvent("rF:addItem", id, item.." x".._count)
                 end
 
@@ -83,7 +83,7 @@ function RemoveItemFromPlayerInv(id, item, _count)
                     TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
                 else
                     table.remove(inv, k)
-                    table.insert(inv, {name = item, count = count - _count})
+                    table.insert(inv, {name = item, label = v.label, count = count - _count})
                     TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
                 end
             end
@@ -121,7 +121,7 @@ end
 function GetItemWeight(item, count)
     for _,v in pairs(items) do
         if item == v.name then
-            return v.weight * count
+            return v.weight * count, v.label
         end
     end
 end
