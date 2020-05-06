@@ -65,7 +65,7 @@ function AddSocietyItems(_name, _item, _label, _count)
         table.insert(SocietyCache[i].inventory, {name = _item, lavel = _label, count = _count})
     else
         table.remove(SocietyCache[i].inventory, k)
-        table.insert(SocietyCache[i].inventory, {name = _item, lavel = _label, count = itemCount + _count})
+        table.insert(SocietyCache[i].inventory, {name = _item, label = _label, count = itemCount + _count})
     end
 end
 
@@ -79,7 +79,7 @@ function RemoveSocietyItems(_name, _item, _label, _count)
         table.remove(SocietyCache[i].inventory, k)
     else
         table.remove(SocietyCache[i].inventory, k)
-        table.insert(SocietyCache[i].inventory, {name = _item, lavel = _label, count = itemCount - _count})
+        table.insert(SocietyCache[i].inventory, {name = _item, label = _label, count = itemCount - _count})
     end
 end
 
