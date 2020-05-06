@@ -3,20 +3,20 @@ local firstSpawn = true
 Citizen.CreateThread(function()
 	if firstSpawn == true then
 		TriggerServerEvent('rF:spawn')
+		SetPlayerVisibleLocally(PlayerId(), true)
 		firstSpawn = false
 	end
 end)
 
 -- Spawn with a fake skin, just for now xD [WIP]
 AddEventHandler("playerSpawned", function(spawn)
-	local defaultModel = GetHashKey('mp_m_freemode_01')
-	RequestModel(defaultModel)
-	while not HasModelLoaded(defaultModel) do
-		Citizen.Wait(10)
-	end
-	SetPlayerModel(PlayerId(), defaultModel)
-	SetPedDefaultComponentVariation(PlayerPedId())
-	SetModelAsNoLongerNeeded(defaultModel)
+	--local defaultModel = GetHashKey('mp_m_freemode_01')
+	--RequestModel(defaultModel)
+	--while not HasModelLoaded(defaultModel) do
+	--	Citizen.Wait(10)
+	--end
+	--SetPlayerModel(PlayerId(), defaultModel)
+	--SetPedDefaultComponentVariation(PlayerPedId())
 end)
 
 RegisterNetEvent('rF:initializeinfo')
@@ -174,7 +174,6 @@ end)
 
 RegisterNetEvent('rF:rmvItem')
 AddEventHandler('rF:rmvItem', function(rslt)
-	print(rslt)
 	SendNUIMessage({
 		rmvItem = rslt
 	})
@@ -183,7 +182,6 @@ end)
 
 RegisterNetEvent('rF:addItem')
 AddEventHandler('rF:addItem', function(rslt)
-	print(rslt)
 	SendNUIMessage({ 
 		addItem = rslt
 	})
