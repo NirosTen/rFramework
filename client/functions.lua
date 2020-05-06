@@ -33,13 +33,10 @@ end
 
 RegisterNetEvent("rF:advenced_notication")
 AddEventHandler("rF:advenced_notication", function(icon, sender, title, text)
-    Citizen.CreateThread(function()
-        Wait(1)
-        SetNotificationTextEntry("STRING");
-        AddTextComponentString(text);
-        SetNotificationMessageClanTag(icon, icon, true, 8, sender, title, 0.5, text)
-        DrawNotification(false, true);
-    end)
+    SetNotificationTextEntry("STRING");
+    AddTextComponentString(text);
+    SetNotificationMessageClanTag(icon, icon, true, 8, sender, title, 0.5, text)
+    DrawNotification(false, true);
 end)
 
 
