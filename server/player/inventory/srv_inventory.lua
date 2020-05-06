@@ -188,11 +188,9 @@ end
 
 function GetInvWeight(inv)
     local weight = 0
-    for _,v in pairs(inv) do
-        for _, i in pairs(items) do
-            local itemWeight = i.weight
-            weight = weight + itemWeight * v.count
-        end
+    for _,v in ipairs(inv) do
+        local ItemWeight = GetItemWeight(v.name, v.count)
+        weight = weight + ItemWeight
     end
     return weight
 end
