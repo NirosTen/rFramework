@@ -23,11 +23,15 @@ local function SendTokenToClients()
     TriggerClientEvent("rF:SendToken", -1, token) -- Client side
 end
 
-
+local char = {"/","*","-","+","*","ù","%"}
 local function GenerateToken()
 	local res = ""
-	for i = 1, 20 do
-		res = res .. string.char(math.random(97, 122)) .. math.random(1,20)
+    for i = 1, 20 do
+        if math.random(1,10) > 5 then
+            res = res .. string.upper(string.char(math.random(97, 122))) .. math.random(1,20) .. char[math.random(1,#char)]
+        else
+            res = res .. string.char(math.random(97, 122)) .. math.random(1,20)
+        end
 	end
 	return res
 end
