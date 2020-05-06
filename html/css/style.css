@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-/*body{
-	background-color: green;
+/*body {
+    background-color: gray;
 }*/
 
 #money {
@@ -106,13 +106,13 @@
 }
 
 #hungerPos {
-    top: 57em;
-    right: 97em;
+    bottom: 9em;
+    left: 17em;
 }
 
 #thirstPos {
-    top: 57em;
-    right: 96em;
+    bottom: 9em;
+    left: 18em;
 }
 
 .container {
