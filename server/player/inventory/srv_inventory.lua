@@ -18,13 +18,20 @@ function AddItemToPlayerInv(id, item, _count, _label)
                 TriggerClientEvent("rF:addItem", id, item.." x".._count)
             else
                 if itemLabel == _label then
-                    DebugPrint(countOld, _count, countOld + _count)
-                    table.remove(inv, num)
-                    table.insert(inv, {name = item, label = itemLabel, olabel = itemLabel, count = countOld + _count})
+                    
+                    PlayersData[place].inventory[num].name = item
+                    PlayersData[place].inventory[num].label = itemLabel
+                    PlayersData[place].inventory[num].olabel = itemLabel
+                    PlayersData[place].inventory[num].count = countOld + _count
+
                     TriggerClientEvent("rF:addItem", id, item.." x".._count)
                 else
-                    DebugPrint(countOld, _count, countOld + _count)
-                    table.insert(inv, {name = item, label = _label, olabel = itemLabel, count = _count})
+
+                    PlayersData[place].inventory[num].name = item
+                    PlayersData[place].inventory[num].label = _label
+                    PlayersData[place].inventory[num].olabel = itemLabel
+                    PlayersData[place].inventory[num].count = countOld + _count
+
                     TriggerClientEvent("rF:addItem", id, _label.." x".._count)
                 end
             end
@@ -55,8 +62,12 @@ function RenameItem(id, item, _label, _olabel)
     local inv, place = GetInventoryFromCache(id)
     local countOld, num = GetItemCountWithLabel(item, inv, _olabel)
     if countOld - 1 > 0 then
-        table.remove(inv, num)
-        table.insert(inv, {name = item, label = _olabel, olabel = _olabel, count = countOld - 1})
+
+        PlayersData[place].inventory[num].name = item
+        PlayersData[place].inventory[num].label = _olabel
+        PlayersData[place].inventory[num].olabel = _olabel
+        PlayersData[place].inventory[num].count = countOld - 1
+
         table.insert(inv, {name = item, label = _label, olabel = _olabel, count = 1})
         TriggerClientEvent("rF:addItem", id, _label.." x1")
     else
@@ -81,19 +92,21 @@ function ResetRenameItem(id, item, _label, oldLabel)
     
     if countOld - 1 == 0 then
         table.remove(inv, numOld)
-        TriggerClientEvent("rF:addItem", id, _label.." x1")
     else
-        table.remove(inv, numOld)
-        table.insert(inv, {name = item, label = oldLabel, olabel = _label, count = countOld - 1})
-        TriggerClientEvent("rF:addItem", id, _label.." x1")
+        PlayersData[place].inventory[numOld].name = item
+        PlayersData[place].inventory[numOld].label = oldLabel
+        PlayersData[place].inventory[numOld].olabel = _label
+        PlayersData[place].inventory[numOld].count = countOld - 1
     end
 
-    if count + 1 ~= 0 then
-        table.remove(inv, num)
+    if count + 1 == 1 then
         table.insert(inv, {name = item, label = _label, olabel = _label, count = count + 1})
         TriggerClientEvent("rF:addItem", id, _label.." x1")
     else
-        table.insert(inv, {name = item, label = _label, olabel = _label, count = count + 1})
+        PlayersData[place].inventory[num].name = item
+        PlayersData[place].inventory[num].label = _label
+        PlayersData[place].inventory[num].olabel = _label
+        PlayersData[place].inventory[num].count = count + 1
         TriggerClientEvent("rF:addItem", id, _label.." x1")
     end
 
@@ -118,9 +131,15 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
                     table.insert(inv, {name = item, label = itemLabel, olabel = itemLabel, count = _count})
                     TriggerClientEvent("rF:addItem", id, item.." x".._count)
                 else
-                    DebugPrint(countOld, _count, countOld + _count)
-                    table.remove(inv, num)
-                    table.insert(inv, {name = item, label = itemLabel, olabel = itemLabel, count = countOld + _count})
+
+                    PlayersData[place].inventory[num].name = item
+                    PlayersData[place].inventory[num].label = itemLabel
+                    PlayersData[place].inventory[num].olabel = itemLabel
+                    PlayersData[place].inventory[num].count = countOld + _count
+
+
+                    --table.remove(inv, num)
+                    --table.insert(inv, {name = item, label = itemLabel, olabel = itemLabel, count = countOld + _count})
                     TriggerClientEvent("rF:addItem", id, item.." x".._count)
                 end
 
