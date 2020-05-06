@@ -264,16 +264,12 @@ end
 
 RegisterCommand('hunger', function(source, args, rawCommand)
     if args[1] == nil then args[1] = 0 end
-    SendNUIMessage({
-		hunger = tonumber(args[1])
-	})
+    AddHunger(tonumber(args[1]))
 end)
 
 RegisterCommand('thirst', function(source, args, rawCommand)
     if args[1] == nil then args[1] = 0 end
-    SendNUIMessage({
-		thirst = tonumber(args[1])
-	})
+    AddThirst(tonumber(args[1]))
 end)
 
 RegisterCommand('setjob', function(source, args, rawCommand)
@@ -283,7 +279,7 @@ RegisterCommand('setjob', function(source, args, rawCommand)
 end)
 
 RegisterCommand('pos', function(source, args, rawCommand)
-    print(GetEntityCoords(GetPlayerPed(-1)))
+    print(GetEntityCoords(GetPlayerPed(-1)), GetEntityHeading(GetPlayerPed(-1)))
 end)
 
 
