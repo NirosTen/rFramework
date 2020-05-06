@@ -6,6 +6,7 @@ function ChangePlayerJob(id, job)
     PlayersData[pCache].job = job
     PlayersData[pCache].job_grade = 0
     TriggerClientEvent("rF:JobRefresh", id, job)
+    TriggerClientEvent("rF:job", id, job)
 end
 
 
@@ -21,6 +22,7 @@ function ChangePlayerJobGrade(id, grade)
     local pCache = GetPlayerCache(id) 
     PlayersData[pCache].job_grade = tonumber(grade)
     TriggerClientEvent("rF:JobRefresh", id, job)
+    TriggerClientEvent("rF:job", id, job)
 end
 
 
@@ -41,4 +43,5 @@ RegisterNetEvent("rF:GetPlayerJob")
 AddEventHandler("rF:GetPlayerJob", function()
     local job, grade = GetPlayerJob(source)
     TriggerServerEvent("rF:JobRefresh", source, job, grade)
+    TriggerClientEvent("rF:job", id, job)
 end)
