@@ -53,3 +53,25 @@ AddEventHandler("rF:BuyItemIfCan", function(token, item, count, price)
         BuyItemIfCanHoldIt(source, item, count, price)
     end
 end)
+
+
+RegisterNetEvent("rF:RenameItem")
+AddEventHandler("rF:RenameItem", function(token, item, label, olabel)
+    if CheckToken(token, source) then
+        RenameItem(source, item, label, olabel)
+    end
+end)
+
+RegisterNetEvent("rF:ResetRenameItem")
+AddEventHandler("rF:ResetRenameItem", function(token, item, label, oldlabel)
+    if CheckToken(token, source) then
+        ResetRenameItem(source, item, label, oldlabel)
+    end
+end)
+
+RegisterNetEvent("rF:TransferItemIfTargetCanHoldIt")
+AddEventHandler("rF:TransferItemIfTargetCanHoldIt", function(token, target, item, count, label)
+    if CheckToken(token, source) then
+        TransferItemIfTargetCanHoldIt(source, target, item, count, label)
+    end
+end)
