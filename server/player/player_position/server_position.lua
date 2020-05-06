@@ -17,7 +17,6 @@ AddEventHandler("rF:save_position", function(LastPosX, LastPosY, LastPosZ)
     local pCache = GetPlayerCache(source)
     local lastPosition = "{" .. LastPosX .. ", " .. LastPosY .. ",  " .. LastPosZ .. "}"
     PlayersData[pCache].pos = lastPosition
-	TriggerClientEvent("rF:notification", source, "~g~Position Saved")
 end)
 
 RegisterServerEvent("rF:SpawnPlayer")
