@@ -28,7 +28,7 @@ $(function() {
         }
 
         if (typeof mess.jobinfo !== 'undefined') {
-            $('#job').html('<img src="icons/job.png" style="padding-right: 3px;" height="25" width="35">' + mess.jobinfo + '');
+            $('#job').html(mess.jobinfo);
             jobactuelle = mess.jobinfo;
         }
 
