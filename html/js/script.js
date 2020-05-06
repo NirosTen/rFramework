@@ -2,6 +2,7 @@ var moneyactuelle = 0;
 var dirtymoneyactuelle = 0;
 var bankbalanceactuelle = 0;
 var jobactuelle = 'police';
+
 $(function() {
     window.addEventListener("message", function(event) {
         var mess = event.data;
@@ -132,6 +133,10 @@ $(function() {
                 $('#bankbalance').fadeIn();
                 $('#dirtymoney').fadeIn();
                 $('#job').fadeIn();
+                $('#hunger').fadeIn();
+                $('#thirst').fadeIn();
+                $('#hungerThirst').fadeIn();
+                $('#hungerThirst2').fadeIn();
             } else {
                 $('#money').fadeOut();
                 $('#bankbalance').fadeOut();
@@ -143,8 +148,21 @@ $(function() {
                 $('#rmvBankMoney').fadeOut();
                 $('#addItem').fadeOut();
                 $('#rmvItem').fadeOut();
+                $('#hunger').fadeOut();
+                $('#thirst').fadeOut();
+                $('#hungerThirst').fadeOut();
+                $('#hungerThirst2').fadeOut();
             }
         }
+
+        if (typeof mess.hunger !== 'undefined') {
+            $("#hunger").css("width", mess.hunger + "%");
+        }
+
+        if (typeof mess.thirst !== 'undefined') {
+            $("#thirst").css("width", mess.thirst + "%");
+        }
+
     });
 
 });

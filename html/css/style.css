@@ -104,3 +104,65 @@
     height: 35px;
     width: auto;
 }
+
+#hungerPos {
+    top: 57em;
+    right: 97em;
+}
+
+#thirstPos {
+    top: 57em;
+    right: 96em;
+}
+
+.container {
+    width: 100px;
+    position: absolute;
+    transform: rotate(270deg);
+}
+
+.progress2 {
+    padding: 3px;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.171);
+}
+
+.progress-bar2 {
+    height: 9px;
+    border-radius: 30px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    transition: 0.4s linear;
+    transition-property: width, background-color;
+}
+
+.hunger-moved .progress-bar2 {
+    background-color: rgb(42, 252, 70);
+    animation: progressAnimation 2s;
+}
+
+@keyframes progressAnimation {
+    0% {
+        width: 5%;
+        background-color: rgb(255, 112, 146);
+    }
+    100% {
+        width: 100%;
+        background-color: rgb(42, 252, 70);
+    }
+}
+
+.thirst-moved .progress-bar2 {
+    background-color: rgb(42, 210, 252);
+    animation: thirstAnimation 2s;
+}
+
+@keyframes thirstAnimation {
+    0% {
+        width: 5%;
+        background-color: rgb(255, 112, 146);
+    }
+    100% {
+        width: 100%;
+        background-color: rgb(42, 210, 252);
+    }
+}
