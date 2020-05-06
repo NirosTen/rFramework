@@ -137,10 +137,10 @@
 
 .hunger-moved .progress-bar2 {
     background-color: rgb(42, 252, 70);
-    animation: progressAnimation 2s;
+    animation: hungerAnimation 2s;
 }
 
-@keyframes progressAnimation {
+@keyframes hungerAnimation {
     0% {
         width: 5%;
         background-color: rgb(255, 112, 146);
