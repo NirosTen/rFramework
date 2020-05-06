@@ -53,6 +53,7 @@ client_scripts {
 	'client/*.lua',
 	-- Player
     'client/player/player_position/client_position.lua',
+    'client/player/hungerNthirst/*.lua',
     -- Locale
     'language/language.lua',
     'language/english.lua',
