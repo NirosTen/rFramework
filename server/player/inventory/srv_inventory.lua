@@ -242,6 +242,21 @@ function GetItemCountWithLabel(item, inv, label)
 end
 
 
+function GetItemCount(item, inv)
+    local found = false
+    for k,v in pairs(inv) do 
+        if v.name == item then
+            found = true
+            return v.count, k
+        end
+    end
+    -- Not sure if the if is needed, i think the return stop the for, not sure tho
+    if not found then
+        return 0
+    end
+end
+
+
 function DoesItemExist(item)
     local exist = false
     for k,v in pairs(items) do
