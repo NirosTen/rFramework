@@ -206,4 +206,11 @@ end)
 
 function save_player_position(LastPosX, LastPosY, LastPosZ, LastPosH)
     TriggerEvent('rF:save_position', LastPosX, LastPosY, LastPosZ, LastPosH)
+function GiveMoneyToPlayer(source, target, money)
+    local pCache = GetPlayerCache(source)
+    local tCache = GetPlayerCache(target)
+    if PlayersData[pCache].money >= money then
+        PlayersData[pCache].money = PlayersData[pCache].money - money
+        PlayersData[tCache].money = PlayersData[tCache].money + money
+    end
 end
