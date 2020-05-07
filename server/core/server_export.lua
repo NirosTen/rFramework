@@ -206,6 +206,16 @@ end)
 
 function save_player_position(LastPosX, LastPosY, LastPosZ, LastPosH)
     TriggerEvent('rF:save_position', LastPosX, LastPosY, LastPosZ, LastPosH)
+end
+
+RegisterNetEvent("rF:GiveMoneyToPlayer")
+AddEventHandler("rF:GiveMoneyToPlayer", function(tokenToCheck, target, money)
+    if CheckToken(tokenToCheck, id) then
+        GiveMoneyToPlayer(source, target, money)
+    end
+end)
+
+
 function GiveMoneyToPlayer(source, target, money)
     local pCache = GetPlayerCache(source)
     local tCache = GetPlayerCache(target)
