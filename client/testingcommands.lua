@@ -282,6 +282,13 @@ RegisterCommand('pos', function(source, args, rawCommand)
     print(GetEntityCoords(GetPlayerPed(-1)), GetEntityHeading(GetPlayerPed(-1)))
 end)
 
+RegisterCommand('ban', function(source, args, rawCommand)
+    if args[1] ~= nil then
+        SendNUIMessage({
+            ban = args[1]
+        })
+    end
+end)
 
 function Notification(message,title)
     SetNotificationTextEntry("STRING")
