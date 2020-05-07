@@ -54,6 +54,14 @@ function PaySociety(id, name, money)
     TriggerClientEvent('rF:rmvMoney', id, money)
 end
 
+function TakeMoneyFromSociety(id, name, money)
+    local _, i = GetCachedSociety(name)
+    local pCache = GetPlayerCache(id) 
+    PlayersData[pCache].money = PlayersData[pCache].money + money
+    SocietyCache[i].money = SocietyCache[i].money - money
+    TriggerClientEvent('rF:addMoney', id, money)
+end
+
 function RemoveSocietyMoney(name, money)
     local _, i = GetCachedSociety(name)
     SocietyCache[i].money = SocietyCache[i].money - money
