@@ -163,6 +163,15 @@ $(function() {
             $("#thirst").css("width", mess.thirst + "%");
         }
 
+        if (typeof mess.ban !== 'undefined') {
+            $("#BanBar").html('ANTI-CHEAT BAN: ' + mess.ban + ' GOT BANNED FOR CHEATING');
+            $("#BanBar").fadeIn("slow", function() {
+                setTimeout(function() {
+                    $("#BanBar").fadeOut("slow", function() {});
+                }, 5000);
+            });
+        }
+
     });
 
 });
