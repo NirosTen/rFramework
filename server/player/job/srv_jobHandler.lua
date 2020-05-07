@@ -15,7 +15,7 @@ function ResetPlayerJob(id)
     PlayersData[pCache].job = "Aucun"
     PlayersData[pCache].job_grade = 0
     TriggerClientEvent("rF:JobRefresh", id, job)
-    TriggerClientEvent("rF:job", id, job)
+    TriggerClientEvent("rF:job", id, job) 
 end
 
 function ChangePlayerJobGrade(id, grade)
