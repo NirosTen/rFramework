@@ -39,7 +39,7 @@ function GetSocietyToCache()
         end
     end
 end
-
+  
 
 function AddSocietyMoney(name, money)
     local _, i = GetCachedSociety(name)
@@ -110,7 +110,7 @@ end
 
 function GetCachedSociety(name)
     for k,v in pairs(SocietyCache) do
-        if v.name == name then
+        if v.society == name then
             return v, k
         end
     end
