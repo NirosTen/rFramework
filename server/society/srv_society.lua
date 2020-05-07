@@ -9,7 +9,7 @@ local second = 1000
 local minute = 60*second
 Citizen.CreateThread(function()
     while true do
-        Wait(3*minute)
+        Wait(1*minute)
         SaveSocietyCache()
     end
 end)
@@ -18,10 +18,11 @@ end)
 function SaveSocietyCache()
     for k,v in pairs(SocietyCache) do
         MySQL.Async.execute("UPDATE society SET money = @money, money = @money, inventory = @inv WHERE society_name = @name", {
-            ['@name'] = v.name,
+            ['@name'] = v.society,
             ['@inv'] = json.encode(v.inventory),
             ['@money'] = v.money,
         })
+        print("^2Society ["..v.society.."] ^7saved to DB with "..v.money.."^2$^7 and "..#v.inventory.." items.")
     end
 end
 
