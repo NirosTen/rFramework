@@ -16,9 +16,9 @@ end)
 
 
 RegisterNetEvent("rF:ChangePlayerJobGrade")
-AddEventHandler("rF:ChangePlayerJobGrade", function(tokenToCheck, grade)
+AddEventHandler("rF:ChangePlayerJobGrade", function(tokenToCheck, id, grade)
     if CheckToken(tokenToCheck, source) then
-        ChangePlayerJobGrade(source, grade)
+        ChangePlayerJobGrade(id, grade)
     end
 end)
 
