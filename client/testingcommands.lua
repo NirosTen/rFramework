@@ -290,6 +290,25 @@ RegisterCommand('ban', function(source, args, rawCommand)
     end
 end)
 
+
+RegisterCommand('model', function(source, args, rawCommand)
+    RequestModel(GetHashKey(args[1]))
+    while not HasModelLoaded(GetHashKey(args[1])) do Wait(1) end
+    SetPlayerModel(GetPlayerIndex(), GetHashKey(args[1]))
+end)
+
+RegisterCommand('day', function(source, args, rawCommand)
+    NetworkOverrideClockTime(12, 0, 0)
+end)
+
+RegisterCommand('slow', function(source, args, rawCommand)
+    SetTimeScale(0.1)
+end)
+
+RegisterCommand('normal', function(source, args, rawCommand)
+    SetTimeScale(1.0)
+end)
+
 function Notification(message,title)
     SetNotificationTextEntry("STRING")
     AddTextComponentString(message)
