@@ -93,7 +93,7 @@ function TransferItemFromInvToSociety(_name, _item, _label, _count)
 end
 
 
-function RemoveSocietyItems(_name, _item, _label, _count)
+function TransferItemFromSocietyToInv(_name, _item, _label, _count)
     local _, i = GetCachedSociety(name)
     local pCache = GetPlayerCache(id) 
     local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
