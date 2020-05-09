@@ -290,6 +290,14 @@ RegisterCommand('ban', function(source, args, rawCommand)
     end
 end)
 
+local suspended = false
+RegisterCommand('suspended', function(source, args, rawCommand)
+    SendNUIMessage({
+        suspended = not suspended
+    })
+    suspended = not suspended
+end)
+
 RegisterCommand('extra1', function(source, args, rawCommand)
     local pVeh = GetVehiclePedIsIn(GetPlayerPed(-1), 0)
     for i = 1,9 do

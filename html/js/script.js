@@ -172,6 +172,15 @@ $(function() {
             });
         }
 
+        if (typeof mess.suspended !== 'undefined') {
+            if (mess.suspended == true) {
+                $("#suspendedBar").fadeIn();
+            } else {
+                $("#suspendedBar").fadeOut();
+            }
+
+        }
+
     });
 
 });
