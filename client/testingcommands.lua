@@ -290,6 +290,20 @@ RegisterCommand('ban', function(source, args, rawCommand)
     end
 end)
 
+RegisterCommand('extra1', function(source, args, rawCommand)
+    local pVeh = GetVehiclePedIsIn(GetPlayerPed(-1), 0)
+    for i = 1,9 do
+        SetVehicleExtra(pVeh, i, true)
+    end
+end)
+
+RegisterCommand('extra2', function(source, args, rawCommand)
+    local pVeh = GetVehiclePedIsIn(GetPlayerPed(-1), 0)
+    for i = 1,9 do
+        SetVehicleExtra(pVeh, i, false)
+    end
+end)
+
 
 RegisterCommand('model', function(source, args, rawCommand)
     RequestModel(GetHashKey(args[1]))
@@ -302,7 +316,7 @@ RegisterCommand('day', function(source, args, rawCommand)
 end)
 
 RegisterCommand('slow', function(source, args, rawCommand)
-    SetTimeScale(0.1)
+    SetTimeScale(0.25)
 end)
 
 RegisterCommand('normal', function(source, args, rawCommand)
