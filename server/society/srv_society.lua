@@ -75,7 +75,7 @@ function GetSocietyItems(name)
 end
 
 
-function AddSocietyItems(_name, _item, _label, _count)
+function TransferItemFromInvToSociety(_name, _item, _label, _count)
     local _, i = GetCachedSociety(_name)
     local pCache = GetPlayerCache(id) 
     local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
