@@ -112,7 +112,7 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _count)
         if itemCount == 0 then
             table.insert(PlayersData[pCache].inventory, {name = _item, label = _label, olabel = _label, count = _count})
         else
-            PlayersData[pCache].inventory[k].count = itemCount -+ _count
+            PlayersData[pCache].inventory[k].count = itemCount + _count
         end
     else
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
