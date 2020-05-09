@@ -27,3 +27,17 @@ AddEventHandler("rF:GetSocietyInfos", function(token, society)
         TriggerClientEvent("rF:SendSocietyInfo", source, societyCB)
     end
 end)
+
+RegisterNetEvent("rF:TransferItemFromInvToSociety")
+AddEventHandler("rF:TransferItemFromInvToSociety", function(token, _name, _item, _label, _count)
+    if CheckToken(token, source) then
+        TransferItemFromInvToSociety(_name, _item, _label, _count)
+    end
+end)
+
+RegisterNetEvent("rF:TransferItemFromSocietyToInv")
+AddEventHandler("rF:TransferItemFromSocietyToInv", function(token, _name, _item, _label, _count)
+    if CheckToken(token, source) then
+        TransferItemFromSocietyToInv(source, _name, _item, _label, _count)
+    end
+end)
