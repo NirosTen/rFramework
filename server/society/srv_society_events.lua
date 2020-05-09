@@ -29,15 +29,15 @@ AddEventHandler("rF:GetSocietyInfos", function(token, society)
 end)
 
 RegisterNetEvent("rF:TransferItemFromInvToSociety")
-AddEventHandler("rF:TransferItemFromInvToSociety", function(token, _name, _item, _label, _count)
+AddEventHandler("rF:TransferItemFromInvToSociety", function(token, society, _item, _label, _olabel, _count)
     if CheckToken(token, source) then
-        TransferItemFromInvToSociety(_name, _item, _label, _count)
+        TransferItemFromInvToSociety(source, society, _item, _label, _olabel, _count)
     end
 end)
 
 RegisterNetEvent("rF:TransferItemFromSocietyToInv")
-AddEventHandler("rF:TransferItemFromSocietyToInv", function(token, _name, _item, _label, _count)
+AddEventHandler("rF:TransferItemFromSocietyToInv", function(token, society, _item, _label, _olabel, _count)
     if CheckToken(token, source) then
-        TransferItemFromSocietyToInv(source, _name, _item, _label, _count)
+        TransferItemFromSocietyToInv(source, society, _item, _label, _olabel, _count)
     end
 end)
