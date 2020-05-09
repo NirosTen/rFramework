@@ -93,22 +93,29 @@ function TransferItemFromInvToSociety(_name, _item, _label, _count)
 end
 
 
-function TransferItemFromSocietyToInv(_name, _item, _label, _count)
+function TransferItemFromSocietyToInv(id, _name, _item, _label, _count)
     local _, i = GetCachedSociety(name)
     local pCache = GetPlayerCache(id) 
-    local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
-    if itemCount == 0 then
-        -- Display error, the item do not exist
-    elseif itemCount - _count == 0 then
-        table.remove(SocietyCache[i].inventory, k)
+
+    local invWeight = GetInvWeight(PlayersData[pCache].inventory)
+    local itemWeight, itemLabel = GetItemWeight(_item, _count)
+    if invWeight + itemWeight <= framework._default_player_max_weight then
+        local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
+        if itemCount == 0 then
+            -- Display error, the item do not exist
+        elseif itemCount - _count == 0 then
+            table.remove(SocietyCache[i].inventory, k)
+        else
+            SocietyCache[i].inventory[k].count = itemCount - _count
+        end
+        local itemCount, k = GetItemCountWithLabel(_item, PlayersData[pCache].inventory, _label)
+        if itemCount == 0 then
+            table.insert(PlayersData[pCache].inventory, {name = _item, label = _label, olabel = _label, count = _count})
+        else
+            PlayersData[pCache].inventory[k].count = itemCount -+ _count
+        end
     else
-        SocietyCache[i].inventory[k].count = itemCount - _count
-    end
-    local itemCount, k = GetItemCountWithLabel(_item, PlayersData[pCache].inventory, _label)
-    if itemCount == 0 then
-        table.insert(PlayersData[pCache].inventory, {name = _item, label = _label, olabel = _label, count = _count})
-    else
-        PlayersData[pCache].inventory[k].count = itemCount -+ _count
+        TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
     end
 end
 
