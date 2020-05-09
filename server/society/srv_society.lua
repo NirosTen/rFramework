@@ -76,13 +76,19 @@ end
 
 
 function AddSocietyItems(_name, _item, _label, _count)
-    local _, i = GetCachedSociety(name)
+    local _, i = GetCachedSociety(_name)
+    local pCache = GetPlayerCache(id) 
     local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
     if itemCount == 0 then
         table.insert(SocietyCache[i].inventory, {name = _item, lavel = _label, count = _count})
     else
-        table.remove(SocietyCache[i].inventory, k)
-        table.insert(SocietyCache[i].inventory, {name = _item, label = _label, count = itemCount + _count})
+        SocietyCache[i].inventory[k].count = itemCount + _count
+    end
+    local itemCount, k = GetItemCountWithLabel(_item, PlayersData[pCache].inventory, _label)
+    if itemCount - _count <= 0 then
+        table.remove(PlayersData[pCache].inventory, k)
+    else
+        PlayersData[pCache].inventory[k].count = itemCount - _count
     end
 end
 
