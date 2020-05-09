@@ -75,12 +75,12 @@ function GetSocietyItems(name)
 end
 
 
-function TransferItemFromInvToSociety(_name, _item, _label, _count)
+function TransferItemFromInvToSociety(id, _name, _item, _label, _olabel, _count)
     local _, i = GetCachedSociety(_name)
     local pCache = GetPlayerCache(id) 
-    local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
+    local itemCount, k = GetItemCountWithLabel(_item, SocietyCache[i].inventory, _label)
     if itemCount == 0 then
-        table.insert(SocietyCache[i].inventory, {name = _item, lavel = _label, count = _count})
+        table.insert(SocietyCache[i].inventory, {name = _item, label = _label, olabel = _olabel, count = _count})
     else
         SocietyCache[i].inventory[k].count = itemCount + _count
     end
@@ -93,14 +93,15 @@ function TransferItemFromInvToSociety(_name, _item, _label, _count)
 end
 
 
-function TransferItemFromSocietyToInv(id, _name, _item, _label, _count)
-    local _, i = GetCachedSociety(name)
+function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count)
+    local _, i = GetCachedSociety(_name)
     local pCache = GetPlayerCache(id) 
-
+    
     local invWeight = GetInvWeight(PlayersData[pCache].inventory)
     local itemWeight, itemLabel = GetItemWeight(_item, _count)
     if invWeight + itemWeight <= framework._default_player_max_weight then
-        local itemCount, k = GetSocietyItemCount(_item, SocietyCache[i].inventory)
+        local itemCount, k = GetItemCountWithLabel(_item, SocietyCache[i].inventory, _label)
+        
         if itemCount == 0 then
             -- Display error, the item do not exist
         elseif itemCount - _count == 0 then
@@ -110,7 +111,7 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _count)
         end
         local itemCount, k = GetItemCountWithLabel(_item, PlayersData[pCache].inventory, _label)
         if itemCount == 0 then
-            table.insert(PlayersData[pCache].inventory, {name = _item, label = _label, olabel = _label, count = _count})
+            table.insert(PlayersData[pCache].inventory, {name = _item, label = _label, olabel = _olabel, count = _count})
         else
             PlayersData[pCache].inventory[k].count = itemCount + _count
         end
@@ -118,21 +119,6 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _count)
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
     end
 end
-
-function GetSocietyItemCount(item, inv)
-    local found = false
-    for k,v in pairs(inv) do 
-        if v.name == item then
-            found = true
-            return v.count, k
-        end
-    end
-    -- Not sure if the if is needed, i think the return stop the for, not sure tho
-    if not found then
-        return 0
-    end
-end
-
 
 
 
