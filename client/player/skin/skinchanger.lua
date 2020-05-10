@@ -82,37 +82,25 @@ for i=1, #Components, 1 do
 	Character[Components[i].name] = Components[i].value
 end
 
-function LoadDefaultModel(malePed, cb)
+function LoadDefaultModel(model, cb)
 	local playerPed = PlayerPedId()
-	local characterModel
-
-	if malePed then
-		characterModel = GetHashKey('mp_m_freemode_01')
-	else
-		characterModel = GetHashKey('mp_f_freemode_01')
-	end
+	local characterModel = GetHashKey(model)
 
 	RequestModel(characterModel)
+	while not HasModelLoaded(characterModel) do
+		RequestModel(characterModel)
+		Citizen.Wait(0)
+	end
 
-	Citizen.CreateThread(function()
-		while not HasModelLoaded(characterModel) do
-			RequestModel(characterModel)
-			Citizen.Wait(0)
-		end
+	SetPlayerModel(PlayerId(), characterModel)
+	local playerPed = PlayerPedId()
+	SetPedDefaultComponentVariation(playerPed)
 
-		if IsModelInCdimage(characterModel) and IsModelValid(characterModel) then
-			SetPlayerModel(PlayerId(), characterModel)
-			SetPedDefaultComponentVariation(playerPed)
-		end
+	SetModelAsNoLongerNeeded(characterModel)
 
-		SetModelAsNoLongerNeeded(characterModel)
-
-		if cb ~= nil then
-			cb()
-		end
-
-		TriggerEvent('skinchanger:modelLoaded')
-	end)
+	if cb ~= nil then
+		cb()
+	end
 end
 
 function GetMaxVals()
@@ -255,7 +243,6 @@ function ApplySkin(skin, clothes)
 	end
 
 	SetPedHeadBlendData			(playerPed, Character['face'], Character['face'], Character['face'], Character['skin'], Character['skin'], Character['skin'], 1.0, 1.0, 1.0, true)
-
 	SetPedHairColor				(playerPed,			Character['hair_color_1'],		Character['hair_color_2'])					-- Hair Color
 	SetPedHeadOverlay			(playerPed, 3,		Character['age_1'],				(Character['age_2'] / 10) + 0.0)			-- Age + opacity
 	SetPedHeadOverlay			(playerPed, 0,		Character['blemishes_1'],		(Character['blemishes_2'] / 10) + 0.0)		-- Blemishes + opacity
@@ -277,13 +264,11 @@ function ApplySkin(skin, clothes)
 	SetPedHeadOverlay			(playerPed, 10,		Character['chest_1'],			(Character['chest_2'] / 10) + 0.0)			-- Chest Hair + opacity
 	SetPedHeadOverlayColor		(playerPed, 10, 1,	Character['chest_3'])														-- Torso Color
 	SetPedHeadOverlay			(playerPed, 11,		Character['bodyb_1'],			(Character['bodyb_2'] / 10) + 0.0)			-- Body Blemishes + opacity
-
 	if Character['ears_1'] == -1 then
 		ClearPedProp(playerPed, 2)
 	else
 		SetPedPropIndex			(playerPed, 2,		Character['ears_1'],			Character['ears_2'], 2)						-- Ears Accessories
 	end
-
 	SetPedComponentVariation	(playerPed, 8,		Character['tshirt_1'],			Character['tshirt_2'], 2)					-- Tshirt
 	SetPedComponentVariation	(playerPed, 11,		Character['torso_1'],			Character['torso_2'], 2)					-- torso parts
 	SetPedComponentVariation	(playerPed, 3,		Character['arms'],				Character['arms_2'], 2)						-- Amrs
@@ -294,25 +279,21 @@ function ApplySkin(skin, clothes)
 	SetPedComponentVariation	(playerPed, 9,		Character['bproof_1'],			Character['bproof_2'], 2)					-- bulletproof
 	SetPedComponentVariation	(playerPed, 7,		Character['chain_1'],			Character['chain_2'], 2)					-- chain
 	SetPedComponentVariation	(playerPed, 5,		Character['bags_1'],			Character['bags_2'], 2)						-- Bag
-
 	if Character['helmet_1'] == -1 then
 		ClearPedProp(playerPed, 0)
 	else
 		SetPedPropIndex			(playerPed, 0,		Character['helmet_1'],			Character['helmet_2'], 2)					-- Helmet
 	end
-
 	if Character['glasses_1'] == -1 then
 		ClearPedProp(playerPed, 1)
 	else
 		SetPedPropIndex			(playerPed, 1,		Character['glasses_1'],			Character['glasses_2'], 2)					-- Glasses
 	end
-
 	if Character['watches_1'] == -1 then
 		ClearPedProp(playerPed, 6)
 	else
 		SetPedPropIndex			(playerPed, 6,		Character['watches_1'],			Character['watches_2'], 2)					-- Watches
 	end
-
 	if Character['bracelets_1'] == -1 then
 		ClearPedProp(playerPed,	7)
 	else
@@ -358,32 +339,16 @@ RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function()
 	TriggerServerEvent("rF:SaveSkin", json.encode(Character))
 end)
-AddEventHandler('skinchanger:modelLoaded', function()
-	ClearPedProp(PlayerPedId(), 0)
-
-	if LoadSkin ~= nil then
-		ApplySkin(LoadSkin)
-		LoadSkin = nil
-	end
-
-	if LoadClothes ~= nil then
-		ApplySkin(LoadClothes.playerSkin, LoadClothes.clothesSkin)
-		LoadClothes = nil
-	end
-end)
 
 RegisterNetEvent('skinchanger:loadSkin')
 AddEventHandler('skinchanger:loadSkin', function(skin, cb)
-	if skin['sex'] ~= LastSex then
+	if skin['sex'] ~= LastSex then 
 		LoadSkin = skin
-
-		if skin['sex'] == 0 then
-			TriggerEvent('skinchanger:loadDefaultModel', true, cb)
-		else
-			TriggerEvent('skinchanger:loadDefaultModel', false, cb)
-		end
+		TriggerEvent('skinchanger:loadDefaultModel', skin['sex'], cb)
 	else
-		ApplySkin(skin)
+		if skin['sex'] == "mp_m_freemode_01" or skin['sex'] == "mp_f_freemode_01" then
+			ApplySkin(skin)
+		end
 
 		if cb ~= nil then
 			cb()
@@ -393,6 +358,22 @@ AddEventHandler('skinchanger:loadSkin', function(skin, cb)
 	LastSex = skin['sex']
 end)
 
+
+RegisterNetEvent("skinchanger:LoadForTheFirsTime")
+AddEventHandler("skinchanger:LoadForTheFirsTime", function(skin)
+	print(skin['sex'])
+    RequestModel(GetHashKey(skin['sex']))
+    while not HasModelLoaded(GetHashKey(skin['sex'])) do Wait(1) end
+	SetPlayerModel(GetPlayerIndex(), GetHashKey(skin['sex']))
+	SetPedDefaultComponentVariation(GetPlayerPed(-1))
+	SetModelAsNoLongerNeeded(GetPlayerPed(-1))
+
+	if skin['sex'] == "mp_m_freemode_01" or skin['sex'] == "mp_f_freemode_01" then
+		print("Loading skin")
+		ApplySkin(skin)
+	end
+end)
+
 RegisterNetEvent('skinchanger:loadClothes')
 AddEventHandler('skinchanger:loadClothes', function(playerSkin, clothesSkin)
 	if playerSkin['sex'] ~= LastSex then
@@ -400,12 +381,7 @@ AddEventHandler('skinchanger:loadClothes', function(playerSkin, clothesSkin)
 			playerSkin	= playerSkin,
 			clothesSkin	= clothesSkin
 		}
-
-		if playerSkin['sex'] == 0 then
-			TriggerEvent('skinchanger:loadDefaultModel', true)
-		else
-			TriggerEvent('skinchanger:loadDefaultModel', false)
-		end
+		TriggerEvent('skinchanger:loadDefaultModel', playerSkin['sex'])
 	else
 		ApplySkin(playerSkin, clothesSkin)
 	end
