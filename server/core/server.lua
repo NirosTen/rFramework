@@ -27,7 +27,8 @@ AddEventHandler('rF:spawn', function()
     local source = source
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade)
+    print(pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin)
+    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin)
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
 end)
 
@@ -90,7 +91,7 @@ end
 -- Call this to save user infos to database (identifier + cache table)
 function SavePlayerCache(id, cache)
     local encodedInv = EncodeInventory(cache.inventory)
-    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
+    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_skin = @skin, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
         ['@identifier'] = id,
         ['@inv'] = encodedInv,
         ['@money'] = cache.money,
@@ -100,6 +101,7 @@ function SavePlayerCache(id, cache)
         ['@job_grade'] = cache.job_grade,
         ['@group'] = cache.group,
         ['@pos'] = cache.pos,
+        ['@skin'] = cache.skin,
     })
 
     if framework._display_logs then
@@ -138,6 +140,7 @@ function GetPlayerInfoToCache(id)
                 v.job_grade = info[1].player_job_grade
                 v.group = info[1].player_group
                 v.pos = info[1].player_position
+                v.skin = info[1].player_skin
                 if framework._display_logs then
                     print("Adding ["..id.."] "..GetPlayerName(id).." to dynamic cache.")
                 end
