@@ -191,10 +191,10 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
 end
 
 
-function ExhangeItem(id, OriginalItem, oLabel, ItemToGet)
+function ExhangeItem(id, OriginalItem, ItemToGet)
     local inv, p = GetInventoryFromCache(id)
     local invWeight = GetInvWeight(inv)
-    local oWheight, _ = GetItemWeight(OriginalItem, 1)
+    local oWheight, oLabel = GetItemWeight(OriginalItem, 1)
     local iWheight, iLabel = GetItemWeight(ItemToGet, 1)
     if invWeight - oWheight + itemWeight <= framework._default_player_max_weight then
         local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)

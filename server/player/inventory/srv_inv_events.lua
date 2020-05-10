@@ -85,7 +85,7 @@ AddEventHandler("rF:AddItemIfNotAlreadyHave", function(token, item, count)
 end)
 
 RegisterNetEvent("rF:ExhangeItem")
-AddEventHandler("rF:ExhangeItem", function(token, OriginalItem, oLabel, ItemToGet)
+AddEventHandler("rF:ExhangeItem", function(token, OriginalItem, ItemToGet)
     if CheckToken(token, source) then
         ExhangeItem(source, OriginalItem, oLabel, ItemToGet)
     end
