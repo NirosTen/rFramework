@@ -198,24 +198,28 @@ function ExhangeItem(id, OriginalItem, ItemToGet)
     local iWheight, iLabel = GetItemWeight(ItemToGet, 1)
     if invWeight - oWheight + itemWeight <= framework._default_player_max_weight then
         local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)
-        local iCount, iNum = GetItemCountWithLabel(ItemToGet, inv, iLabel)
-        if oCount - 1 <= 0 then
-            table.remove(inv, oNum)
-            TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
-        else
-            PlayersData[p].inventory[oNum].count = PlayersData[p].inventory[oNum].count - 1
-            TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
-        end
+        if oCount > 0 then
+            local iCount, iNum = GetItemCountWithLabel(ItemToGet, inv, iLabel)
+            if oCount - 1 <= 0 then
+                table.remove(inv, oNum)
+                TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
+            else
+                PlayersData[p].inventory[oNum].count = PlayersData[p].inventory[oNum].count - 1
+                TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
+            end
 
-        if iCount + 1 == 1 then
-            table.insert(inv, {name = ItemToGet, label = iLabel, olabel = iLabel, count = 1})
-            TriggerClientEvent("rF:addItem", id, iLabel.." x1")
-        else
-            PlayersData[p].inventory[iNum].count = PlayersData[p].inventory[iNum].count + 1
-            TriggerClientEvent("rF:addItem", id, iLabel.." x1")
-        end
+            if iCount + 1 == 1 then
+                table.insert(inv, {name = ItemToGet, label = iLabel, olabel = iLabel, count = 1})
+                TriggerClientEvent("rF:addItem", id, iLabel.." x1")
+            else
+                PlayersData[p].inventory[iNum].count = PlayersData[p].inventory[iNum].count + 1
+                TriggerClientEvent("rF:addItem", id, iLabel.." x1")
+            end
 
-        PlayersData[p].inventory = inv
+            PlayersData[p].inventory = inv
+        else
+            TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu ne possède pas assez de ~g~"..oLabel.."~w~.") 
+        end
     else
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~La personne porte trop de chose.")
     end
