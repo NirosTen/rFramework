@@ -200,20 +200,21 @@ function ExhangeItem(id, OriginalItem, ItemToGet)
     if invWeight - oWheight + iWheight <= framework._default_player_max_weight then
         local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)
         if oCount > 0 then
-            local iCount, iNum = GetItemCountWithLabel(ItemToGet, inv, iLabel)
             if oCount - 1 <= 0 then
                 table.remove(inv, oNum)
                 TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
             else
-                PlayersData[p].inventory[oNum].count = PlayersData[p].inventory[oNum].count - 1
+                PlayersData[p].inventory[oNum].count = oCount - 1
                 TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
             end
 
+            local iCount, iNum = GetItemCountWithLabel(ItemToGet, inv, iLabel)
             if iCount + 1 == 1 then
                 table.insert(inv, {name = ItemToGet, label = iLabel, olabel = iLabel, count = 1})
                 TriggerClientEvent("rF:addItem", id, iLabel.." x1")
             else
-                PlayersData[p].inventory[iNum].count = PlayersData[p].inventory[iNum].count + 1
+                print(OriginalItem, ItemToGet, iCount, iNum)
+                PlayersData[p].inventory[iNum].count = iCount + 1
                 TriggerClientEvent("rF:addItem", id, iLabel.." x1")
             end
 
@@ -237,7 +238,7 @@ function SellItem(id, itemToSell, price)
             PlayersData[p].money = PlayersData[p].money + price
             TriggerClientEvent('rF:addMoney', id, price)
         else
-            PlayersData[p].inventory[oNum].count = PlayersData[p].inventory[iNum].count - 1
+            PlayersData[p].inventory[oNum].count = PlayersData[p].inventory[oNum].count - 1
             PlayersData[p].money = PlayersData[p].money + price
             TriggerClientEvent('rF:addMoney', id, price)
         end
