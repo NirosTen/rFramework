@@ -195,9 +195,8 @@ function ExhangeItem(id, OriginalItem, ItemToGet)
     local inv, p = GetInventoryFromCache(id)
     local invWeight = GetInvWeight(inv)
     local oWheight, oLabel = GetItemWeight(OriginalItem, 1)
-    if oLabel == nil then oLabel = GetOriginalLabel(itemToSell) end
     local iWheight, iLabel = GetItemWeight(ItemToGet, 1)
-    if invWeight - oWheight + iWheight <= framework._default_player_max_weight then
+    if invWeight - oWheight + itemWeight <= framework._default_player_max_weight then
         local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)
         if oCount > 0 then
             local iCount, iNum = GetItemCountWithLabel(ItemToGet, inv, iLabel)
@@ -229,7 +228,6 @@ end
 function SellItem(id, itemToSell, price)
     local inv, p = GetInventoryFromCache(id)
     local _, oLabel = GetItemWeight(OriginalItem, 1)
-    if oLabel == nil then oLabel = GetOriginalLabel(itemToSell) end
     local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)
     if oCount > 0 then
         if oCount - 1 <= 0 then
