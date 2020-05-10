@@ -216,6 +216,8 @@ function ExhangeItem(id, OriginalItem, oLabel, ItemToGet)
         end
 
         PlayersData[p].inventory = inv
+    else
+        TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~La personne porte trop de chose.")
     end
 end
 
