@@ -190,6 +190,35 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
     end
 end
 
+
+function ExhangeItem(id, OriginalItem, oLabel, ItemToGet)
+    local inv, p = GetInventoryFromCache(id)
+    local invWeight = GetInvWeight(inv)
+    local oWheight, _ = GetItemWeight(OriginalItem, 1)
+    local iWheight, iLabel = GetItemWeight(ItemToGet, 1)
+    if invWeight - oWheight + itemWeight <= framework._default_player_max_weight then
+        local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)
+        local iCount, iNum = GetItemCountWithLabel(ItemToGet, inv, iLabel)
+        if oCount - 1 <= 0 then
+            table.remove(inv, oNum)
+            TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
+        else
+            PlayersData[p].inventory[oNum].count = PlayersData[p].inventory[oNum].count - 1
+            TriggerClientEvent("rF:rmvItem", id, oLabel.." x1")
+        end
+
+        if iCount + 1 == 1 then
+            table.insert(inv, {name = ItemToGet, label = iLabel, olabel = iLabel, count = 1})
+            TriggerClientEvent("rF:addItem", id, iLabel.." x1")
+        else
+            PlayersData[p].inventory[iNum].count = PlayersData[p].inventory[iNum].count + 1
+            TriggerClientEvent("rF:addItem", id, iLabel.." x1")
+        end
+
+        PlayersData[p].inventory = inv
+    end
+end
+
 function RemoveItemFromPlayerInv(id, item, _count)
     if DoesItemExist(item) then
         local inv, place = GetInventoryFromCache(id)
