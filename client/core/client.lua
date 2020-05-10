@@ -20,7 +20,7 @@ AddEventHandler("playerSpawned", function(spawn)
 end)
 
 RegisterNetEvent('rF:initializeinfo')
-AddEventHandler('rF:initializeinfo', function(money,dirtymoney,bankbalance, job)
+AddEventHandler('rF:initializeinfo', function(money,dirtymoney,bankbalance, job, _, skin)
 
 	SendNUIMessage({
 		initialise = true,
@@ -29,6 +29,14 @@ AddEventHandler('rF:initializeinfo', function(money,dirtymoney,bankbalance, job)
 		bankbalanceinfo = bankbalance,
 		job = job,
 	})
+
+	if skin ~= nil then
+		TriggerEvent("skinchanger:loadSkin", json.decode(skin), function()
+			print(Yes)
+		end)
+	else
+		TriggerEvent("core:OpenIdentityCreator") -- Changer ça par votre skin creator
+	end
 
 end)
 
