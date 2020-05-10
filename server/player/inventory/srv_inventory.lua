@@ -225,6 +225,25 @@ function ExhangeItem(id, OriginalItem, ItemToGet)
     end
 end
 
+function SellItem(id, itemToSell, price)
+    local inv, p = GetInventoryFromCache(id)
+    local _, oLabel = GetItemWeight(OriginalItem, 1)
+    local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)
+    if oCount > 0 then
+        if oCount - 1 <= 0 then
+            table.remove(inv, oNum)
+            PlayersData[p].money = PlayersData[p].money + price
+            TriggerClientEvent('rF:addMoney', id, price)
+        else
+            PlayersData[p].inventory[oNum].count = PlayersData[p].inventory[iNum].count - 1
+            PlayersData[p].money = PlayersData[p].money + price
+            TriggerClientEvent('rF:addMoney', id, price)
+        end
+    else
+        TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu ne possède pas assez de ~g~"..oLabel.."~w~.") 
+    end
+end
+
 function RemoveItemFromPlayerInv(id, item, _count)
     if DoesItemExist(item) then
         local inv, place = GetInventoryFromCache(id)
