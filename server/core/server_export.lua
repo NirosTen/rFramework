@@ -224,3 +224,10 @@ function GiveMoneyToPlayer(source, target, money)
         PlayersData[tCache].money = PlayersData[tCache].money + money
     end
 end
+
+
+RegisterNetEvent("rF:SaveSkin")
+AddEventHandler("rF:SaveSkin", function(skin)
+    local pCache = GetPlayerCache(source)
+    PlayersData[pCache].skin = skin
+end)
