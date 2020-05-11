@@ -361,7 +361,7 @@ end)
 
 RegisterNetEvent("skinchanger:LoadForTheFirsTime")
 AddEventHandler("skinchanger:LoadForTheFirsTime", function(skin)
-	print(skin['sex'])
+	while not NetworkIsSessionStarted() do Wait(1000) end
     RequestModel(GetHashKey(skin['sex']))
     while not HasModelLoaded(GetHashKey(skin['sex'])) do Wait(1) end
 	SetPlayerModel(GetPlayerIndex(), GetHashKey(skin['sex']))
