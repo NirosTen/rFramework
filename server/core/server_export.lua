@@ -243,4 +243,5 @@ RegisterNetEvent("rF:ChangePlayerIdentity")
 AddEventHandler("rF:ChangePlayerIdentity", function(_identity)
     local pCache = GetPlayerCache(source)
     PlayersData[pCache].identity = _identity
+    TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
 end)
