@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `player_account` (
   `player_identifier` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
   `player_health` varchar(255) NOT NULL DEFAULT '200',
   `player_skin` text DEFAULT NULL,
-  `player_identity` text NOT NULL,
+  `player_identity` text DEFAULT NULL,
   `player_position` text DEFAULT NULL,
   `player_group` varchar(50) NOT NULL DEFAULT '0',
   `player_money` int(32) NOT NULL DEFAULT 0,
