@@ -69,7 +69,7 @@ function AddItemToPlayerInv(id, item, _count, _label)
                 end
             end
 
-            PlayersData[place].inventory = inv
+            
 
         else
             TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
@@ -262,9 +262,9 @@ end
 
 function SellItem(id, itemToSell, price)
     local inv, p = GetInventoryFromCache(id)
-    local _, oLabel = GetItemWeight(OriginalItem, 1)
+    local _, oLabel = GetItemWeight(itemToSell, 1)
     if oLabel == nil then oLabel = GetOriginalLabel(itemToSell) end
-    local oCount, oNum = GetItemCountWithLabel(OriginalItem, inv, oLabel)
+    local oCount, oNum = GetItemCountWithLabel(itemToSell, inv, oLabel)
     if oCount > 0 then
         if oCount - 1 <= 0 then
             table.remove(inv, oNum)
