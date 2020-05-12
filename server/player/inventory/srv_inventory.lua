@@ -310,6 +310,16 @@ function GetInvWeight(inv)
     return weight
 end
 
+function GetWeight(id)
+    local inv, place = GetInventoryFromCache(id)
+    local weight = 0
+    for _,v in ipairs(inv) do
+        local ItemWeight = GetItemWeight(v.name, v.count)
+        weight = weight + ItemWeight
+    end
+    return weight
+end
+
 
 function GetItemWeight(item, count)
     for _,v in pairs(items) do
