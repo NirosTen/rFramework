@@ -321,6 +321,12 @@ AddEventHandler('skinchanger:getData', function(cb)
 	cb(components, GetMaxVals())
 end)
 
+
+RegisterNetEvent("skinchanger:GetKeyValue")
+AddEventHandler("skinchanger:GetKeyValue", function(key, cb)
+	cb(Character[key])
+end)
+
 AddEventHandler('skinchanger:change', function(key, val)
 	Character[key] = val
 
