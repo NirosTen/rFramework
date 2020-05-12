@@ -49,6 +49,7 @@ function AddItemToPlayerInv(id, item, _count, _label)
             if countOld == 0 then
                 table.insert(inv, {name = item, label = itemLabel, olabel = itemLabel, count = _count})
                 TriggerClientEvent("rF:addItem", id, item.." x".._count)
+                PlayersData[place].inventory = inv
             else
                 if itemLabel == _label then
                     
