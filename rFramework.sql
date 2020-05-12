@@ -38,16 +38,20 @@ CREATE TABLE IF NOT EXISTS `player_account` (
   `player_identifier` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
   `player_health` varchar(255) NOT NULL DEFAULT '200',
   `player_skin` text DEFAULT NULL,
+  `player_identity` text NOT NULL,
   `player_position` text DEFAULT NULL,
   `player_group` varchar(50) NOT NULL DEFAULT '0',
-  `player_money` double NOT NULL DEFAULT 0,
+  `player_money` int(32) NOT NULL DEFAULT 0,
   `player_bank_balance` int(32) DEFAULT 0,
   `player_dirty_money` double NOT NULL DEFAULT 0,
-  `player_job` varchar(50) NOT NULL DEFAULT 'police',
+  `player_job` varchar(50) NOT NULL DEFAULT 'Aucun',
   `player_job_grade` int(32) DEFAULT NULL,
   `player_inv` text DEFAULT NULL,
+  `phone_number` varchar(10) DEFAULT NULL COMMENT 'Pour le gcphone',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+COMMIT;
+
 
 -- --------------------------------------------------------
 
