@@ -281,23 +281,15 @@ function SellItem(id, itemToSell, price)
 end
 
 function RemoveItemFromPlayerInv(id, item, _count)
-    if DoesItemExist(item) then
-        local inv, place = GetInventoryFromCache(id)
-        local _olabel = GetOriginalLabel(item)
-        for k,v in pairs(inv) do
-            if v.name == item then
-                local count = v.count
-                if count - _count <= 0 then -- So we don't get player with negative items 
-                    table.remove(inv, k)
-                    TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
-                else
-                    table.remove(inv, k)
-                    table.insert(inv, {name = item, label = v.label, olabel = _olabel, count = count - _count})
-                    TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
-                end
-            end
-        end
-        PlayersData[place].inventory = inv
+    local inv, place = GetInventoryFromCache(id)
+    local count, i = GetItemCountWithLabel(_, inv, item)
+    print(id, item, _count, count)
+    if count - _count <= 0 then -- So we don't get player with negative items 
+        table.remove(PlayersData[place].inventory, k)
+        TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
+    else
+        PlayersData[place].inventory[i].count = PlayersData[place].inventory[i].count - _count
+        TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
     end
 end
 
