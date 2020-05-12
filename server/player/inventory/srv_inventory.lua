@@ -329,6 +329,14 @@ function GetItemWeight(item, count)
     end
 end
 
+function GetItemWeightWithLabel(label, count)
+    for _,v in pairs(items) do
+        if label == v.label then
+            return v.weight * count
+        end
+    end
+end
+
 function GetOriginalLabel(item)
     for k,v in pairs(items) do
         if v.name == item then
