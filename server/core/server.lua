@@ -27,8 +27,7 @@ AddEventHandler('rF:spawn', function()
     local source = source
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
-    print(pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin)
+    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity)
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
 end)
 
@@ -107,7 +106,7 @@ function SavePlayerCache(id, cache)
     })
 
     if framework._display_logs then
-        print("Saving "..id.." cache: "..encodedInv, cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
+        print("Saving "..id.." cache: "..cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
     end
 end
 
