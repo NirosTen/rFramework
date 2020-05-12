@@ -231,3 +231,16 @@ AddEventHandler("rF:SaveSkin", function(skin)
     local pCache = GetPlayerCache(source)
     PlayersData[pCache].skin = skin
 end)
+
+-- Table to send
+--
+--   Identity = {
+--       nom = pNom, -- String
+--       prenom = pPrenom, -- String
+--       age = page, -- String
+--   }
+RegisterNetEvent("rF:ChangePlayerIdentity")
+AddEventHandler("rF:ChangePlayerIdentity", function(_identity)
+    local pCache = GetPlayerCache(source)
+    PlayersData[pCache].identity = _identity
+end)
