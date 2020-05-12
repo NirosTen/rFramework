@@ -347,7 +347,7 @@ function GetOriginalLabel(item)
 end
 
 
-function GetItemCountWithLabel(item, inv, label)
+function GetItemCountWithLabel(_, inv, label)
     local found = false
     for k,v in pairs(inv) do 
         if v.label == label then
