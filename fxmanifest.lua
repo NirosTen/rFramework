@@ -80,7 +80,11 @@ server_exports { -- not going to use those, i suppose i will remove them
     '_player_remove_money_for_bank',
     '_player_remove_bank_for_money',
     'save_player_position',
-    'Config'
+    'Config',
+    'GetItemWeightWithLabel',
+    'GetWeight',
+    'AddItemToPlayerInvBypass',
+    'RemoveItemFromPlayerInv',
 }
 
 dependencies {
