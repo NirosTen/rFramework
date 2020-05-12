@@ -1,5 +1,38 @@
 
 
+function AddItemToPlayerInvBypass(id, item, _count, _label, _olabel)
+    if DoesItemExist(item) then
+        local inv, place = GetInventoryFromCache(id)
+        local countOld, num = GetItemCountWithLabel(item, inv, _label)
+
+        if countOld == 0 then
+            table.insert(inv, {name = item, label = _label, olabel = _olabel, count = _count})
+            TriggerClientEvent("rF:addItem", id, item.." x".._count)
+            PlayersData[place].inventory = inv
+        else
+            if itemLabel == _label then
+                
+                PlayersData[place].inventory[num].name = item
+                PlayersData[place].inventory[num].label = _label
+                PlayersData[place].inventory[num].olabel = _olabel
+                PlayersData[place].inventory[num].count = countOld + _count
+
+                TriggerClientEvent("rF:addItem", id, item.." x".._count)
+            else
+
+                PlayersData[place].inventory[num].name = item
+                PlayersData[place].inventory[num].label = _label
+                PlayersData[place].inventory[num].olabel = _olabel
+                PlayersData[place].inventory[num].count = countOld + _count
+
+                TriggerClientEvent("rF:addItem", id, _label.." x".._count)
+            end
+        end
+
+        
+    end
+end
+
 function AddItemToPlayerInv(id, item, _count, _label)
     if DoesItemExist(item) then
         local inv, place = GetInventoryFromCache(id)
