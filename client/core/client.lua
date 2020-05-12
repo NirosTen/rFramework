@@ -20,8 +20,6 @@ AddEventHandler('rF:initializeinfo', function(money,dirtymoney,bankbalance, job,
 
 	if skin ~= nil then
 		TriggerEvent("skinchanger:LoadForTheFirsTime", json.decode(skin))
-	else
-		TriggerEvent("core:OpenIdentityCreator") -- Changer ça par votre skin creator
 	end
 
 end)

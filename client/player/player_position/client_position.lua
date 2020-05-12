@@ -41,6 +41,8 @@ AddEventHandler("rF:spawn_last_position", function(data, PosX, PosY, PosZ)
             Notify(_L("welcome"))
             PlaySoundFrontend(-1, "CHARACTER_SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0);
             loaded = true
+            while not NetworkIsSessionStarted() do Wait(1000) end
+            TriggerEvent("core:OpenIdentityCreator") -- Changer ça par votre skin creator
         else
             SetEntityCoords(GetPlayerPed(-1), PosX, PosY, PosZ, 1, 0, 0, 1)
             FreezeEntityPosition(GetPlayerPed(-1), true)
