@@ -91,7 +91,8 @@ end
 -- Call this to save user infos to database (identifier + cache table)
 function SavePlayerCache(id, cache)
     local encodedInv = EncodeInventory(cache.inventory)
-    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_skin = @skin, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
+    local encodedIdentity = json.encode(cache.identity)
+    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_skin = @skin, player_identity = @identity, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
         ['@identifier'] = id,
         ['@inv'] = encodedInv,
         ['@money'] = cache.money,
@@ -102,6 +103,7 @@ function SavePlayerCache(id, cache)
         ['@group'] = cache.group,
         ['@pos'] = cache.pos,
         ['@skin'] = cache.skin,
+        ['@identity'] = encodedIdentity,
     })
 
     if framework._display_logs then
@@ -141,6 +143,11 @@ function GetPlayerInfoToCache(id)
                 v.group = info[1].player_group
                 v.pos = info[1].player_position
                 v.skin = info[1].player_skin
+                if info[1].player_identity ~= nil then
+                    v.identity = json.decode(info[1].player_identity)
+                else
+                    v.identity = {}
+                end
                 if framework._display_logs then
                     print("Adding ["..id.."] "..GetPlayerName(id).." to dynamic cache.")
                 end
