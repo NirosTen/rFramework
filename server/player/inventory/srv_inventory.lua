@@ -282,10 +282,11 @@ function SellItem(id, itemToSell, price)
 end
 
 function RemoveItemFromPlayerInv(id, item, _count)
+    print(id, item, _count)
     local inv, place = GetInventoryFromCache(id)
     local count, i = GetItemCountWithLabel(_, inv, item)
     if count - _count <= 0 then
-        table.remove(PlayersData[place].inventory, k)
+        table.remove(PlayersData[place].inventory, i)
         TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
     else
         PlayersData[place].inventory[i].count = PlayersData[place].inventory[i].count - _count
@@ -347,17 +348,13 @@ end
 
 
 function GetItemCountWithLabel(_, inv, label)
-    local found = false
     for k,v in pairs(inv) do 
         if v.label == label then
-            found = true
+            print("GetItemCountWithLabel looking for ("..label.." and found ("..v.name, v.label, v.count..")")
             return v.count, k
         end
     end
-    -- Not sure if the if is needed, i think the return stop the for, not sure tho
-    if not found then
-        return 0
-    end
+    return 0
 end
 
 
