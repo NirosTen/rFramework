@@ -323,6 +323,10 @@ RegisterCommand('day', function(source, args, rawCommand)
     NetworkOverrideClockTime(12, 0, 0)
 end)
 
+RegisterCommand('night', function(source, args, rawCommand)
+    NetworkOverrideClockTime(0, 0, 0)
+end)
+
 RegisterCommand('slow', function(source, args, rawCommand)
     SetTimeScale(0.25)
 end)
