@@ -9,7 +9,7 @@ local second = 1000
 local minute = 60*second
 Citizen.CreateThread(function()
     while true do
-        Wait(1*minute)
+        Wait(5*minute)
         SaveSocietyCache()
     end
 end)
