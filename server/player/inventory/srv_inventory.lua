@@ -284,8 +284,7 @@ end
 function RemoveItemFromPlayerInv(id, item, _count)
     local inv, place = GetInventoryFromCache(id)
     local count, i = GetItemCountWithLabel(_, inv, item)
-    print(id, item, _count, count)
-    if count - _count <= 0 then -- So we don't get player with negative items 
+    if count - _count <= 0 then
         table.remove(PlayersData[place].inventory, k)
         TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
     else
