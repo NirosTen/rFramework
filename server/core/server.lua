@@ -132,7 +132,11 @@ function GetPlayerInfoToCache(id)
     if info[1] ~= nil then
         PlayersData[id].ServerID = id
         PlayersData[id].identifier = player
-        PlayersData[id].inventory = DecodeInventory(info[1].player_inv)
+        if info[1].player_inv ~= nil then
+            PlayersData[id].inventory = DecodeInventory(info[1].player_inv)
+        else
+            PlayersData[id].inventory = {}
+        end
         PlayersData[id].money = info[1].player_money
         PlayersData[id].bankBalance = info[1].player_bank_balance
         PlayersData[id].dirtyMoney = info[1].player_dirty_money
