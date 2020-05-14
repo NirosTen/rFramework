@@ -14,9 +14,8 @@ RegisterServerEvent("rF:save_position")
 AddEventHandler("rF:save_position", function(LastPosX, LastPosY, LastPosZ)
     local source = source
     local player = GetIdentifier(source)
-    local pCache = GetPlayerCache(source)
     local lastPosition = "{" .. LastPosX .. ", " .. LastPosY .. ",  " .. LastPosZ .. "}"
-    PlayersData[pCache].pos = lastPosition
+    PlayersData[source].pos = lastPosition
 end)
 
 RegisterServerEvent("rF:SpawnPlayer")

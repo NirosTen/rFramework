@@ -44,8 +44,7 @@ function creation_utilisateur(id)
 end
 
 function GetPlayerAccounts(id)
-    local pCache = GetPlayerCache(id) 
-    return PlayersData[pCache].money, PlayersData[pCache].bankBalance, PlayersData[pCache].dirtyMoney
+    return PlayersData[id].money, PlayersData[id].bankBalance, PlayersData[id].dirtyMoney
 end
 
 RegisterNetEvent("rF:GetPlayerAccounts") 
@@ -61,8 +60,7 @@ end)
 function RemovePlayerMoney(tokenToCheck, id, rmv)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id) 
-        PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
+        PlayersData[id].money = tonumber(PlayersData[id].money - rmv)
         TriggerClientEvent('rF:rmvMoney', id, rmv)
         if framework._display_logs == true then
             print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
@@ -72,8 +70,7 @@ end
 
 function RemovePlayerMoneyNoToken(id, rmv)
     local player = _player_get_identifier(id)
-    local pCache = GetPlayerCache(id) 
-    PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
+    PlayersData[id].money = tonumber(PlayersData[id].money - rmv)
     TriggerClientEvent('rF:rmvMoney', id, rmv)
     if framework._display_logs == true then
         print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
@@ -88,8 +85,7 @@ end)
 function _player_add_money(tokenToCheck, id, add)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id) 
-        PlayersData[pCache].money = tonumber(PlayersData[pCache].money + add)
+        PlayersData[id].money = tonumber(PlayersData[id].money + add)
         TriggerClientEvent('rF:addMoney', id, add)
         if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("add_money_wallet") .. ' '..add)
@@ -105,8 +101,7 @@ end)
 function _player_add_bank_money(tokenToCheck, id, add)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id)
-        PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance + add)
+        PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance + add)
         TriggerClientEvent('rF:addBank', id, add)
         if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("add_bank_money") .. ''..add)
@@ -122,8 +117,7 @@ end)
 function _player_remove_bank_money(tokenToCheck, id, rmv)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id)
-        PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance - rmv)
+        PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance - rmv)
         TriggerClientEvent('rF:rmvBank', id, rmv)
         if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("bank_money_removed") .. ' '..rmv..'')
@@ -139,8 +133,7 @@ end)
 function _player_remove_dirty_money(tokenToCheck, id, add)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id)
-        PlayersData[pCache].dirtyMoney = tonumber(PlayersData[pCache].dirtyMoney + add)
+        PlayersData[id].dirtyMoney = tonumber(PlayersData[id].dirtyMoney + add)
         TriggerClientEvent('rF:rmvDirtyMoney', id, add)
         if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("remove_dirty_money") .. ' '..add)
@@ -156,8 +149,7 @@ end)
 function _player_set_dirty_money(tokenToCheck, id, nb)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id)
-        PlayersData[pCache].dirtyMoney = tonumber(nb)
+        PlayersData[id].dirtyMoney = tonumber(nb)
         TriggerClientEvent('rF:setDirtyMoney', id, nb)
         if framework._display_logs == true then
             print('' .. _L("user") .. ' |'..player..' ' .. _L("add_dirty_money") .. ' '..nb)
@@ -173,10 +165,9 @@ end)
 function _player_remove_money_for_bank(tokenToCheck, id, rmv)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id)
-        if PlayersData[pCache].money >= rmv then
-            PlayersData[pCache].money = tonumber(PlayersData[pCache].money - rmv)
-            PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance + rmv)
+        if PlayersData[id].money >= rmv then
+            PlayersData[id].money = tonumber(PlayersData[id].money - rmv)
+            PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance + rmv)
             TriggerClientEvent("rF:MoneyToBank", id, tonumber(rmv))
         end
     end
@@ -190,10 +181,9 @@ end)
 function _player_remove_bank_for_money(tokenToCheck, id, rmv)
     if CheckToken(tokenToCheck, id) then
         local player = _player_get_identifier(id)
-        local pCache = GetPlayerCache(id)
-        if PlayersData[pCache].bankBalance >= rmv then
-            PlayersData[pCache].money = tonumber(PlayersData[pCache].money + rmv)
-            PlayersData[pCache].bankBalance = tonumber(PlayersData[pCache].bankBalance - rmv)
+        if PlayersData[id].bankBalance >= rmv then
+            PlayersData[id].money = tonumber(PlayersData[id].money + rmv)
+            PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance - rmv)
             TriggerClientEvent("rF:BankToMoney", id, tonumber(rmv))
         end
     end
@@ -219,9 +209,9 @@ end)
 function GiveMoneyToPlayer(source, target, money)
     local pCache = GetPlayerCache(source)
     local tCache = GetPlayerCache(target)
-    if PlayersData[pCache].money >= money then
-        PlayersData[pCache].money = PlayersData[pCache].money - money
-        PlayersData[tCache].money = PlayersData[tCache].money + money
+    if PlayersData[source].money >= money then
+        PlayersData[source].money = PlayersData[pCache].money - money
+        PlayersData[target].money = PlayersData[tCache].money + money
     end
 end
 
@@ -229,7 +219,7 @@ end
 RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function(skin)
     local pCache = GetPlayerCache(source)
-    PlayersData[pCache].skin = skin
+    PlayersData[source].skin = skin
 end)
 
 -- Table to send
@@ -242,6 +232,6 @@ end)
 RegisterNetEvent("rF:ChangePlayerIdentity")
 AddEventHandler("rF:ChangePlayerIdentity", function(_identity)
     local pCache = GetPlayerCache(source)
-    PlayersData[pCache].identity = _identity
+    PlayersData[source].identity = _identity
     TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
 end)

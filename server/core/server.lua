@@ -79,7 +79,7 @@ function SaveDynamicCache()
             if framework._display_logs then
                 print("Removing "..v.ServerID.." - "..loop.." from dynamic cache.")
             end
-            table.remove(PlayersData, k)
+            PlayersData[v.ServerID] = nil
         else
             SavePlayerCache(v.identifier, v)
         end
@@ -122,44 +122,37 @@ end
 -- Call this on player connexion
 function GetPlayerInfoToCache(id)
     local player = _player_get_identifier(id)
-    table.insert(PlayersData, {ServerID = id})
+    --table.insert(PlayersData, {ServerID = id})
+    PlayersData[id] = {ServerID = id}
 
     local info = MySQL.Sync.fetchAll("SELECT * FROM player_account WHERE player_identifier = @identifier", {
         ['@identifier'] = player
     })
     
     if info[1] ~= nil then
-        for k,v in pairs(PlayersData) do
-            if v.ServerID == id then
-                v.ServerID = id
-                v.identifier = player
-                v.inventory = DecodeInventory(info[1].player_inv)
-                v.money = info[1].player_money
-                v.bankBalance = info[1].player_bank_balance
-                v.dirtyMoney = info[1].player_dirty_money
-                v.job = info[1].player_job
-                v.job_grade = info[1].player_job_grade
-                v.group = info[1].player_group
-                v.pos = info[1].player_position
-                v.skin = info[1].player_skin
-                if info[1].player_identity ~= nil then
-                    v.identity = json.decode(info[1].player_identity)
-                else
-                    v.identity = {}
-                end
-                if framework._display_logs then
-                    print("Adding ["..id.."] "..GetPlayerName(id).." to dynamic cache.")
-                end
-                return v
-            end
+        PlayersData[id].ServerID = id
+        PlayersData[id].identifier = player
+        PlayersData[id].inventory = DecodeInventory(info[1].player_inv)
+        PlayersData[id].money = info[1].player_money
+        PlayersData[id].bankBalance = info[1].player_bank_balance
+        PlayersData[id].dirtyMoney = info[1].player_dirty_money
+        PlayersData[id].job = info[1].player_job
+        PlayersData[id].job_grade = info[1].player_job_grade
+        PlayersData[id].group = info[1].player_group
+        PlayersData[id].pos = info[1].player_position
+        PlayersData[id].skin = info[1].player_skin
+        if info[1].player_identity ~= nil then
+            PlayersData[id].identity = json.decode(info[1].player_identity)
+        else
+            PlayersData[id].identity = {}
         end
+        if framework._display_logs then
+            print("Adding ["..id.."] "..GetPlayerName(id).." to dynamic cache.")
+        end
+        return PlayersData[id]
     end
 end
 
 function GetPlayerCache(id)
-    for k,v in pairs(PlayersData) do
-        if v.ServerID == id then
-            return k
-        end
-    end
+    return PlayersData[id]
 end
