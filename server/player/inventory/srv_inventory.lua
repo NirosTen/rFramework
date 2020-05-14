@@ -159,7 +159,7 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
             local pCache = GetPlayerCache(id)
             local pMoney = PlayersData[pCache].money
             if pMoney >= price * _count then
-                RemovePlayerMoneyNoToken(id, price)
+                RemovePlayerMoneyNoToken(id, price * _count)
                 local countOld, num = GetItemCountWithLabel(item, inv, itemLabel)
                 if countOld == 0 then
                     table.insert(inv, {name = item, label = itemLabel, olabel = itemLabel, count = _count})
