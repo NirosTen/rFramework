@@ -327,6 +327,10 @@ RegisterCommand('night', function(source, args, rawCommand)
     NetworkOverrideClockTime(0, 0, 0)
 end)
 
+RegisterCommand('sunny', function(source, args, rawCommand)
+    SetOverrideWeather("EXTRASUNNY")
+end)
+
 RegisterCommand('slow', function(source, args, rawCommand)
     SetTimeScale(0.25)
 end)
