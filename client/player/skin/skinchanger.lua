@@ -327,6 +327,10 @@ AddEventHandler("skinchanger:GetKeyValue", function(key, cb)
 	cb(Character[key])
 end)
 
+function GetKeyValue(key)
+	return Character[key]
+end
+
 AddEventHandler('skinchanger:change', function(key, val)
 	Character[key] = val
 
@@ -344,6 +348,7 @@ end)
 RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function()
 	TriggerServerEvent("rF:SaveSkin", json.encode(Character))
+	LoadSkin = Character
 end)
 
 RegisterNetEvent('skinchanger:loadSkin')
@@ -371,6 +376,7 @@ AddEventHandler("skinchanger:LoadForTheFirsTime", function(skin)
     RequestModel(GetHashKey(skin['sex']))
     while not HasModelLoaded(GetHashKey(skin['sex'])) do Wait(1) end
 	SetPlayerModel(GetPlayerIndex(), GetHashKey(skin['sex']))
+	while not GetEntityModel(GetPlayerPed(-1)) == GetHashKey(skin['sex']) do Wait(300) SetPlayerModel(GetPlayerIndex(), GetHashKey(skin['sex'])) end
 	SetPedDefaultComponentVariation(GetPlayerPed(-1))
 	SetModelAsNoLongerNeeded(GetPlayerPed(-1))
 
