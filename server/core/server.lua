@@ -63,7 +63,7 @@ AddEventHandler('playerDropped', function(reason)
     for k,v in pairs(PlayersData) do
         if v.ServerID == source then
             if framework._display_logs then
-                print("Player "..v.ServerID.." dropped, saving data.")
+                print("Player "..v.ServerID.." ^1dropped^7, saving data.")
             end
             SavePlayerCache(v.identifier, v)
         end
@@ -77,7 +77,7 @@ function SaveDynamicCache()
         loop = loop + 1
         if GetPlayerPing(v.ServerID) == 0 then -- If 0, that mean the player is not connected anymore (i suppose, need some test)
             if framework._display_logs then
-                print("Removing "..v.ServerID.." - "..loop.." from dynamic cache.")
+                print("^1Removing ^7"..v.ServerID.." - "..loop.." from dynamic cache.")
             end
             PlayersData[v.ServerID] = nil
         else
@@ -106,7 +106,7 @@ function SavePlayerCache(id, cache)
     })
 
     if framework._display_logs then
-        print("Saving "..id.." cache: "..cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
+        print("^2Saving ^7"..id.." cache: "..cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
     end
 end
 
@@ -151,7 +151,7 @@ function GetPlayerInfoToCache(id)
             PlayersData[id].identity = {}
         end
         if framework._display_logs then
-            print("Adding ["..id.."] "..GetPlayerName(id).." to dynamic cache.")
+            print("^2Adding ^7["..id.."] "..GetPlayerName(id).." to dynamic cache.")
         end
         return PlayersData[id]
     end
