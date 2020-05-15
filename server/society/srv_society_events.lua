@@ -23,8 +23,7 @@ end)
 RegisterNetEvent("rF:GetSocietyInfos")
 AddEventHandler("rF:GetSocietyInfos", function(token, society)
     if CheckToken(token, source) then
-        local societyCB = GetCachedSociety(society)
-        TriggerClientEvent("rF:SendSocietyInfo", source, societyCB)
+        TriggerClientEvent("rF:SendSocietyInfo", source, SocietyCache[society])
     end
 end)
 

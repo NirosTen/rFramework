@@ -30,11 +30,7 @@ function GetSocietyToCache()
     local info = MySQL.Sync.fetchAll("SELECT society_name, money, inventory FROM society", {})
     for k,v in pairs(info) do
         local sInv = json.decode(v.inventory)
-        table.insert(SocietyCache, {
-            society = v.society_name,
-            money = v.money,
-            inventory = sInv,
-        })
+        SocietyCache[v.society_name] = {society = v.society_name, money = v.money, inventory = sInv}
         if framework._display_logs then
             print("^2Loading ^7society ["..v.society_name.."] to dynamic cache with "..v.money.."^2$^7 and "..#sInv.." items.")
         end
@@ -43,89 +39,69 @@ end
   
 
 function AddSocietyMoney(name, money)
-    local _, i = GetCachedSociety(name)
-    SocietyCache[i].money = SocietyCache[i].money + money
+    SocietyCache[name].money = SocietyCache[name].money + money
 end
 
 function PaySociety(id, name, money)
-    local _, i = GetCachedSociety(name)
-    local pCache = GetPlayerCache(id) 
-    PlayersData[pCache].money = PlayersData[pCache].money - money
-    SocietyCache[i].money = SocietyCache[i].money + money
+    PlayersData[id].money = PlayersData[id].money - money
+    SocietyCache[name].money = SocietyCache[name].money + money
     TriggerClientEvent('rF:rmvMoney', id, money)
 end
 
 function TakeMoneyFromSociety(id, name, money)
-    local _, i = GetCachedSociety(name)
-    local pCache = GetPlayerCache(id) 
-    PlayersData[pCache].money = PlayersData[pCache].money + money
-    SocietyCache[i].money = SocietyCache[i].money - money
+    PlayersData[id].money = PlayersData[id].money + money
+    SocietyCache[name].money = SocietyCache[name].money - money
     TriggerClientEvent('rF:addMoney', id, money)
 end
 
 function RemoveSocietyMoney(name, money)
-    local _, i = GetCachedSociety(name)
-    SocietyCache[i].money = SocietyCache[i].money - money
+    SocietyCache[name].money = SocietyCache[name].money - money
 end
 
 
 function GetSocietyItems(name)
-    local _, i = GetCachedSociety(name)
-    return SocietyCache[i].inventory
+    return SocietyCache[name].inventory
 end
 
 
 function TransferItemFromInvToSociety(id, _name, _item, _label, _olabel, _count)
-    local _, i = GetCachedSociety(_name)
-    local pCache = GetPlayerCache(id) 
-    local itemCount, k = GetItemCountWithLabel(_item, SocietyCache[i].inventory, _label)
-    if itemCount == 0 then
-        table.insert(SocietyCache[i].inventory, {name = _item, label = _label, olabel = _olabel, count = _count})
+    local itemCount = SocietyCache[_name].inventory[_label]
+    if itemCount == nil then
+        SocietyCache[_name].inventory[_label] = {name = _item, label = _label, olabel = _olabel, count = _count}
     else
-        SocietyCache[i].inventory[k].count = itemCount + _count
+        SocietyCache[_name].inventory[_label].count = SocietyCache[_name].inventory[_label] + _count
     end
-    local itemCount, k = GetItemCountWithLabel(_item, PlayersData[pCache].inventory, _label)
+    local itemCount = PlayersData[id].inventory[_label].count
     if itemCount - _count <= 0 then
-        table.remove(PlayersData[pCache].inventory, k)
+        PlayersData[id].inventory[_label] = nil
     else
-        PlayersData[pCache].inventory[k].count = itemCount - _count
+        PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label] - _count
     end
 end
 
 
 function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count)
-    local _, i = GetCachedSociety(_name)
-    local pCache = GetPlayerCache(id) 
     
-    local invWeight = GetInvWeight(PlayersData[pCache].inventory)
+    local invWeight = GetInvWeight(PlayersData[id].inventory)
     local itemWeight, itemLabel = GetItemWeight(_item, _count)
     if invWeight + itemWeight <= framework._default_player_max_weight then
-        local itemCount, k = GetItemCountWithLabel(_item, SocietyCache[i].inventory, _label)
+        local itemCount = SocietyCache[_name].inventory[_label]
         
-        if itemCount == 0 then
-            -- Display error, the item do not exist
-        elseif itemCount - _count == 0 then
-            table.remove(SocietyCache[i].inventory, k)
+        if itemCount == nil then
+            print("The player ["..id.." tried to remove an item ^1that do not exist^7 in ".._name.." inventory.")
+        elseif SocietyCache[_name].inventory[_label].count - _count == 0 then
+            SocietyCache[_name].inventory[_label] = nil
         else
-            SocietyCache[i].inventory[k].count = itemCount - _count
+            SocietyCache[_name].inventory[_label].count = SocietyCache[_name].inventory[_label].count - _count
         end
-        local itemCount, k = GetItemCountWithLabel(_item, PlayersData[pCache].inventory, _label)
-        if itemCount == 0 then
-            table.insert(PlayersData[pCache].inventory, {name = _item, label = _label, olabel = _olabel, count = _count})
+
+        local itemCount = PlayersData[id].inventory[_label]
+        if itemCount == nil then
+            PlayersData[id].inventory[_label] = {name = _item, label = _label, olabel = _olabel, count = _count}
         else
-            PlayersData[pCache].inventory[k].count = itemCount + _count
+            PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + _count
         end
     else
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
-    end
-end
-
-
-
-function GetCachedSociety(name)
-    for k,v in pairs(SocietyCache) do
-        if v.society == name then
-            return v, k
-        end
     end
 end
