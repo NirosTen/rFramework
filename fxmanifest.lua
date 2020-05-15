@@ -63,6 +63,7 @@ client_scripts {
 
 exports {
     "GetOriginalLabel",
+    "GetKeyValue",
 }
 
 server_exports { -- not going to use those, i suppose i will remove them
