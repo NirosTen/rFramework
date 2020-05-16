@@ -241,7 +241,6 @@ function ApplySkin(skin, clothes)
 			end
 		end
 	end
-
 	SetPedHeadBlendData			(playerPed, Character['face'], Character['face'], Character['face'], Character['skin'], Character['skin'], Character['skin'], 1.0, 1.0, 1.0, true)
 	SetPedHairColor				(playerPed,			Character['hair_color_1'],		Character['hair_color_2'])					-- Hair Color
 	SetPedHeadOverlay			(playerPed, 3,		Character['age_1'],				(Character['age_2'] / 10) + 0.0)			-- Age + opacity
@@ -269,6 +268,7 @@ function ApplySkin(skin, clothes)
 	else
 		SetPedPropIndex			(playerPed, 2,		Character['ears_1'],			Character['ears_2'], 2)						-- Ears Accessories
 	end
+
 	SetPedComponentVariation	(playerPed, 8,		Character['tshirt_1'],			Character['tshirt_2'], 2)					-- Tshirt
 	SetPedComponentVariation	(playerPed, 11,		Character['torso_1'],			Character['torso_2'], 2)					-- torso parts
 	SetPedComponentVariation	(playerPed, 3,		Character['arms'],				Character['arms_2'], 2)						-- Amrs
@@ -299,6 +299,7 @@ function ApplySkin(skin, clothes)
 	else
 		SetPedPropIndex			(playerPed, 7,		Character['bracelets_1'],		Character['bracelets_2'], 2)				-- Bracelets
 	end
+
 end
 
 AddEventHandler('skinchanger:loadDefaultModel', function(loadMale, cb)
@@ -355,6 +356,12 @@ AddEventHandler("rF:SaveSkin", function()
 	LoadSkin = Character
 end)
 
+RegisterNetEvent("rF:SaveCloth")
+AddEventHandler("rF:SaveCloth", function(name)
+	TriggerServerEvent("rF:SaveCloth", name, Character)
+	LoadSkin = Character
+end)
+
 RegisterNetEvent('skinchanger:loadSkin')
 AddEventHandler('skinchanger:loadSkin', function(skin, cb)
 	if skin['sex'] ~= LastSex then 
@@ -403,4 +410,10 @@ AddEventHandler('skinchanger:loadClothes', function(playerSkin, clothesSkin)
 	end
 
 	LastSex = playerSkin['sex']
+end)
+
+RegisterNetEvent('skinchanger:loadClothesOnly')
+AddEventHandler('skinchanger:loadClothesOnly', function(clothesSkin)
+	ApplySkin(clothesSkin, clothesSkin)
+	LoadSkin = clothesSkin
 end)
