@@ -12,6 +12,7 @@ items = {
     {name="tazer", label="Tazer", weight=5.0, event="core:GetTazer"},
     {name="pistoletmk2", label="Pistolet nouvelle génération", weight=5.0, event="core:GetPistolmk2"},
     {name="pistoletlspd", label="Arme de poing LSPD", weight=5.0, event="core:GetPistollspd"},
+    {name="m4", label="Fusils d'assault LSPD", weight=15.0, event="core:GetM4"},
 }
 
 
