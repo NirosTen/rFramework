@@ -47,6 +47,6 @@ AddEventHandler("entityCreating", function(entity)
     if blacklisted[GetEntityModel(entity)] then
         print("^1ENTITY ERROR:^7 An blacklisted entity tried to be spawned by the ID ["..NetworkGetEntityOwner(entity).."]")
         CancelEvent()
-        AddPlayerLog(NetworkGetEntityOwner(entity), "Tentative de spawn d'entité blacklist")
+        AddPlayerLog(NetworkGetEntityOwner(entity), "Tentative de spawn d'entité blacklist", 1)
     end
 end)

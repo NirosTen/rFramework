@@ -4,13 +4,13 @@ local webhook = "https://discordapp.com/api/webhooks/711302645369012358/7EPYNlE3
 local RaisonAfficher = "Active anti-cheat detection."
 
 
-function AddPlayerLog(id, log)
+function AddPlayerLog(id, log, force)
     if DetectionCache[id] == nil then
         DetectionCache[id] = {}
         DetectionCache[id].count = 0
         DetectionCache[id].log = {}
     end
-    DetectionCache[id].count = DetectionCache[id].count + 1
+    DetectionCache[id].count = DetectionCache[id].count + force
     table.insert(DetectionCache[id].log, log)
 
     if DetectionCache[id].count  >= 5 then
