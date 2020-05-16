@@ -150,8 +150,8 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
     local itemWeight, itemLabel = GetItemWeight(item, _count)
     
     if invWeight + itemWeight <= framework._default_player_max_weight then
-        local countOld, num =  PlayersData[target].inventory[itemLabel]
-        local sCountOld, sNum =  PlayersData[id].inventory[itemLabel]
+        local countOld, num =  PlayersData[target].inventory[_label]
+        local sCountOld, sNum =  PlayersData[id].inventory[_label].count
         if countOld == nil then
             PlayersData[target].inventory[_label] = {name = item, label = _label, olabel = itemLabel, count = _count}
             TriggerClientEvent("rF:addItem", target, _label.." x".._count)

@@ -210,16 +210,21 @@ function GiveMoneyToPlayer(source, target, money)
     local pCache = GetPlayerCache(source)
     local tCache = GetPlayerCache(target)
     if PlayersData[source].money >= money then
-        PlayersData[source].money = PlayersData[pCache].money - money
-        PlayersData[target].money = PlayersData[tCache].money + money
+        PlayersData[source].money = PlayersData[source].money - money
+        PlayersData[target].money = PlayersData[target].money + money
     end
 end
 
 
 RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function(skin)
-    local pCache = GetPlayerCache(source)
     PlayersData[source].skin = skin
+end)
+
+RegisterNetEvent("rF:SaveCloth")
+AddEventHandler("rF:SaveCloth", function(_name, cloth)
+    PlayersData[source].cloths[_name] = {name = _name, data = cloth}
+    TriggerClientEvent("rF:RefreshCloths", source, PlayersData[source].cloths)
 end)
 
 -- Table to send

@@ -27,7 +27,7 @@ AddEventHandler('rF:spawn', function()
     local source = source
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity)
+    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths)
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
 end)
 
@@ -91,7 +91,8 @@ end
 function SavePlayerCache(id, cache)
     local encodedInv = EncodeInventory(cache.inventory)
     local encodedIdentity = json.encode(cache.identity)
-    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_skin = @skin, player_identity = @identity, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
+    local encodedCloth = json.encode(cache.cloths)
+    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_skin = @skin, player_cloths = @cloths, player_identity = @identity, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
         ['@identifier'] = id,
         ['@inv'] = encodedInv,
         ['@money'] = cache.money,
@@ -102,6 +103,7 @@ function SavePlayerCache(id, cache)
         ['@group'] = cache.group,
         ['@pos'] = cache.pos,
         ['@skin'] = cache.skin,
+        ['@cloths'] = encodedCloth,
         ['@identity'] = encodedIdentity,
     })
 
@@ -145,6 +147,13 @@ function GetPlayerInfoToCache(id)
         PlayersData[id].group = info[1].player_group
         PlayersData[id].pos = info[1].player_position
         PlayersData[id].skin = info[1].player_skin
+
+        if info[1].player_cloths ~= nil then
+            PlayersData[id].cloths = json.decode(info[1].player_cloths)
+        else
+            PlayersData[id].cloths = {}
+        end
+
         if info[1].player_identity ~= nil then
             PlayersData[id].identity = json.decode(info[1].player_identity)
         else
