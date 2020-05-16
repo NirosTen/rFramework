@@ -64,6 +64,7 @@ client_scripts {
 exports {
     "GetOriginalLabel",
     "GetKeyValue",
+    "ReloadPlayerCloth",
 }
 
 server_exports { -- not going to use those, i suppose i will remove them

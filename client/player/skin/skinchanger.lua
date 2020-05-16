@@ -327,6 +327,10 @@ AddEventHandler("skinchanger:GetKeyValue", function(key, cb)
 	cb(Character[key])
 end)
 
+function ReloadPlayerCloth()
+	ApplySkin(LoadSkin)
+end
+
 function GetKeyValue(key)
 	return Character[key]
 end
@@ -379,7 +383,7 @@ AddEventHandler("skinchanger:LoadForTheFirsTime", function(skin)
 	while not GetEntityModel(GetPlayerPed(-1)) == GetHashKey(skin['sex']) do Wait(300) SetPlayerModel(GetPlayerIndex(), GetHashKey(skin['sex'])) end
 	SetPedDefaultComponentVariation(GetPlayerPed(-1))
 	SetModelAsNoLongerNeeded(GetPlayerPed(-1))
-
+	LoadSkin = skin
 	if skin['sex'] == "mp_m_freemode_01" or skin['sex'] == "mp_f_freemode_01" then
 		print("Loading skin")
 		ApplySkin(skin)
