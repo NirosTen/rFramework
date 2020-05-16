@@ -10,6 +10,7 @@ RegisterCommand("revive", function()
     NetworkResurrectLocalPlayer(coords, 100.0, 0, 0)
     SetEntityCoords(player, coords)
     ClearPlayerWantedLevel(GetPlayerIndex())
+    exports.rCore:ResetDeathStatus()
 end)
 
 RegisterCommand("skin", function() 
