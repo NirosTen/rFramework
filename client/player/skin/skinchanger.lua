@@ -416,4 +416,5 @@ RegisterNetEvent('skinchanger:loadClothesOnly')
 AddEventHandler('skinchanger:loadClothesOnly', function(clothesSkin)
 	ApplySkin(clothesSkin, clothesSkin)
 	LoadSkin = clothesSkin
+	TriggerServerEvent("rF:SaveSkin", json.encode(LoadSkin))
 end)
