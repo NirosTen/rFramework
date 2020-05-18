@@ -44,9 +44,11 @@ local blacklisted = {
 DetectionCache = {}
 
 AddEventHandler("entityCreating", function(entity)
-    if blacklisted[GetEntityModel(entity)] then
-        print("^1ENTITY ERROR:^7 An blacklisted entity tried to be spawned by the ID ["..NetworkGetEntityOwner(entity).."]")
-        CancelEvent()
-        AddPlayerLog(NetworkGetEntityOwner(entity), "AC: Tentative de spawn d'entité blacklist", 1)
+    if DoesEntityExist(entity) then
+        if blacklisted[GetEntityModel(entity)] then
+            print("^1ENTITY ERROR:^7 An blacklisted entity tried to be spawned by the ID ["..NetworkGetEntityOwner(entity).."]")
+            CancelEvent()
+            AddPlayerLog(NetworkGetEntityOwner(entity), "AC: Tentative de spawn d'entité blacklist", 1)
+        end
     end
 end)
