@@ -351,15 +351,14 @@ AddEventHandler('skinchanger:getSkin', function(cb)
 end)
 
 RegisterNetEvent("rF:SaveSkin")
-AddEventHandler("rF:SaveSkin", function()
+AddEventHandler("rF:SaveSkin", function(key, val)
+	LoadSkin[key] = val
 	TriggerServerEvent("rF:SaveSkin", json.encode(Character))
-	LoadSkin = Character
 end)
 
 RegisterNetEvent("rF:SaveCloth")
 AddEventHandler("rF:SaveCloth", function(name)
 	TriggerServerEvent("rF:SaveCloth", name, Character)
-	LoadSkin = Character
 end)
 
 RegisterNetEvent('skinchanger:loadSkin')
@@ -391,6 +390,8 @@ AddEventHandler("skinchanger:LoadForTheFirsTime", function(skin)
 	SetPedDefaultComponentVariation(GetPlayerPed(-1))
 	SetModelAsNoLongerNeeded(GetPlayerPed(-1))
 	LoadSkin = skin
+	print(LoadSkin)
+	print("^1Skin loaded")
 	if skin['sex'] == "mp_m_freemode_01" or skin['sex'] == "mp_f_freemode_01" then
 		print("Loading skin")
 		ApplySkin(skin)
