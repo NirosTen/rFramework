@@ -52,7 +52,7 @@ function AddItemIfNotAlreadyHave(id, item, _count)
     local oLabel = GetOriginalLabel(item)
     local count = PlayersData[id].inventory[oLabel]
     if count == nil then
-        PlayersData[id].inventory[_label] = {name = item, label = oLabel, olabel = oLabel, count = _count}
+        PlayersData[id].inventory[oLabel] = {name = item, label = oLabel, olabel = oLabel, count = _count}
         TriggerClientEvent("rF:addItem", id, oLabel.." x".._count)
     else
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu possède déja l'objets ~g~"..oLabel.."~w~.")
@@ -60,28 +60,30 @@ function AddItemIfNotAlreadyHave(id, item, _count)
 end
 
 function RenameItem(id, item, _label, _olabel)
-    local countOld = PlayersData[id].inventory[_olabel].count
-    if countOld - 1 > 0 then
+    if _label ~= nil then
+        local countOld = PlayersData[id].inventory[_olabel].count
+        if countOld - 1 > 0 then
 
-        PlayersData[id].inventory[_olabel].name = item
-        PlayersData[id].inventory[_olabel].label = _olabel
-        PlayersData[id].inventory[_olabel].olabel = _olabel
-        PlayersData[id].inventory[_olabel].count = PlayersData[id].inventory[_olabel].count - 1
+            PlayersData[id].inventory[_olabel].name = item
+            PlayersData[id].inventory[_olabel].label = _olabel
+            PlayersData[id].inventory[_olabel].olabel = _olabel
+            PlayersData[id].inventory[_olabel].count = PlayersData[id].inventory[_olabel].count - 1
 
-        if PlayersData[id].inventory[_label] ~= nil then
-            PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + 1
+            if PlayersData[id].inventory[_label] ~= nil then
+                PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + 1
+            else
+                PlayersData[id].inventory[_label] = {name = item, label = _label, olabel = _olabel, count = 1}
+            end
+            TriggerClientEvent("rF:addItem", id, _label.." x1")
         else
-            PlayersData[id].inventory[_label] = {name = item, label = _label, olabel = _olabel, count = 1}
+            PlayersData[id].inventory[_olabel] = nil
+            if PlayersData[id].inventory[_label] ~= nil then
+                PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + 1
+            else
+                PlayersData[id].inventory[_label] = {name = item, label = _label, olabel = _olabel, count = 1}
+            end
+            TriggerClientEvent("rF:addItem", id, _label.." x1")
         end
-        TriggerClientEvent("rF:addItem", id, _label.." x1")
-    else
-        PlayersData[id].inventory[_olabel] = nil
-        if PlayersData[id].inventory[_label] ~= nil then
-            PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + 1
-        else
-            PlayersData[id].inventory[_label] = {name = item, label = _label, olabel = _olabel, count = 1}
-        end
-        TriggerClientEvent("rF:addItem", id, _label.." x1")
     end
 end
 
@@ -144,7 +146,7 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
 end
 
 function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
-    local inv = GetInventoryFromCache(target)
+    local inv = PlayersData[target].inventory
     local sInv = GetInventoryFromCache(id)
     local invWeight = GetInvWeight(inv)
     local itemWeight, itemLabel = GetItemWeight(item, _count)
@@ -164,7 +166,7 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
             PlayersData[id].inventory[_label] = nil
             TriggerClientEvent("rF:rmvItem", id, _label.." x".._count)
         else
-            PlayersData[id].inventory[_label].count = PlayersData[target].inventory[_label].count - _count
+            PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count - _count
             TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
         end
 
