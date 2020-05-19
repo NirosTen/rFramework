@@ -391,7 +391,6 @@ AddEventHandler("skinchanger:LoadForTheFirsTime", function(skin)
 	SetModelAsNoLongerNeeded(GetPlayerPed(-1))
 	LoadSkin = skin
 	print(LoadSkin)
-	print("^1Skin loaded")
 	if skin['sex'] == "mp_m_freemode_01" or skin['sex'] == "mp_f_freemode_01" then
 		print("Loading skin")
 		ApplySkin(skin)
