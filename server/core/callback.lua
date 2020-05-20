@@ -29,3 +29,8 @@ AddEventHandler('triggerServerCallback', function(name, requestId, ...)
 		TriggerClientEvent('serverCallback', playerId, requestId, ...)
 	end, ...)
 end)
+
+Citizen.CreateThread(function()
+    Wait(2000)
+    TriggerEvent("core:CallBackReady")
+end)
