@@ -240,3 +240,13 @@ AddEventHandler("rF:ChangePlayerIdentity", function(_identity)
     PlayersData[source].identity = _identity
     TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
 end)
+
+
+
+-- Callback exemple
+
+RegisterServerCallback('rF:TestCallback', function(source, cb)
+    local money = PlayersData[source].money -- GetPlayerMoney
+    local job = PlayersData[source].job -- GetPlayerJob
+	cb(money, job) -- Send back those data
+end)

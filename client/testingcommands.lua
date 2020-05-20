@@ -340,6 +340,12 @@ RegisterCommand('normal', function(source, args, rawCommand)
     SetTimeScale(1.0)
 end)
 
+RegisterCommand('callback', function(source, args, rawCommand)
+    TriggerServerCallback('rF:TestCallback', function(pMoney, pJob)
+        print(pMoney, pJob)
+    end, token)
+end)
+
 function Notification(message,title)
     SetNotificationTextEntry("STRING")
     AddTextComponentString(message)
