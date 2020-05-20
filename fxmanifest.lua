@@ -50,7 +50,8 @@ client_scripts {
     'items.lua',
 	-- Core
     'client/core/*.lua',
-	'client/*.lua',
+    'client/*.lua',
+    'client/cortana/*.lua',
 	-- Player
     'client/player/player_position/client_position.lua',
     'client/player/hungerNthirst/*.lua',
