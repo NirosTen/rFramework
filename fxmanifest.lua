@@ -65,6 +65,7 @@ exports {
     "GetOriginalLabel",
     "GetKeyValue",
     "ReloadPlayerCloth",
+    "TriggerServerCallback"
 }
 
 server_exports { -- not going to use those, i suppose i will remove them
@@ -87,6 +88,7 @@ server_exports { -- not going to use those, i suppose i will remove them
     'GetWeight',
     'AddItemToPlayerInvBypass',
     'RemoveItemFromPlayerInv',
+    "RegisterServerCallback"
 }
 
 dependencies {
