@@ -8,7 +8,12 @@ Citizen.CreateThread(function()
     print("^2Loaded^7 ban-list with "..#BanList.." bans.")
 end)
 
-
+RegisterNetEvent("cortana:AddLog")
+AddEventHandler("cortana:AddLog", function(type, force)
+    if type == 1 then
+        AddPlayerLog(source, "AC: Injection de mod menu", force)
+    end
+end)
 
 function AddPlayerLog(id, log, force)
     if DetectionCache[id] == nil then
