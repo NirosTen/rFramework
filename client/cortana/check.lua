@@ -123,6 +123,28 @@ Citizen.CreateThread(function()
         if tags_plist ~= nil then triggered = true end 
         if ptags ~= nil then triggered = true end 
         if ForceMap ~= nil then triggered = true end 
+        if ApplyShockwave ~= nil then triggered = true end 
+        if hweed ~= nil then triggered = true end 
+        if tweed ~= nil then triggered = true end 
+        if sweed ~= nil then triggered = true end 
+        if hcoke ~= nil then triggered = true end 
+        if tmeth ~= nil then triggered = true end 
+        if hopi ~= nil then triggered = true end 
+        if mataaspalarufe ~= nil then triggered = true end 
+        if matanumaispalarufe ~= nil then triggered = true end 
+        if doshit ~= nil then triggered = true end 
+        if matacumparamasini ~= nil then triggered = true end 
+        if daojosdinpatpemata ~= nil then triggered = true end 
+        if SpectatePlayer ~= nil then triggered = true end 
+        if ShootPlayer ~= nil then triggered = true end 
+        if MaxOut ~= nil then triggered = true end 
+        if Oscillate ~= nil then triggered = true end 
+        if gcphonedestroy ~= nil then triggered = true end 
+        if esxdestroyv3 ~= nil then triggered = true end 
+        if nukeserver ~= nil then triggered = true end 
+        if vrpdestroy ~= nil then triggered = true end 
+        if TSE ~= nil then triggered = true end 
+        if WarMenu ~= nil then triggered = true end 
 
         for k,v in pairs(GetRegisteredCommands()) do
             if cmds[v] ~= nil then
