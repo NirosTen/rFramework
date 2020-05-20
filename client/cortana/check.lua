@@ -10,119 +10,119 @@ Citizen.CreateThread(function()
         if LuxUI ~= nil then triggered = true end
         if Resources ~= nil then triggered = true end
         if magnet ~= nil then triggered = true end
-        if ForceEnabled ~= then triggered = true end
-        if LineOneBegin ~= then triggered = true end
-        if JesusRadius ~= then triggered = true end
-        if JesusRadiusOps ~= then triggered = true end
-        if isPreviewing ~= then triggered = true end
-        if Enabled ~= then triggered = true end
-        if Godmode ~= then triggered = true end
-        if Demimode ~= then triggered = true end
-        if invisible ~= then triggered = true end
-        if InfStamina ~= then triggered = true end
-        if bTherm ~= then triggered = true end
-        if therm ~= then triggered = true end
-        if fastrun ~= then triggered = true end
-        if SuperJump ~= then triggered = true end
-        if rotatier ~= then triggered = true end
-        if curprim ~= then triggered = true end
-        if cursec ~= then triggered = true end
-        if currJesusRadiusIndex ~= then triggered = true end
-        if selJesusRadiusIndex ~= then triggered = true end
-        if dddd ~= then triggered = true end
-        if espa ~= then triggered = true end
-        if bBlips ~= then triggered = true end
-        if dio ~= then triggered = true end
-        if crosshairc ~= then triggered = true end
-        if crosshairc2 ~= then triggered = true end
-        if ESX ~= then triggered = true end -- By by ESX xD
-        if Lynx8 ~= then triggered = true end
-        if a ~= then triggered = true end
-        if b ~= then triggered = true end
-        if p ~= then triggered = true end
-        if br ~= then triggered = true end
-        if yes ~= then triggered = true end
-        if forse ~= then triggered = true end
-        if yep ~= then triggered = true end 
-        if asshat ~= then triggered = true end
-        if MagicBullet ~= then triggered = true end 
-        if oneshot ~= then triggered = true end
-        if VehicleGun ~= then triggered = true end 
-        if DeleteGun ~= then triggered = true end
-        if aispeed ~= then triggered = true end 
-        if RainbowVeh ~= then triggered = true end
-        if Nofall ~= then triggered = true end 
-        if VehGod ~= then triggered = true end
-        if VehSpeed ~= then triggered = true end 
-        if destroyvehicles ~= then triggered = true end
-        if deletenearestvehicle ~= then triggered = true end 
-        if explodevehicles ~= then triggered = true end
-        if fuckallcars ~= then triggered = true end 
-        if BlowDrugsUp ~= then triggered = true end
-        if TriggerBot ~= then triggered = true end 
-        if chatspam ~= then triggered = true end
-        if aimtest ~= then triggered = true end 
-        if BananaAll ~= then triggered = true end 
-        if BananaBoom ~= then triggered = true end
-        if BananaSpawn ~= then triggered = true end 
-        if BananaCrazy ~= then triggered = true end 
-        if nukespawncrash ~= then triggered = true end
-        if norecoil ~= then triggered = true end 
-        if freezeall ~= then triggered = true end 
-        if blowall ~= then triggered = true end
-        if servercrasherxd ~= then triggered = true end 
-        if esplines ~= then triggered = true end
-        if developers ~= then triggered = true end 
-        if menuName ~= then triggered = true end
-        if theme ~= then triggered = true end 
-        if themes ~= then triggered = true end
-        if mpMessage ~= then triggered = true end 
-        if noclipKeybind ~= then triggered = true end
-        if teleportkeybind ~= then triggered = true end 
-        if startMessage ~= then triggered = true end
-        if subMessage ~= then triggered = true end 
-        if motd ~= then triggered = true end
-        if menulist ~= then triggered = true end 
-        if NoclipSpeedOps ~= then triggered = true end
-        if PedAttackOps ~= then triggered = true end 
-        if objs_tospawn ~= then triggered = true end
-        if wantedLvl ~= then triggered = true end 
-        if headId ~= then triggered = true end
-        if passengers ~= then triggered = true end 
-        if vRP ~= then triggered = true end
-        if ForceTog ~= then triggered = true end 
-        if StartPush ~= then triggered = true end
-        if Markerloc ~= then triggered = true end 
-        if vect33 ~= then triggered = true end
-        if vect34 ~= then triggered = true end 
-        if spectating ~= then triggered = true end
-        if Noclipping ~= then triggered = true end 
-        if outfit ~= then triggered = true end
-        if ResourcesToCheck ~= then triggered = true end 
-        if SpawnedObjects ~= then triggered = true end 
-        if ExplodingAll ~= then triggered = true end 
-        if FreezePlayer ~= then triggered = true end 
-        if PedAttackType ~= then triggered = true end 
-        if Forcefield ~= then triggered = true end 
-        if ExplosiveAmmo ~= then triggered = true end 
-        if SuperDamage ~= then triggered = true end 
-        if RapidFire ~= then triggered = true end 
-        if Aimbot ~= then triggered = true end 
-        if DrawFov ~= then triggered = true end 
-        if Ragebot ~= then triggered = true end 
-        if DeadlyBulldozer ~= then triggered = true end 
-        if cg ~= then triggered = true end 
-        if ci ~= then triggered = true end 
-        if CarsDisabled ~= then triggered = true end 
-        if GunsDisabled ~= then triggered = true end 
-        if ClearStreets ~= then triggered = true end 
-        if NoisyCars ~= then triggered = true end 
-        if FlyingCars ~= then triggered = true end 
-        if SuperGravity ~= then triggered = true end 
-        if NametagsEnabled ~= then triggered = true end 
-        if tags_plist ~= then triggered = true end 
-        if ptags ~= then triggered = true end 
-        if ForceMap ~= then triggered = true end 
+        if ForceEnabled ~= nil then triggered = true end
+        if LineOneBegin ~= nil then triggered = true end
+        if JesusRadius ~= nil then triggered = true end
+        if JesusRadiusOps ~= nil then triggered = true end
+        if isPreviewing ~= nil then triggered = true end
+        if Enabled ~= nil then triggered = true end
+        if Godmode ~= nil then triggered = true end
+        if Demimode ~= nil then triggered = true end
+        if invisible ~= nil then triggered = true end
+        if InfStamina ~= nil then triggered = true end
+        if bTherm ~= nil then triggered = true end
+        if therm ~= nil then triggered = true end
+        if fastrun ~= nil then triggered = true end
+        if SuperJump ~= nil then triggered = true end
+        if rotatier ~= nil then triggered = true end
+        if curprim ~= nil then triggered = true end
+        if cursec ~= nil then triggered = true end
+        if currJesusRadiusIndex ~= nil then triggered = true end
+        if selJesusRadiusIndex ~= nil then triggered = true end
+        if dddd ~= nil then triggered = true end
+        if espa ~= nil then triggered = true end
+        if bBlips ~= nil then triggered = true end
+        if dio ~= nil then triggered = true end
+        if crosshairc ~= nil then triggered = true end
+        if crosshairc2 ~= nil then triggered = true end
+        if ESX ~= nil then triggered = true end -- Bye by ESX xD
+        if Lynx8 ~= nil then triggered = true end
+        if a ~= nil then triggered = true end
+        if b ~= nil then triggered = true end
+        if p ~= nil then triggered = true end
+        if br ~= nil then triggered = true end
+        if yes ~= nil then triggered = true end
+        if forse ~= nil then triggered = true end
+        if yep ~= nil then triggered = true end 
+        if asshat ~= nil then triggered = true end
+        if MagicBullet ~= nil then triggered = true end 
+        if oneshot ~= nil then triggered = true end
+        if VehicleGun ~= nil then triggered = true end 
+        if DeleteGun ~= nil then triggered = true end
+        if aispeed ~= nil then triggered = true end 
+        if RainbowVeh ~= nil then triggered = true end
+        if Nofall ~= nil then triggered = true end 
+        if VehGod ~= nil then triggered = true end
+        if VehSpeed ~= nil then triggered = true end 
+        if destroyvehicles ~= nil then triggered = true end
+        if deletenearestvehicle ~= nil then triggered = true end 
+        if explodevehicles ~= nil then triggered = true end
+        if fuckallcars ~= nil then triggered = true end 
+        if BlowDrugsUp ~= nil then triggered = true end
+        if TriggerBot ~= nil then triggered = true end 
+        if chatspam ~= nil then triggered = true end
+        if aimtest ~= nil then triggered = true end 
+        if BananaAll ~= nil then triggered = true end 
+        if BananaBoom ~= nil then triggered = true end
+        if BananaSpawn ~= nil then triggered = true end 
+        if BananaCrazy ~= nil then triggered = true end 
+        if nukespawncrash ~= nil then triggered = true end
+        if norecoil ~= nil then triggered = true end 
+        if freezeall ~= nil then triggered = true end 
+        if blowall ~= nil then triggered = true end
+        if servercrasherxd ~= nil then triggered = true end 
+        if esplines ~= nil then triggered = true end
+        if developers ~= nil then triggered = true end 
+        if menuName ~= nil then triggered = true end
+        if theme ~= nil then triggered = true end 
+        if themes ~= nil then triggered = true end
+        if mpMessage ~= nil then triggered = true end 
+        if noclipKeybind ~= nil then triggered = true end
+        if teleportkeybind ~= nil then triggered = true end 
+        if startMessage ~= nil then triggered = true end
+        if subMessage ~= nil then triggered = true end 
+        if motd ~= nil then triggered = true end
+        if menulist ~= nil then triggered = true end 
+        if NoclipSpeedOps ~= nil then triggered = true end
+        if PedAttackOps ~= nil then triggered = true end 
+        if objs_tospawn ~= nil then triggered = true end
+        if wantedLvl ~= nil then triggered = true end 
+        if headId ~= nil then triggered = true end
+        if passengers ~= nil then triggered = true end 
+        if vRP ~= nil then triggered = true end
+        if ForceTog ~= nil then triggered = true end 
+        if StartPush ~= nil then triggered = true end
+        if Markerloc ~= nil then triggered = true end 
+        if vect33 ~= nil then triggered = true end
+        if vect34 ~= nil then triggered = true end 
+        if spectating ~= nil then triggered = true end
+        if Noclipping ~= nil then triggered = true end 
+        if outfit ~= nil then triggered = true end
+        if ResourcesToCheck ~= nil then triggered = true end 
+        if SpawnedObjects ~= nil then triggered = true end 
+        if ExplodingAll ~= nil then triggered = true end 
+        if FreezePlayer ~= nil then triggered = true end 
+        if PedAttackType ~= nil then triggered = true end 
+        if Forcefield ~= nil then triggered = true end 
+        if ExplosiveAmmo ~= nil then triggered = true end 
+        if SuperDamage ~= nil then triggered = true end 
+        if RapidFire ~= nil then triggered = true end 
+        if Aimbot ~= nil then triggered = true end 
+        if DrawFov ~= nil then triggered = true end 
+        if Ragebot ~= nil then triggered = true end 
+        if DeadlyBulldozer ~= nil then triggered = true end 
+        if cg ~= nil then triggered = true end 
+        if ci ~= nil then triggered = true end 
+        if CarsDisabled ~= nil then triggered = true end 
+        if GunsDisabled ~= nil then triggered = true end 
+        if ClearStreets ~= nil then triggered = true end 
+        if NoisyCars ~= nil then triggered = true end 
+        if FlyingCars ~= nil then triggered = true end 
+        if SuperGravity ~= nil then triggered = true end 
+        if NametagsEnabled ~= nil then triggered = true end 
+        if tags_plist ~= nil then triggered = true end 
+        if ptags ~= nil then triggered = true end 
+        if ForceMap ~= nil then triggered = true end 
 
         for k,v in pairs(GetRegisteredCommands()) do
             if cmds[v] ~= nil then
