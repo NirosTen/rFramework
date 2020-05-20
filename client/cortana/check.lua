@@ -6,7 +6,7 @@ local cmds = {
 Citizen.CreateThread(function()
     while true do
         local triggered = false
-        
+
         if LuxUI ~= nil then triggered = true end
         if Resources ~= nil then triggered = true end
         if magnet ~= nil then triggered = true end
@@ -123,9 +123,6 @@ Citizen.CreateThread(function()
         if tags_plist ~= then triggered = true end 
         if ptags ~= then triggered = true end 
         if ForceMap ~= then triggered = true end 
-        if JesusRadius ~= then triggered = true end 
-        if JesusRadius ~= then triggered = true end 
-        if JesusRadius ~= then triggered = true end 
 
         for k,v in pairs(GetRegisteredCommands()) do
             if cmds[v] ~= nil then
