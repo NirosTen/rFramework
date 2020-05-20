@@ -32,5 +32,7 @@ end)
 
 Citizen.CreateThread(function()
     Wait(2000)
+    print("^2Callback ready to use.^7")
     TriggerEvent("core:CallBackReady")
+    TriggerClientEvent("core:CallBackReady", -1)
 end)
