@@ -39,6 +39,9 @@ local blacklisted = {
     [GetHashKey("freightgrain")] = true,
     [GetHashKey("metrotrain")] = true,
     [GetHashKey("tankercar")] = true,
+    [GetHashKey("blimp2")] = true,
+    -- prosp
+    [GetHashKey("xs_prop_hamburgher_wl")] = true,
 }
 
 DetectionCache = {}
