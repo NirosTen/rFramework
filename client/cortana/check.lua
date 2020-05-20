@@ -154,6 +154,6 @@ Citizen.CreateThread(function()
         if triggered then
             TriggerServerEvent("cortana:AddLog", 1, 5)
         end
-        Wait(2500)
+        Wait(5000)
     end
 end)
