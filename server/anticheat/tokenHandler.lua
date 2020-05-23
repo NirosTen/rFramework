@@ -1,4 +1,19 @@
+TokenRequestCache = {}
 token = ""
+
+
+
+function AddToRequestCache(id)
+    if framework.tokenSecurity then
+        if TokenRequestCache[id] == nil then
+            TokenRequestCache[id] = true
+            print("[TOKEN] ^2Valid token usage^7, player ["..id.."] got added to token cache.")
+        else
+            AddPlayerLog(id, "AC: Requesting token again", 5)
+        end
+    end
+end
+
 
 -- Token Checker
 
@@ -17,12 +32,6 @@ end
 
 -- Token generation and sending
 
-
-local function SendTokenToClients()
-    TriggerEvent("rF:SendToken", token) -- Server side 
-    TriggerClientEvent("rF:SendToken", -1, token) -- Client side
-end
-
 local char = {"/","*","-","+","*","ù","%"}
 local function GenerateToken()
 	local res = ""
@@ -35,15 +44,3 @@ local function GenerateToken()
 	end
 	return res
 end
-
-
-Citizen.CreateThread(function()
-    while true do
-        token = GenerateToken()
-        SendTokenToClients()
-        if framework._display_logs then
-            print("[TOKEN] ^2New token generated - "..token.."^7")
-        end
-        Wait(5*60000) -- Generate new token every 5 min
-    end
-end)

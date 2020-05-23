@@ -29,6 +29,7 @@ AddEventHandler('rF:spawn', function()
     local pCache = GetPlayerInfoToCache(source)
     TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths)
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
+    AddToRequestCache(source)
 end)
 
 AddEventHandler('playerConnecting', function(playerName, setKickReason)

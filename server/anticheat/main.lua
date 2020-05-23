@@ -42,6 +42,7 @@ local blacklisted = {
     [GetHashKey("blimp2")] = true,
     -- prosp
     [GetHashKey("xs_prop_hamburgher_wl")] = true,
+    [GetHashKey("stt_prop_stunt_track_dwslope30")] = true,
 }
 
 DetectionCache = {}
@@ -51,7 +52,7 @@ AddEventHandler("entityCreating", function(entity)
         if blacklisted[GetEntityModel(entity)] then
             print("^1ENTITY ERROR:^7 An blacklisted entity tried to be spawned by the ID ["..NetworkGetEntityOwner(entity).."]")
             CancelEvent()
-            AddPlayerLog(NetworkGetEntityOwner(entity), "AC: Tentative de spawn d'entité blacklist", 1)
+            AddPlayerLog(NetworkGetEntityOwner(entity), "AC: Tentative de spawn d'entité blacklist", 2)
         end
     end
 end)

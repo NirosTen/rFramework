@@ -14,5 +14,7 @@ framework = {
 
     _default_player_max_weight = 50.0, -- Default player weight
 
+    tokenSecurity = true, -- ENABLE THIS WHEN YOUR SERVER IS OPEN ! VERY IMPORTANT
+
 
 }
