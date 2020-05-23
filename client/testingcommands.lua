@@ -346,6 +346,14 @@ RegisterCommand('callback', function(source, args, rawCommand)
     end, token)
 end)
 
+
+RegisterCommand('prop', function(source, args, rawCommand)
+    TriggerServerCallback('rF:TestCallback', function(pMoney, pJob)
+        print(pMoney, pJob)
+    end, token)
+end)
+
+
 function Notification(message,title)
     SetNotificationTextEntry("STRING")
     AddTextComponentString(message)
