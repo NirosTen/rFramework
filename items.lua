@@ -6,7 +6,7 @@ items = {
     {name="CB", label="Carte bancaire", weight=0.1, event="core:UseCreditCard"}, -- Not used in the framework but in my core
     {name="metal", label="Pièce métalique cassé", weight=1.5, event=""},
     {name="metal2", label="Morceau de carrosserie", weight=1.5, event=""},
-    {name="medicament1", label="Medicament sous scellé", weight=20.0, event=""},
+    {name="medicament1", label="Medicament sous scellé", weight=10.0, event=""},
     {name="medikit", label="Kit de soin", weight=10.0, event="core:UseMedikit"},
 
     -- Weapons
