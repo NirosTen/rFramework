@@ -91,6 +91,7 @@ server_exports { -- not going to use those, i suppose i will remove them
     'AddItemToPlayerInvBypass',
     'RemoveItemFromPlayerInv',
     'RegisterServerCallback',
+    'AddPlayerLog',
 }
 
 dependencies {
