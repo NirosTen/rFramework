@@ -9,7 +9,7 @@ end)
 
 RegisterNetEvent('rF:initializeinfo')
 AddEventHandler('rF:initializeinfo', function(money,dirtymoney,bankbalance, job, _, skin)
-
+	Wait(3000)
 	SendNUIMessage({
 		initialise = true,
 		money = money,

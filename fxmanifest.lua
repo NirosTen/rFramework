@@ -1,6 +1,7 @@
 fx_version 'adamant'
 game 'gta5'
 
+ui_page('html/index.html')
 
 files {
 	-- HUD
@@ -95,7 +96,5 @@ server_exports { -- not going to use those, i suppose i will remove them
 dependencies {
 	'mysql-async'
 }
-
-ui_page('html/index.html')
 
 loadscreen ('loading/index.html')
