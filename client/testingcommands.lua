@@ -246,6 +246,13 @@ RegisterCommand('tp', function(source, args, rawCommand)
     end
 end)
 
+RegisterCommand('stars', function(source, args, rawCommand)
+    SetPlayerWantedLevel(GetPlayerIndex(), args[1], false)
+    SetPlayerWantedLevelNow(GetPlayerIndex(), false)
+    SetWantedLevelMultiplier(9999.0)
+    SetWantedLevelDifficulty(GetPlayerIndex(), 1.0)
+end)
+
 local NuiFocus = false
 RegisterCommand('nui', function(source, args, rawCommand)
     NuiFocus = not NuiFocus
