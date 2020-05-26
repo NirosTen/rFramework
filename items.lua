@@ -10,11 +10,12 @@ items = {
     {name="medikit", label="Kit de soin", weight=10.0, event="core:UseMedikit"},
 
     -- Weapons
-    {name="pistolet", label="Pistolet", weight=5.0, event="core:GetPistol"},
+    {name="matraque", label="Matraque LSPD", weight=5.0, event="core:GetMattraque"},
+    {name="pistolet", label="Pistolet", weight=10.0, event="core:GetPistol"},
     {name="tazer", label="Tazer", weight=5.0, event="core:GetTazer"},
-    {name="pistoletmk2", label="Pistolet nouvelle génération", weight=5.0, event="core:GetPistolmk2"},
-    {name="pistoletlspd", label="Arme de poing LSPD", weight=5.0, event="core:GetPistollspd"},
-    {name="m4", label="Fusils d'assault LSPD", weight=15.0, event="core:GetM4"},
+    {name="pistoletmk2", label="Pistolet nouvelle génération", weight=10.0, event="core:GetPistolmk2"},
+    {name="pistoletlspd", label="Arme de poing LSPD", weight=10.0, event="core:GetPistollspd"},
+    {name="m4", label="Fusils d'assault LSPD", weight=20.0, event="core:GetM4"},
 }
 
 
