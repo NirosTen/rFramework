@@ -352,7 +352,7 @@ RegisterCommand('callback', function(source, args, rawCommand)
         print(pMoney, pJob)
     end, token)
 end)
-
+ 
 
 RegisterCommand('prop', function(source, args, rawCommand)
     TriggerServerCallback('rF:TestCallback', function(pMoney, pJob)
