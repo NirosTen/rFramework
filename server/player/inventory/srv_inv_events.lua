@@ -7,10 +7,16 @@ AddEventHandler("rF:GetPlayerInventory", function()
 end)
 
 
+function RefreshPlayerInventory(target)
+    local weight = GetInvWeight(PlayersData[target].inventory)
+    TriggerClientEvent("rF:SendPlayerInventory", target, PlayersData[target].inventory, weight)
+end
+
+
 RegisterNetEvent("rF:GetOtherPlayerInventory")
 AddEventHandler("rF:GetOtherPlayerInventory", function(target)
     local weight = GetInvWeight(PlayersData[target].inventory)
-    TriggerClientEvent("rF:SendPlayerInventory", source, PlayersData[source].inventory, weight)
+    TriggerClientEvent("rF:SendPlayerInventory", source, PlayersData[target].inventory, weight)
 end)
 
 RegisterServerCallback('rF:GetOtherPlayerData', function(source, cb, target)
