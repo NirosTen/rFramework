@@ -13,6 +13,10 @@ AddEventHandler("rF:GetOtherPlayerInventory", function(target)
     TriggerClientEvent("rF:SendPlayerInventory", source, PlayersData[source].inventory, weight)
 end)
 
+RegisterServerCallback('rF:GetOtherPlayerData', function(source, cb, target)
+    local weight = GetInvWeight(PlayersData[target].inventory)
+	cb(PlayersData[target].inventory, weight, PlayersData[target].money, PlayersData[target].dirtyMoney) -- Send back those data
+end)
 
 RegisterNetEvent("rF:GiveItem")
 AddEventHandler("rF:GiveItem", function(token, item, count)
