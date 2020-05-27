@@ -145,7 +145,7 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
     end
 end
 
-function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
+function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label, countSee)
     local inv = PlayersData[target].inventory
     local sInv = GetInventoryFromCache(id)
     local invWeight = GetInvWeight(inv)
@@ -154,6 +154,39 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label)
     if invWeight + itemWeight <= framework._default_player_max_weight then
         local countOld, num =  PlayersData[target].inventory[_label]
         local sCountOld, sNum =  PlayersData[id].inventory[_label].count
+        if sCountOld ~= countSee then return end
+        if countOld == nil then
+            PlayersData[target].inventory[_label] = {name = item, label = _label, olabel = itemLabel, count = _count}
+            TriggerClientEvent("rF:addItem", target, _label.." x".._count)
+        else
+            PlayersData[target].inventory[_label].count = PlayersData[target].inventory[_label].count + _count
+            TriggerClientEvent("rF:addItem", target, _label.." x".._count)
+        end
+
+        if sCountOld - _count == 0 then
+            PlayersData[id].inventory[_label] = nil
+            TriggerClientEvent("rF:rmvItem", id, _label.." x".._count)
+        else
+            PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count - _count
+            TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
+        end
+
+    else
+        TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~La personne porte trop de chose.")
+    end
+end
+
+
+function TransferItemIfTargetCanHoldItReverse(id, target, item, _count, _label, countSee)
+    local inv = PlayersData[target].inventory
+    local sInv = GetInventoryFromCache(id)
+    local invWeight = GetInvWeight(inv)
+    local itemWeight, itemLabel = GetItemWeight(item, _count)
+    
+    if invWeight + itemWeight <= framework._default_player_max_weight then
+        local countOld, num =  PlayersData[target].inventory[_label]
+        local sCountOld, sNum =  PlayersData[id].inventory[_label].count
+        if sCountOld ~= countSee then return end
         if countOld == nil then
             PlayersData[target].inventory[_label] = {name = item, label = _label, olabel = itemLabel, count = _count}
             TriggerClientEvent("rF:addItem", target, _label.." x".._count)
