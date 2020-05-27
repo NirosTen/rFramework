@@ -68,7 +68,16 @@ AddEventHandler("rF:ResetRenameItem", function(token, item, label, oldlabel)
 end)
 
 RegisterNetEvent("rF:TransferItemIfTargetCanHoldIt")
-AddEventHandler("rF:TransferItemIfTargetCanHoldIt", function(token, target, item, count, label)
+AddEventHandler("rF:TransferItemIfTargetCanHoldIt", function(token, target, item, count, label, countSee)
+    if CheckToken(token, source) then
+        TransferItemIfTargetCanHoldIt(source, target, item, count, label, countSee)
+        RefreshPlayerInventory(target)
+    end
+end)
+
+RegisterNetEvent("rF:TransferItemIfTargetCanHoldItReverse")
+AddEventHandler("rF:TransferItemIfTargetCanHoldItReverse", function(token, target, item, count, label, countSee)
+    print(token, target, item, count, label, countSee)
     if CheckToken(token, source) then
         TransferItemIfTargetCanHoldIt(source, target, item, count, label)
     end
