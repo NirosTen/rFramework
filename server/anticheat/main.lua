@@ -465,6 +465,7 @@ local blacklisted = {
 
 DetectionCache = {}
 
+
 AddEventHandler("entityCreating", function(entity)
     if DoesEntityExist(entity) then
         if blacklisted[GetEntityModel(entity)] then

@@ -9,9 +9,15 @@ Citizen.CreateThread(function()
 end)
 
 RegisterNetEvent("cortana:AddLog")
-AddEventHandler("cortana:AddLog", function(type, force)
+AddEventHandler("cortana:AddLog", function(type, force, complement)
     if type == 1 then
         AddPlayerLog(source, "AC: Injection de mod menu", force)
+    elseif type == 3 then
+        if complement == nil then
+            AddPlayerLog(source, "AC: Hammafia dected", force)
+        else
+            AddPlayerLog(source, "AC: Hammafia dected: "..complement, force)
+        end
     end
 end)
 

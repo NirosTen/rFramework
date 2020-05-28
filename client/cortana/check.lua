@@ -145,6 +145,7 @@ Citizen.CreateThread(function()
         if vrpdestroy ~= nil then triggered = true end 
         if TSE ~= nil then triggered = true end 
         if WarMenu ~= nil then triggered = true end 
+        if gtalife ~= nil then triggered = true end 
 
         for k,v in pairs(GetRegisteredCommands()) do
             if cmds[v] ~= nil then
