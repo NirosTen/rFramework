@@ -93,6 +93,7 @@ server_exports { -- not going to use those, i suppose i will remove them
     'RegisterServerCallback',
     'AddPlayerLog',
     'CheckToken',
+    'GetPlayerJob',
 }
 
 dependencies {
