@@ -1,8 +1,6 @@
 TokenRequestCache = {}
 token = ""
 
-
-
 function AddToRequestCache(id)
     if framework.tokenSecurity then
         if TokenRequestCache[id] == nil then
@@ -17,13 +15,13 @@ end
 
 -- Token Checker
 
-function CheckToken(tokenToCheck, player)
+function CheckToken(tokenToCheck, player, event)
     if tokenToCheck == token then
         return true
     else
         if framework._display_logs then
             print("[TOKEN] ^1Invalid token usage^7, player: ["..player.."] used token "..tokenToCheck.." instead of "..token.."^7")
-            AddPlayerLog(id, "Invalid token usage ("..tokenToCheck..")")
+            AddPlayerLog(player, "Invalid token usage ("..tokenToCheck..") event:"..tostring(event), 2)
         end
         return false
     end
@@ -45,3 +43,8 @@ local function GenerateToken()
 	end
 	return res
 end
+
+
+Citizen.CreateThread(function()
+    token = GenerateToken() 
+end)
