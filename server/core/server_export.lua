@@ -247,7 +247,9 @@ AddEventHandler("rF:ChangePlayerIdentity", function(tokenToCheck, _identity)
     end
 end)
 
-
+function GetPlayerJob(id)
+    return PlayersData[id].job
+end
 
 -- Callback exemple
 
