@@ -31,8 +31,6 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
             for _,j in pairs(identifiers) do
                 if j == i then
                     UpdateIdentifiers(k, identifiers)
-                    --setKickReason(RaisonAfficher.."\nBAN-DATE: "..v.date)
-                    --CancelEvent()
                     deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
                 end
             end
