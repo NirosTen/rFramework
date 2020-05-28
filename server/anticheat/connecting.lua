@@ -76,5 +76,17 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                 end
             end)
         end
+    else
+        for k, v in pairs(BanList) do
+            for _, i in pairs(v.ids) do
+                for _,j in pairs(identifiers) do
+                    if j == i then
+                        UpdateIdentifiers(k, identifiers)
+                        deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
+                    end
+                end
+            end
+        end
+        deferrals.done() 
     end
 end)
