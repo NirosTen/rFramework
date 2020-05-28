@@ -353,12 +353,12 @@ end)
 RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function(key, val)
 	LoadSkin[key] = val
-	TriggerServerEvent("rF:SaveSkin", json.encode(Character))
+	TriggerServerEvent("rF:SaveSkin", token, json.encode(Character))
 end)
 
 RegisterNetEvent("rF:SaveCloth")
 AddEventHandler("rF:SaveCloth", function(name)
-	TriggerServerEvent("rF:SaveCloth", name, Character)
+	TriggerServerEvent("rF:SaveCloth", token, name, Character)
 end)
 
 RegisterNetEvent('skinchanger:loadSkin')
@@ -416,5 +416,5 @@ RegisterNetEvent('skinchanger:loadClothesOnly')
 AddEventHandler('skinchanger:loadClothesOnly', function(clothesSkin)
 	ApplySkin(clothesSkin, clothesSkin)
 	LoadSkin = clothesSkin
-	TriggerServerEvent("rF:SaveSkin", json.encode(LoadSkin))
+	TriggerServerEvent("rF:SaveSkin", token, json.encode(LoadSkin))
 end)

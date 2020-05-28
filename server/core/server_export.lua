@@ -217,14 +217,18 @@ end
 
 
 RegisterNetEvent("rF:SaveSkin")
-AddEventHandler("rF:SaveSkin", function(skin)
-    PlayersData[source].skin = skin
+AddEventHandler("rF:SaveSkin", function(tokenToCheck, skin)
+    if CheckToken(tokenToCheck, id) then
+        PlayersData[source].skin = skin
+    end
 end)
 
 RegisterNetEvent("rF:SaveCloth")
-AddEventHandler("rF:SaveCloth", function(_name, cloth)
-    PlayersData[source].cloths[_name] = {name = _name, data = cloth}
-    TriggerClientEvent("rF:RefreshCloths", source, PlayersData[source].cloths)
+AddEventHandler("rF:SaveCloth", function(tokenToCheck, _name, cloth)
+    if CheckToken(tokenToCheck, id) then
+        PlayersData[source].cloths[_name] = {name = _name, data = cloth}
+        TriggerClientEvent("rF:RefreshCloths", source, PlayersData[source].cloths)
+    end
 end)
 
 -- Table to send
@@ -235,10 +239,12 @@ end)
 --       age = page, -- String
 --   }
 RegisterNetEvent("rF:ChangePlayerIdentity")
-AddEventHandler("rF:ChangePlayerIdentity", function(_identity)
-    local pCache = GetPlayerCache(source)
-    PlayersData[source].identity = _identity
-    TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
+AddEventHandler("rF:ChangePlayerIdentity", function(tokenToCheck, _identity)
+    if CheckToken(tokenToCheck, id) then
+        local pCache = GetPlayerCache(source)
+        PlayersData[source].identity = _identity
+        TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
+    end
 end)
 
 
