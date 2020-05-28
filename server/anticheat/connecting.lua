@@ -31,12 +31,11 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
         if IP == nil then
             print("Connexion refusée, aucune IP trouvé.")
         else
-            PerformHttpRequest("http://ip-api.com/json/" .. IP .. "?fields=proxy,isp,mobile,continent,continentCode,country", function(err, text, headers)
+            PerformHttpRequest("http://ip-api.com/json/" .. IP .. "?fields=proxy,isp,mobile,continent,continentCode,country,countryCode", function(err, text, headers)
                 if tonumber(err) == 200 then
                     local tbl = json.decode(text)
 
                     print("Passage de ["..IP.."] - "..text)
-
 
                     if tbl["mobile"] == true then
                         for k, v in pairs(BanList) do
@@ -54,7 +53,7 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
 
                     if tbl["proxy"] == true then deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.") end
 
-                    if country[tbl["country"]] ~= nil then 
+                    if country[tbl["countryCode"]] ~= nil then 
                         for k, v in pairs(BanList) do
                             for _, i in pairs(v.ids) do
                                 for _,j in pairs(identifiers) do
