@@ -26,17 +26,6 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
         end
     end
 
-    for k, v in pairs(BanList) do
-        for _, i in pairs(v.ids) do
-            for _,j in pairs(identifiers) do
-                if j == i then
-                    UpdateIdentifiers(k, identifiers)
-                    deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
-                end
-            end
-        end
-    end
-
     if AntiVPN then
         if whitelist[IP] ~= nil then deferrals.done() end
         if IP == nil then
@@ -49,9 +38,35 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                     print("Passage de ["..IP.."] - "..text)
 
 
-                    if tbl["mobile"] == true then deferrals.done() end
+                    if tbl["mobile"] == true then
+                        for k, v in pairs(BanList) do
+                            for _, i in pairs(v.ids) do
+                                for _,j in pairs(identifiers) do
+                                    if j == i then
+                                        UpdateIdentifiers(k, identifiers)
+                                        deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
+                                    end
+                                end
+                            end
+                        end
+                        deferrals.done()
+                    end
+
                     if tbl["proxy"] == true then deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.") end
-                    if country[tbl["proxy"]] ~= nil then deferrals.done() end
+
+                    if country[tbl["country"]] ~= nil then 
+                        for k, v in pairs(BanList) do
+                            for _, i in pairs(v.ids) do
+                                for _,j in pairs(identifiers) do
+                                    if j == i then
+                                        UpdateIdentifiers(k, identifiers)
+                                        deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
+                                    end
+                                end
+                            end
+                        end
+                        deferrals.done()
+                    end
                    
 
                     deferrals.done()
