@@ -49,7 +49,7 @@ end
 
 RegisterNetEvent("rF:GetPlayerAccounts") 
 AddEventHandler("rF:GetPlayerAccounts", function(tokenToCheck)
-    if CheckToken(tokenToCheck, source) then
+    if CheckToken(tokenToCheck, source, "GetPlayerAccounts") then
         local money, bank, dirty = GetPlayerAccounts(source)
         TriggerClientEvent("rF:SendPlayerAccounts", source, money, bank, dirty)
     end
@@ -58,7 +58,7 @@ end)
 
 -- Setter 
 function RemovePlayerMoney(tokenToCheck, id, rmv)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "RemovePlayerMoney") then
         local player = _player_get_identifier(id)
         PlayersData[id].money = tonumber(PlayersData[id].money - rmv)
         TriggerClientEvent('rF:rmvMoney', id, rmv)
@@ -83,7 +83,7 @@ AddEventHandler("rF:RemoveMoney", function(tokenToCheck, rmv)
 end)
 
 function _player_add_money(tokenToCheck, id, add)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "_player_add_money") then
         local player = _player_get_identifier(id)
         PlayersData[id].money = tonumber(PlayersData[id].money + add)
         TriggerClientEvent('rF:addMoney', id, add)
@@ -99,7 +99,7 @@ AddEventHandler("rF:AddMoney", function(tokenToCheck, add)
 end)
 
 function _player_add_bank_money(tokenToCheck, id, add)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "_player_add_bank_money") then
         local player = _player_get_identifier(id)
         PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance + add)
         TriggerClientEvent('rF:addBank', id, add)
@@ -115,7 +115,7 @@ AddEventHandler("rF:AddBankMoney", function(tokenToCheck, add)
 end)
 
 function _player_remove_bank_money(tokenToCheck, id, rmv)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "_player_remove_bank_money") then
         local player = _player_get_identifier(id)
         PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance - rmv)
         TriggerClientEvent('rF:rmvBank', id, rmv)
@@ -131,7 +131,7 @@ AddEventHandler("rF:RemoveBankMoney", function(tokenToCheck, rmv)
 end)
 
 function _player_remove_dirty_money(tokenToCheck, id, add)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "_player_remove_dirty_money") then
         local player = _player_get_identifier(id)
         PlayersData[id].dirtyMoney = tonumber(PlayersData[id].dirtyMoney + add)
         TriggerClientEvent('rF:rmvDirtyMoney', id, add)
@@ -147,7 +147,7 @@ AddEventHandler("rF:RemoveDirtyMoney", function(tokenToCheck, rmv)
 end)
 
 function _player_set_dirty_money(tokenToCheck, id, nb)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "_player_set_dirty_money") then
         local player = _player_get_identifier(id)
         PlayersData[id].dirtyMoney = tonumber(nb)
         TriggerClientEvent('rF:setDirtyMoney', id, nb)
@@ -163,7 +163,7 @@ AddEventHandler("rF:SetDirtyMoney", function(tokenToCheck, set)
 end)
 
 function _player_remove_money_for_bank(tokenToCheck, id, rmv)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "_player_remove_money_for_bank") then
         local player = _player_get_identifier(id)
         if PlayersData[id].money >= rmv then
             PlayersData[id].money = tonumber(PlayersData[id].money - rmv)
@@ -179,7 +179,7 @@ AddEventHandler("rF:MoveMoneyToBank", function(tokenToCheck, rmv)
 end)
 
 function _player_remove_bank_for_money(tokenToCheck, id, rmv)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "_player_remove_bank_for_money") then
         local player = _player_get_identifier(id)
         if PlayersData[id].bankBalance >= rmv then
             PlayersData[id].money = tonumber(PlayersData[id].money + rmv)
@@ -200,7 +200,7 @@ end
 
 RegisterNetEvent("rF:GiveMoneyToPlayer")
 AddEventHandler("rF:GiveMoneyToPlayer", function(tokenToCheck, target, money)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "GiveMoneyToPlayer") then
         GiveMoneyToPlayer(source, target, money)
     end
 end)
@@ -218,14 +218,14 @@ end
 
 RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function(tokenToCheck, skin)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "SaveSkin") then
         PlayersData[source].skin = skin
     end
 end)
 
 RegisterNetEvent("rF:SaveCloth")
 AddEventHandler("rF:SaveCloth", function(tokenToCheck, _name, cloth)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "SaveCloth") then
         PlayersData[source].cloths[_name] = {name = _name, data = cloth}
         TriggerClientEvent("rF:RefreshCloths", source, PlayersData[source].cloths)
     end
@@ -240,7 +240,7 @@ end)
 --   }
 RegisterNetEvent("rF:ChangePlayerIdentity")
 AddEventHandler("rF:ChangePlayerIdentity", function(tokenToCheck, _identity)
-    if CheckToken(tokenToCheck, id) then
+    if CheckToken(tokenToCheck, id, "ChangePlayerIdentity") then
         local pCache = GetPlayerCache(source)
         PlayersData[source].identity = _identity
         TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
