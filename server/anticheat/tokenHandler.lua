@@ -23,6 +23,7 @@ function CheckToken(tokenToCheck, player)
     else
         if framework._display_logs then
             print("[TOKEN] ^1Invalid token usage^7, player: ["..player.."] used token "..tokenToCheck.." instead of "..token.."^7")
+            AddPlayerLog(id, "Invalid token usage ("..tokenToCheck..")")
         end
         return false
     end
