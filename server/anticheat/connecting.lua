@@ -66,10 +66,11 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                             end
                         end
                         deferrals.done()
+                    else
+                        deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.\nSi c'est une erreur, merci d'ouvrir un ticket support.")
                     end
                    
 
-                    deferrals.done()
                 else
                     print(IP.." Erreur "..text)
                     deferrals.done("Erreur lors de la vérification API\nCode d'erreur: "..tostring(err))
