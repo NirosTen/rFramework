@@ -30,7 +30,7 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
     if AntiVPN then
         if whitelist[IP] ~= nil then deferrals.done() end
         if IP == nil then
-            print("Connexion refusée, aucune IP trouvé.")
+            deferrals.done("Connexion refusée, aucune IP trouvé.")
         else
             PerformHttpRequest("http://ip-api.com/json/" .. IP .. "?fields=proxy,isp,mobile,continent,continentCode,country,countryCode", function(err, text, headers)
                 if tonumber(err) == 200 then
