@@ -58,6 +58,19 @@ function BanPlayer(id)
 end
 
 
+function unban(banid)
+    for k,v in pairs(BanList) do
+        if v.id == banid then
+            table.remove(BanList, k)
+            UnbanDiscord(v)
+            print("^1BAN: ^7Removed ["..v.id.."] from ban-list.")
+            SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
+            return
+        end
+    end
+end
+
+
 function UpdateIdentifiers(k, identifiers)
     for _,v in pairs(identifiers) do
         local add = true
@@ -76,6 +89,31 @@ function UpdateIdentifiers(k, identifiers)
 end
 
 
+function UnbanDiscord(infos)
+    local message = "\n"
+    for k,v in pairs(infos.reason) do
+        message = message.."\n["..k.."] - "..v
+    end
+    message = message.."\n**IDENTIFIANT**:\n"
+    for k,v in pairs(infos.ids) do
+        message = message.."\n["..k.."] - "..v
+    end  
+
+
+    local content = {
+        {
+            ["color"] = '5015295',
+            ["title"] = "**UNBAN** ["..infos.id.."] ".. infos.name,
+            ["description"] = message,
+            ["footer"] = {
+                ["text"] = "Unban du joueur.",
+            },
+        }
+    }
+    PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+end
+
+
 function SendLogToDiscord(id, banid)
     local message = "\n"
     local logs = DetectionCache[id]
@@ -88,7 +126,7 @@ function SendLogToDiscord(id, banid)
     end
     local content = {
         {
-            ["color"] = '5015295',
+            ["color"] = '14177041',
             ["title"] = "**DETECTION ["..id.."] ".. GetPlayerName(id) .."** BAN-ID: "..banid,
             ["description"] = message,
             ["footer"] = {
