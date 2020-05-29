@@ -37,13 +37,14 @@ function AddPlayerLog(id, log, force)
 end
 
 function BanPlayer(id)
-    SendLogToDiscord(id)
     local logs = DetectionCache[id]
     ban = {}
     ban.name = GetPlayerName(id)
     ban.ids = {}
     ban.reason = {}
     ban.date = os.date("%y/%m/%d %X")
+    ban.id = ""..math.random(1000,9999).."-"..math.random(1000,9999)
+    SendLogToDiscord(id, ban.id)
     for k,v in pairs(GetPlayerIdentifiers(id)) do
         table.insert(ban.ids, v)
     end
@@ -75,7 +76,7 @@ function UpdateIdentifiers(k, identifiers)
 end
 
 
-function SendLogToDiscord(id)
+function SendLogToDiscord(id, banid)
     local message = "\n"
     local logs = DetectionCache[id]
     for k,v in pairs(logs.log) do
@@ -88,7 +89,7 @@ function SendLogToDiscord(id)
     local content = {
         {
             ["color"] = '5015295',
-            ["title"] = "**DETECTION ["..id.."] ".. GetPlayerName(id) .."**",
+            ["title"] = "**DETECTION ["..id.."] ".. GetPlayerName(id) .."** BAN-ID: "..banid,
             ["description"] = message,
             ["footer"] = {
                 ["text"] = "Liste des détéction du joueur",
