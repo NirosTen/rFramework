@@ -106,7 +106,7 @@ function UnbanDiscord(infos)
             ["title"] = "**UNBAN** ["..infos.id.."] ".. infos.name,
             ["description"] = message,
             ["footer"] = {
-                ["text"] = "Unban du joueur.",
+                ["text"] = "Unban du joueur depuis la console serveur.",
             },
         }
     }
