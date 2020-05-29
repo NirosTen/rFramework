@@ -1,5 +1,6 @@
 local RaisonAfficher = "Active anti-cheat detection."
 local AntiVPN = true
+local facteurConfiance = true
 
 local whitelist = {
     ["127.0.0.1"] = true,
@@ -48,7 +49,15 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                                 end
                             end
                         end
-                        deferrals.done()
+                        if facteurConfiance then
+                            if #identifiers > 2 then
+                                deferrals.done()
+                            else
+                                deferrals.done("Ton facteur de confiance ("..#identifiers..") n'est pas suffisant pour rentrer sur le serveur.")
+                            end
+                        else
+                            deferrals.done()
+                        end
                     end
 
                     if tbl["proxy"] == true then deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.") end
@@ -64,7 +73,15 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                                 end
                             end
                         end
-                        deferrals.done()
+                        if facteurConfiance then
+                            if #identifiers > 2 then
+                                deferrals.done()
+                            else
+                                deferrals.done("Ton facteur de confiance ("..#identifiers..") n'est pas suffisant pour rentrer sur le serveur.")
+                            end
+                        else
+                            deferrals.done()
+                        end
                     else
                         deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.\nSi c'est une erreur, merci d'ouvrir un ticket support.")
                     end
