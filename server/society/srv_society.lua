@@ -80,7 +80,7 @@ function TransferItemFromInvToSociety(id, _name, _item, _label, _olabel, _count)
 end
 
 
-function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count)
+function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count, countSee)
     
     local invWeight = GetInvWeight(PlayersData[id].inventory)
     local itemWeight, itemLabel = GetItemWeight(_item, _count)
@@ -88,8 +88,15 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count)
         local itemCount = SocietyCache[_name].inventory[_label]
         
         if itemCount == nil then
-            print("The player ["..id.." tried to remove an item ^1that do not exist^7 in ".._name.." inventory.")
-        elseif SocietyCache[_name].inventory[_label].count - _count == 0 then
+            print("The player ["..id.."] tried to remove an item ^1that do not exist^7 in ".._name.." inventory.")
+            AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: 0\nCount client: "..countSee.."\nDemande: -".._count, 4)
+            return
+        else
+            AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: "..SocietyCache[_name].inventory[_label].count.."\nCount client: "..countSee.."\nDemande: -".._count, 4)
+            return
+        end
+            
+        if SocietyCache[_name].inventory[_label].count - _count == 0 then
             SocietyCache[_name].inventory[_label] = nil
         else
             SocietyCache[_name].inventory[_label].count = SocietyCache[_name].inventory[_label].count - _count

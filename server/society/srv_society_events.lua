@@ -17,7 +17,7 @@ AddEventHandler("rF:TakeMoneyFromSociety", function(token, society, amount)
     if CheckToken(token, source) then
         TakeMoneyFromSociety(source, society, amount)
     end
-end)
+end) 
 
  
 RegisterNetEvent("rF:GetSocietyInfos")
@@ -35,8 +35,8 @@ AddEventHandler("rF:TransferItemFromInvToSociety", function(token, society, _ite
 end)
 
 RegisterNetEvent("rF:TransferItemFromSocietyToInv")
-AddEventHandler("rF:TransferItemFromSocietyToInv", function(token, society, _item, _label, _olabel, _count)
+AddEventHandler("rF:TransferItemFromSocietyToInv", function(token, society, _item, _label, _olabel, _count, countSee)
     if CheckToken(token, source) then
-        TransferItemFromSocietyToInv(source, society, _item, _label, _olabel, _count)
+        TransferItemFromSocietyToInv(source, society, _item, _label, _olabel, _count, countSee)
     end
 end)

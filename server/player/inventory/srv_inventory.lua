@@ -154,7 +154,7 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label, countSe
     if invWeight + itemWeight <= framework._default_player_max_weight then
         local countOld, num =  PlayersData[target].inventory[_label]
         local sCountOld, sNum =  PlayersData[id].inventory[_label].count
-        if sCountOld ~= countSee then return end
+        if sCountOld ~= countSee then if sCountOld ~= countSee then AddPlayerLog(id, "Desync inventaire. Item: "..item.."\nCount Serveur: "..sCountOld.."\nCount client: "..countSee.."\nDemande: -".._count, 4)  return end return end
         if countOld == nil then
             PlayersData[target].inventory[_label] = {name = item, label = _label, olabel = itemLabel, count = _count}
             TriggerClientEvent("rF:addItem", target, _label.." x".._count)
@@ -186,7 +186,7 @@ function TransferItemIfTargetCanHoldItReverse(id, target, item, _count, _label, 
     if invWeight + itemWeight <= framework._default_player_max_weight then
         local countOld, num =  PlayersData[target].inventory[_label]
         local sCountOld, sNum =  PlayersData[id].inventory[_label].count
-        if sCountOld ~= countSee then return end
+        if sCountOld ~= countSee then AddPlayerLog(id, "Desync inventaire. Item: "..item.."\nCount Serveur: "..sCountOld.."\nCount client: "..countSee.."\nDemande: -".._count, 4)  return end
         if countOld == nil then
             PlayersData[target].inventory[_label] = {name = item, label = _label, olabel = itemLabel, count = _count}
             TriggerClientEvent("rF:addItem", target, _label.." x".._count)

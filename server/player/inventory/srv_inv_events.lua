@@ -91,7 +91,6 @@ end)
 
 RegisterNetEvent("rF:TransferItemIfTargetCanHoldItReverse")
 AddEventHandler("rF:TransferItemIfTargetCanHoldItReverse", function(token, target, item, count, label, countSee)
-    print(token, target, item, count, label, countSee)
     if CheckToken(token, source, "TransferItemIfTargetCanHoldItReverse") then
         TransferItemIfTargetCanHoldItReverse(target, source, item, count, label, countSee)
         RefreshPlayerInventory(target)
