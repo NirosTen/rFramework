@@ -3,6 +3,7 @@ local firstSpawn = true
 Citizen.CreateThread(function()
 	if firstSpawn == true then
 		TriggerServerEvent('rF:spawn')
+		TriggerServerEvent("rF:AddToCache")
 		firstSpawn = false
 	end
 end)

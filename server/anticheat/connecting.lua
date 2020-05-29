@@ -28,7 +28,19 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
     end
 
     if AntiVPN then
-        if whitelist[IP] ~= nil then deferrals.done() end
+        if whitelist[IP] ~= nil then 
+            for k, v in pairs(BanList) do
+                for _, i in pairs(v.ids) do
+                    for _,j in pairs(identifiers) do
+                        if j == i then
+                            UpdateIdentifiers(k, identifiers)
+                            deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
+                        end
+                    end
+                end
+            end
+            deferrals.done() 
+        end
         if IP == nil then
             deferrals.done("Connexion refusée, aucune IP trouvé.")
         else

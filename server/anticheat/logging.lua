@@ -71,6 +71,28 @@ function unban(banid)
 end
 
 
+function acofflineban(id)
+    local cache = GetIdsFromCache(id)
+    if cache ~= false then
+        ban = {}
+        ban.name = cache.name
+        ban.ids = {}
+        ban.reason = "Manual console ban."
+        ban.date = os.date("%y/%m/%d %X")
+        ban.id = ""..math.random(1000,9999).."-"..math.random(1000,9999)
+        SendLogToDiscordOfflineBan(id, ban.id, cache)
+        for k,v in pairs(cache.ids) do
+            table.insert(ban.ids, v)
+        end
+        table.insert(BanList, ban)
+        SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
+        print("^1BAN: ^7Added ["..cache.name.."] to the ban-list.")
+    else
+        print("^1BAN: ^7Player not found in server cache.")
+    end
+end
+
+
 function UpdateIdentifiers(k, identifiers)
     for _,v in pairs(identifiers) do
         local add = true
@@ -113,6 +135,24 @@ function UnbanDiscord(infos)
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
 end
 
+function SendLogToDiscordOfflineBan(id, banid, cache)
+    local message = "\n"
+    message = message.."\n**IDENTIFIANT**:\n"
+    for k,v in pairs(cache.ids) do
+        message = message.."\n["..k.."] - "..v
+    end
+    local content = {
+        {
+            ["color"] = '14177041',
+            ["title"] = "**DETECTION ["..id.."] ".. cache.name .."** BAN-ID: "..banid,
+            ["description"] = message,
+            ["footer"] = {
+                ["text"] = "Ban offline d'un joueur",
+            },
+        }
+    }
+    PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+end
 
 function SendLogToDiscord(id, banid)
     local message = "\n"
