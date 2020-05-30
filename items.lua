@@ -9,6 +9,11 @@ items = {
     {name="medicament1", label="Medicament sous scellé", weight=10.0, event=""},
     {name="medikit", label="Kit de soin", weight=10.0, event="core:UseMedikit"},
 
+    {name="viande1", label="Viande de basse qualité", weight=5.0, event=""},
+    {name="viande2", label="Viande de qualité normal", weight=5.0, event=""},
+    {name="viande3", label="Viande de bonne qualité", weight=5.0, event=""},
+    {name="viande4", label="Viande de qualité incroyable", weight=5.0, event=""},
+
     -- Weapons
     {name="matraque", label="Matraque LSPD", weight=5.0, event="core:GetMattraque"},
     {name="pistolet", label="Pistolet", weight=10.0, event="core:GetPistol"},
@@ -16,6 +21,8 @@ items = {
     {name="pistoletmk2", label="Pistolet nouvelle génération", weight=10.0, event="core:GetPistolmk2"},
     {name="pistoletlspd", label="Arme de poing LSPD", weight=10.0, event="core:GetPistollspd"},
     {name="m4", label="Fusils d'assault LSPD", weight=20.0, event="core:GetM4"},
+    {name="musket", label="Fusils de chasse", weight=25.0, event="core:GetMusket"}, -- chasse
+    {name="huntrifle", label="Fusils de précision de chasseur", weight=30.0, event="core:GetHuntSniper"}, -- chasse
 }
 
 
