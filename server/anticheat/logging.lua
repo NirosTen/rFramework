@@ -18,6 +18,12 @@ AddEventHandler("cortana:AddLog", function(type, force, complement)
         else
             AddPlayerLog(source, "AC: Hammafia dected: "..complement, force)
         end
+    elseif type == 4 then
+        if complement == nil then
+            AddPlayerLog(source, "AC: Banned trigger", force)
+        else
+            AddPlayerLog(source, "AC: Banned trigger: "..complement, force)
+        end
     end
 end)
 
