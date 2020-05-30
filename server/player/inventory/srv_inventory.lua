@@ -33,13 +33,13 @@ function AddItemToPlayerInv(id, item, _count, _label)
 
             if countOld == nil then
                 PlayersData[id].inventory[_label] = {name = item, label = itemLabel, olabel = itemLabel, count = _count}
-                TriggerClientEvent("rF:addItem", id, item.." x".._count)
+                TriggerClientEvent("rF:addItem", id, _label.." x".._count)
             else                  
                 PlayersData[id].inventory[_label].name = item
                 PlayersData[id].inventory[_label].label = _label
                 PlayersData[id].inventory[_label].olabel = itemLabel
                 PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + _count
-                TriggerClientEvent("rF:addItem", id, item.." x".._count)
+                TriggerClientEvent("rF:addItem", id, _label.." x".._count)
             end
         else
             TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
@@ -127,13 +127,13 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
                 local countOld = PlayersData[id].inventory[itemLabel]
                 if countOld == nil then
                     PlayersData[id].inventory[itemLabel] = {name = item, label = itemLabel, olabel = itemLabel, count = _count}
-                    TriggerClientEvent("rF:addItem", id, item.." x".._count)
+                    TriggerClientEvent("rF:addItem", id, itemLabel.." x".._count)
                 else
                     PlayersData[id].inventory[itemLabel].name = item
                     PlayersData[id].inventory[itemLabel].label = itemLabel
                     PlayersData[id].inventory[itemLabel].olabel = itemLabel
                     PlayersData[id].inventory[itemLabel].count = PlayersData[id].inventory[itemLabel].count + _count
-                    TriggerClientEvent("rF:addItem", id, item.." x".._count)
+                    TriggerClientEvent("rF:addItem", id, itemLabel.." x".._count)
                 end
 
             else
