@@ -5,13 +5,11 @@ PlayersCache = {}
 RegisterNetEvent("rF:AddToCache")
 AddEventHandler("rF:AddToCache", function()
     if PlayersCache[source] == nil then
-        print("Adding "..source.." to players ids cache.")
         local ids = GetPlayerIdentifiers(source)
         PlayersCache[source] = {}
         PlayersCache[source].ids = {}
         for k,v in pairs(ids) do
             table.insert(PlayersCache[source].ids, v)
-            print("Adding "..v.." to "..source.." ids cache.")
         end
         PlayersCache[source].name = GetPlayerName(source)
     else
