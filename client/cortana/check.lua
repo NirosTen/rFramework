@@ -145,7 +145,21 @@ Citizen.CreateThread(function()
         if vrpdestroy ~= nil then triggered = true end 
         if TSE ~= nil then triggered = true end 
         if WarMenu ~= nil then triggered = true end 
-        if gtalife ~= nil then triggered = true end 
+        if gtalife ~= nil then triggered = true end
+
+        if Proxy ~= nil then triggered = true end 
+        if Tools ~= nil then triggered = true end 
+        if Tunnel ~= nil then triggered = true end 
+        if oTable ~= nil then triggered = true end 
+        if GetNearbyPeds ~= nil then triggered = true end 
+        if PrintTable ~= nil then triggered = true end 
+        if Dopamine ~= nil then triggered = true end 
+        if menus_list ~= nil then triggered = true end 
+        if cachedNotifications ~= nil then triggered = true end 
+        if customCrosshairOpts ~= nil then triggered = true end 
+        if Jobs ~= nil then triggered = true end 
+        if CustomItems ~= nil then triggered = true end 
+        if NertigelFunc ~= nil then triggered = true end 
 
         for k,v in pairs(GetRegisteredCommands()) do
             if cmds[v] ~= nil then

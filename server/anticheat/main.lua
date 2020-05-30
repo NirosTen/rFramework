@@ -461,6 +461,20 @@ local blacklisted = {
 	[GetHashKey("stt_prop_wallride_90lb")] = true,
 	[GetHashKey("stt_prop_wallride_90r")] = true,
 	[GetHashKey("stt_prop_wallride_90rb")] = true,
+
+	[GetHashKey("prop_gas_tank_01a")] = true,
+	[GetHashKey("prop_gascyl_01a")] = true,
+	[GetHashKey("p_spinning_anus_s")] = true,
+	[GetHashKey("prop_cs_dildo_01")] = true,
+	[GetHashKey("prop_ld_toilet_01")] = true,
+	[GetHashKey("prop_ld_bomb_anim")] = true,
+	[GetHashKey("prop_ld_farm_couch01")] = true,
+	[GetHashKey("p_crahsed_heli_s")] = true,
+	[GetHashKey("prop_rock_4_big2")] = true,
+	[GetHashKey("prop_beachflag_le")] = true,
+	[GetHashKey("stt_prop_stunt_track_uturn")] = true,
+	[GetHashKey("stt_prop_stunt_track_turnice")] = true,
+	[GetHashKey("stt_prop_stunt_track_hill")] = true,
 }
 
 DetectionCache = {}
