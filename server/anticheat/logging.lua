@@ -37,6 +37,8 @@ function AddPlayerLog(id, log, force)
 end
 
 function BanPlayer(id)
+    if id == nil then return end
+    if GetPlayerName(id) == nil then return end
     local logs = DetectionCache[id]
     ban = {}
     ban.name = GetPlayerName(id)
@@ -72,6 +74,8 @@ end
 
 
 function acofflineban(id)
+    if id == nil then return end
+    if GetPlayerName(id) == nil then return end
     local cache = GetIdsFromCache(id)
     if cache ~= false then
         ban = {}
@@ -159,6 +163,8 @@ function SendLogToDiscordOfflineBan(id, banid, cache)
 end
 
 function SendLogToDiscord(id, banid)
+    if id == nil then return end
+    if GetPlayerName(id) == nil then return end
     local message = "\n"
     local logs = DetectionCache[id]
     for k,v in pairs(logs.log) do
