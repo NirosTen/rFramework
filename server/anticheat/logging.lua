@@ -113,8 +113,12 @@ end
 
 function UnbanDiscord(infos)
     local message = "\n"
-    for k,v in pairs(infos.reason) do
-        message = message.."\n["..k.."] - "..v
+    if type(infos.reason) == "table" then
+        for k,v in pairs(infos.reason) do
+            message = message.."\n["..k.."] - "..v
+        end
+    else
+        message = message.."\n[1] - "..infos.reason
     end
     message = message.."\n**IDENTIFIANT**:\n"
     for k,v in pairs(infos.ids) do
