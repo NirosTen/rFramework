@@ -1,4 +1,7 @@
-local webhook = "https://discordapp.com/api/webhooks/711302645369012358/7EPYNlE3ujHDkwyif2jJ3q4IPWbIkugaj0eF7rY5ec8bqiAniYnYWx2g8A8DaJYX_kOu"
+-- CHANGE THIS
+local webhook = "https://discordapp.com/api/webhooks/716579221555642435/VPw3aGWjj8BpM_xGD4ELvMfZNug2aEI8onCDAW1iMMaLMj4DqPVvbodky5hjYKP6wEx9"
+local BanStaffHook = "https://discordapp.com/api/webhooks/716579142702727188/F_0O6NwzmqseUt2Nr_Vt8YTBuJ5p3XBf_tNmDCsGMRpx8KMDhYBvX_GLsKuf5Vh9359Y"
+local unbanHook = "https://discordapp.com/api/webhooks/716579403014078474/fhCEZmXplcX5ROA5EXEFwqLESm1AbfaSs0-ck5yUf5jZr1cWb0X99ELSNIKRCAb-aoJD"
 
 
 BanList = {}
@@ -38,11 +41,11 @@ function AddPlayerLog(id, log, force)
 
     if DetectionCache[id].count  >= 5 then
         -- BAN PLAYER
-        BanPlayer(id)
+        CheatBanPlayer(id)
     end
 end
 
-function BanPlayer(id)
+function CheatBanPlayer(id)
     if id == nil then return end
     if GetPlayerName(id) == nil then return end
     local logs = DetectionCache[id]
@@ -52,6 +55,8 @@ function BanPlayer(id)
     ban.reason = {}
     ban.date = os.date("%y/%m/%d %X")
     ban.id = ""..math.random(1000,9999).."-"..math.random(1000,9999)
+    ban.temp = false
+    ban.cheat = true
     SendLogToDiscord(id, ban.id)
     for k,v in pairs(GetPlayerIdentifiers(id)) do
         table.insert(ban.ids, v)
@@ -59,6 +64,58 @@ function BanPlayer(id)
     for k,v in pairs(logs.log) do
         table.insert(ban.reason, v)
     end
+    table.insert(BanList, ban)
+    SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
+    print("^1BAN: ^7Added ["..id.."] to the ban-list.")
+    DropPlayer(id, "Vous avez été banni du serveur.\n"..ban.date)
+end
+
+function BanPlayer(id, reason, source)
+    if id == nil then return end
+    if GetPlayerName(id) == nil then return end
+    local logs = DetectionCache[id]
+    ban = {}
+    ban.name = GetPlayerName(id)
+    ban.ids = {}
+    ban.reason = reason
+    ban.date = os.date("%y/%m/%d %X")
+    ban.id = ""..math.random(1000,9999).."-"..math.random(1000,9999)
+    ban.temp = false
+
+    SendBanToDiscord(id, ban.id, reason, nil, source)
+    for k,v in pairs(GetPlayerIdentifiers(id)) do
+        table.insert(ban.ids, v)
+    end
+
+    table.insert(BanList, ban)
+    SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
+    print("^1BAN: ^7Added ["..id.."] to the ban-list.")
+    DropPlayer(id, "Vous avez été banni du serveur.\n"..ban.date)
+end
+
+function TempBanPlayer(id, reason, time, source)
+    if id == nil then return end
+    if GetPlayerName(id) == nil then return end
+    local logs = DetectionCache[id]
+    ban = {}
+    ban.name = GetPlayerName(id)
+    ban.ids = {}
+    ban.reason = reason
+    ban.date = os.date("%y/%m/%d %X")
+    ban.id = ""..math.random(1000,9999).."-"..math.random(1000,9999)
+    ban.temp = true
+
+    local expiration = time * 86400
+    if expiration < os.time() then
+        expiration = os.time()+expiration
+    end
+    ban.expiration = expiration
+
+    SendBanToDiscord(id, ban.id, reason, time, source)
+    for k,v in pairs(GetPlayerIdentifiers(id)) do
+        table.insert(ban.ids, v)
+    end
+
     table.insert(BanList, ban)
     SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
     print("^1BAN: ^7Added ["..id.."] to the ban-list.")
@@ -146,7 +203,7 @@ function UnbanDiscord(infos)
             },
         }
     }
-    PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+    PerformHttpRequest(unbanHook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
 end
 
 function SendLogToDiscordOfflineBan(id, banid, cache)
@@ -191,4 +248,50 @@ function SendLogToDiscord(id, banid)
         }
     }
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+end
+
+
+function SendBanToDiscord(id, banid, reason, time, source)
+    if id == nil then return end
+    if GetPlayerName(id) == nil then return end
+    local message = "\n"
+
+    message = message.."\n**IDENTIFIANT**:\n"
+    for k,v in pairs(GetPlayerIdentifiers(id)) do
+        message = message.."\n["..k.."] - "..v
+    end
+
+    message = message.."\n**REASON**:\n"..reason
+
+    if source == 0 then
+        source = "Console Serveur"
+    else
+        source = GetPlayerName(source)
+    end
+
+    if time ~= nil then
+        local content = {
+            {
+                ["color"] = '14177041',
+                ["title"] = "**BAN ["..id.."] ".. GetPlayerName(id) .."** BAN-ID: "..banid.." pour "..time.."j",
+                ["description"] = message,
+                ["footer"] = {
+                    ["text"] = "Banni par le staff "..source,
+                },
+            }
+        }
+        PerformHttpRequest(BanStaffHook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+    else
+        local content = {
+            {
+                ["color"] = '14177041',
+                ["title"] = "**BAN-PERMA ["..id.."] ".. GetPlayerName(id) .."** BAN-ID: "..banid,
+                ["description"] = message,
+                ["footer"] = {
+                    ["text"] = "Banni par le staff "..source,
+                },
+            }
+        }
+        PerformHttpRequest(BanStaffHook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+    end
 end
