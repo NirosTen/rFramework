@@ -8,6 +8,7 @@ items = {
     {name="metal2", label="Morceau de carrosserie", weight=1.5, event=""},
     {name="medicament1", label="Medicament sous scellé", weight=10.0, event=""},
     {name="medikit", label="Kit de soin", weight=10.0, event="core:UseMedikit"},
+    {name="permisChasse", label="Permis de chasse", weight=1.0, event="core:ShowPermisChasse"},
 
     {name="viande1", label="Viande de basse qualité", weight=1.0, event=""},
     {name="viande2", label="Viande de qualité normal", weight=2.5, event=""},
