@@ -113,8 +113,8 @@ AddEventHandler("rF:ExhangeItem", function(token, OriginalItem, ItemToGet)
 end)
 
 RegisterNetEvent("rF:SellItem")
-AddEventHandler("rF:SellItem", function(token, item, price)
+AddEventHandler("rF:SellItem", function(token, item, price, count)
     if CheckToken(token, source, "SellItem") then
-        SellItem(source, item, price)
+        SellItem(source, item, price, count)
     end
 end)

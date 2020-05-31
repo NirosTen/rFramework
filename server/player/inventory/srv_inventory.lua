@@ -244,18 +244,20 @@ function ExhangeItem(id, OriginalItem, ItemToGet)
     end
 end
 
-function SellItem(id, itemToSell, price)
+function SellItem(id, itemToSell, price, _count)
+    if _count == nil then _count = 1 end
     local inv = GetInventoryFromCache(id)
     local _, oLabel = GetItemWeight(itemToSell, 1)
     if oLabel == nil then oLabel = GetOriginalLabel(itemToSell) end
     local oCount = PlayersData[id].inventory[oLabel]
     if oCount ~= nil then
-        if PlayersData[id].inventory[oLabel].count - 1 <= 0 then
+        if PlayersData[id].inventory[oLabel].count < _count then AddPlayerLog(id, "Desync inventaire. Item: "..itemToSell.."\nCount Serveur: "..PlayersData[id].inventory[oLabel].count.."\nCount client: ".._count.."\nDemande: -".._count, 4) return end
+        if PlayersData[id].inventory[oLabel].count - _count <= 0 then
             PlayersData[id].inventory[oLabel] = nil
             PlayersData[id].money = PlayersData[id].money + price
             TriggerClientEvent('rF:addMoney', id, price)
         else
-            PlayersData[id].inventory[oLabel].count = PlayersData[id].inventory[oLabel].count - 1
+            PlayersData[id].inventory[oLabel].count = PlayersData[id].inventory[oLabel].count - _count
             PlayersData[id].money = PlayersData[id].money + price
             TriggerClientEvent('rF:addMoney', id, price)
         end
