@@ -9,9 +9,9 @@ items = {
     {name="medicament1", label="Medicament sous scellé", weight=10.0, event=""},
     {name="medikit", label="Kit de soin", weight=10.0, event="core:UseMedikit"},
 
-    {name="viande1", label="Viande de basse qualité", weight=5.0, event=""},
-    {name="viande2", label="Viande de qualité normal", weight=5.0, event=""},
-    {name="viande3", label="Viande de bonne qualité", weight=5.0, event=""},
+    {name="viande1", label="Viande de basse qualité", weight=1.0, event=""},
+    {name="viande2", label="Viande de qualité normal", weight=2.5, event=""},
+    {name="viande3", label="Viande de bonne qualité", weight=3.5, event=""},
     {name="viande4", label="Viande de qualité incroyable", weight=5.0, event=""},
 
     -- Weapons
