@@ -32,20 +32,6 @@ AddEventHandler('rF:spawn', function()
     AddToRequestCache(source)
 end) 
 
-AddEventHandler('playerConnecting', function(playerName, setKickReason)
-    local source = source
-    local player = DoesPlayerExisit(source)
-    if player[1] == nil then
-        creation_utilisateur(source)
-
-        if framework._display_logs == true then
-            print('' .. _L("new_user") .. '| '..playerName..'')
-        end
-
-    end
-end)
-
-
 
 
 PlayersData = {} -- Global for now, maybe turning it local later if not needed
@@ -124,6 +110,17 @@ end
 
 -- Call this on player connexion
 function GetPlayerInfoToCache(id)
+
+    local player = DoesPlayerExisit(id)
+    if player[1] == nil then
+        creation_utilisateur(id)
+
+        if framework._display_logs == true then
+            print('' .. _L("new_user") .. '| '..GetPlayerName(id)..'')
+        end
+
+    end
+
     local player = _player_get_identifier(id)
     --table.insert(PlayersData, {ServerID = id})
     PlayersData[id] = {ServerID = id}
