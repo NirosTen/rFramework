@@ -10,6 +10,29 @@ local StaffAllowed = {
 
 local whitelist = {
     ["127.0.0.1"] = true,
+    ["steam:110000140ce11c4"] = true,
+    ["steam:110000105a0eed5"] = true,
+    ["steam:11000010c5246df"] = true,
+    ["steam:110000111d98501"] = true,
+    ["steam:11000010ce93c7e"] = true,
+    ["steam:11000010af33ed1"] = true,
+    ["steam:11000013db4ad46"] = true,
+    ["steam:110000136888009"] = true,
+    ["steam:11000011bf242be"] = true,
+    ["ip:92.188.0.21"] = true,
+    ["steam:110000110719752"] = true,
+    ["steam:110000134576de4"] = true,
+    ["steam:110000116f72d7c "] = true,
+    ["ip:86.209.13.27"] = true,
+    ["ip:86.254.101.131"] = true,
+    ["steam:1100001176870a0"] = true,
+    ["ip:176.172.71.233"] = true,
+    ["ip:90.125.48.114"] = true,
+    ["ip:81.243.47.155"] = true,
+    ["ip:86.192.170.27"] = true,
+    ["ip:83.194.129.170"] = true,
+    ["steam:110000103f10123"] = true,
+    ["steam:110000114dbbc08"] = true,
 }
 
 local country = {
