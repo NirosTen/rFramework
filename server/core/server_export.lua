@@ -244,6 +244,7 @@ AddEventHandler("rF:ChangePlayerIdentity", function(tokenToCheck, _identity)
         local pCache = GetPlayerCache(source)
         PlayersData[source].identity = _identity
         TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
+        SetNotFirstSpawn()
     end
 end)
 

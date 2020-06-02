@@ -34,8 +34,7 @@ AddEventHandler("rF:SpawnPlayer", function()
                 print('' .. _L("new_spawn_user") .. ' | ' .. player)
             end
 
-        end
-        MySQL.Async.execute("UPDATE player_account SET player_first_spawn = @player_first_spawn", { ["@player_first_spawn"] = 'not_first_spawn', })
+        end 
     else
         local ToSpawnPos = json.decode(player_data[1].player_position)
         local PosX = ToSpawnPos[1]
@@ -47,3 +46,8 @@ AddEventHandler("rF:SpawnPlayer", function()
         end
     end
 end)
+
+
+function SetNotFirstSpawn()
+    MySQL.Async.execute("UPDATE player_account SET player_first_spawn = @player_first_spawn", { ["@player_first_spawn"] = 'not_first_spawn', })
+end
