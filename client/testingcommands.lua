@@ -323,7 +323,16 @@ end)
 
 RegisterCommand('model', function(source, args, rawCommand)
     RequestModel(GetHashKey(args[1]))
-    while not HasModelLoaded(GetHashKey(args[1])) do Wait(1) end
+    local count = 0
+    while not HasModelLoaded(GetHashKey(args[1])) do 
+        Wait(1000) 
+        print("Waiting for "..args[1]) 
+        RequestModel(GetHashKey(args[1]))
+        count = count + 1 
+        if count > 10 then 
+            break 
+        end 
+    end
     SetPlayerModel(GetPlayerIndex(), GetHashKey(args[1]))
 end)
 
