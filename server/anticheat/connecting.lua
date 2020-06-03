@@ -30,6 +30,7 @@ local StaffAllowed = { -- Ban will not be checked if maintenance mod is on
     ["steam:110000103f10123"] = true,
     ["steam:110000114dbbc08"] = true,
     ["ip:78.224.194.61"] = true,
+    ["license:73368238ecbb5c69a2768471824aea691c9f16fe"] = true,
 }
 
 local whitelist = {
