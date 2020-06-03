@@ -4,12 +4,8 @@ local facteurConfiance = true
 
 local MaintenanceMod = true -- Only accepte player who are in the staff list
 
-local StaffAllowed = {
+local StaffAllowed = { -- Ban will not be checked if maintenance mod is on
     ["steam:11000013f9d1332"] = true,
-}
-
-local whitelist = {
-    ["127.0.0.1"] = true,
     ["steam:110000140ce11c4"] = true,
     ["steam:110000105a0eed5"] = true,
     ["steam:11000010c5246df"] = true,
@@ -33,6 +29,11 @@ local whitelist = {
     ["ip:83.194.129.170"] = true,
     ["steam:110000103f10123"] = true,
     ["steam:110000114dbbc08"] = true,
+    ["ip:78.224.194.61"] = true,
+}
+
+local whitelist = {
+    ["127.0.0.1"] = true,
 }
 
 local country = {
