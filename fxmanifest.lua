@@ -14,11 +14,11 @@ files {
 	'html/icons/dirtymoney.png',
 	'html/icons/logo.png',
 	-- Loadingscreen
-    'loading/index.html',
-    'loading/style.css',
-	'loading/logo.png',
-	'loading/music.mp3',
-	'loading/script.js'
+    --'loading/index.html',
+    --'loading/style.css',
+	--'loading/logo.png',
+	--'loading/music.mp3',
+	--'loading/script.js'
 }
 
 server_scripts {
@@ -100,4 +100,4 @@ dependencies {
 	'mysql-async'
 }
 
-loadscreen ('loading/index.html')
+--loadscreen ('loading/index.html')
