@@ -92,8 +92,10 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count,
             AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: 0\nCount client: "..countSee.."\nDemande: -".._count, 4)
             return
         else
-            AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: "..SocietyCache[_name].inventory[_label].count.."\nCount client: "..countSee.."\nDemande: -".._count, 4)
-            return
+            if SocietyCache[_name].inventory[_label].count ~= countSee then
+                AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: "..SocietyCache[_name].inventory[_label].count.."\nCount client: "..countSee.."\nDemande: -".._count, 4)
+                return
+            end
         end
             
         if SocietyCache[_name].inventory[_label].count - _count == 0 then
