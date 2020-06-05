@@ -27,7 +27,7 @@ AddEventHandler('rF:spawn', function()
     local source = source
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group)
+    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip)
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
     AddToRequestCache(source)
 end) 
@@ -145,6 +145,7 @@ function GetPlayerInfoToCache(id)
         PlayersData[id].group = info[1].player_group
         PlayersData[id].pos = info[1].player_position
         PlayersData[id].skin = info[1].player_skin
+        PlayersData[id].vip = info[1].vip
 
         if info[1].player_cloths ~= nil then
             PlayersData[id].cloths = json.decode(info[1].player_cloths)
