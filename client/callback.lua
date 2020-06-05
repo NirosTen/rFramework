@@ -16,6 +16,7 @@ end
 
 RegisterNetEvent('serverCallback')
 AddEventHandler('serverCallback', function(requestId, ...)
+	if ServerCallbacks[requestId] == nil then return end
 	ServerCallbacks[requestId](...)
 	ServerCallbacks[requestId] = nil
 end)
