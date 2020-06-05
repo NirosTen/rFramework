@@ -8,9 +8,9 @@ end)
 
 
 RegisterNetEvent("rF:ChangeOtherPlayerJob")
-AddEventHandler("rF:ChangeOtherPlayerJob", function(tokenToCheck, id, job)
+AddEventHandler("rF:ChangeOtherPlayerJob", function(tokenToCheck, id, job, grade)
     if CheckToken(tokenToCheck, source) then
-        ChangePlayerJob(id, job)
+        ChangePlayerJob(id, job, grade)
     end
 end)
 
