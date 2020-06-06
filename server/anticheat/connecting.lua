@@ -4,50 +4,17 @@ local facteurConfiance = true
 
 local MaintenanceMod = true -- Only accepte player who are in the staff list
 
-local StaffAllowed = { -- Ban will not be checked if maintenance mod is on
-    ["steam:11000013f9d1332"] = true,
-    ["steam:110000140ce11c4"] = true,
-    ["steam:110000105a0eed5"] = true,
-    ["steam:11000010c5246df"] = true,
-    ["steam:110000111d98501"] = true,
-    ["steam:11000010ce93c7e"] = true,
-    ["steam:11000010af33ed1"] = true,
-    ["steam:11000013db4ad46"] = true,
-    ["steam:110000136888009"] = true,
-    ["steam:11000011bf242be"] = true,
-    ["ip:92.188.0.21"] = true,
-    ["steam:110000110719752"] = true,
-    ["steam:110000134576de4"] = true,
-    ["steam:110000116f72d7c "] = true,
-    ["ip:86.209.13.27"] = true,
-    ["ip:86.254.101.131"] = true,
-    ["steam:1100001176870a0"] = true,
-    ["ip:176.172.71.233"] = true,
-    ["ip:90.125.48.114"] = true,
-    ["ip:81.243.47.155"] = true,
-    ["ip:86.192.170.27"] = true,
-    ["ip:83.194.129.170"] = true,
-    ["steam:110000103f10123"] = true,
-    ["steam:110000114dbbc08"] = true,
-    ["ip:78.224.194.61"] = true,
-    ["license:73368238ecbb5c69a2768471824aea691c9f16fe"] = true,
-    ["steam:11000010a3f6fad"] = true,
-    ["steam:11000011621f358"] = true,
-    ["steam:1100001194e912a"] = true,
-    ["steam:11000010ce93c7e"] = true,
-    ["steam:110000106896244"] = true,
-    ["ip:90.127.124.156"] = true,
-    ["ip:213.189.187.182"] = true,
-    ["ip:77.201.241.171"] = true,
-    ["ip:90.91.93.38"] = true,
-    ["steam:11000010990f7c1"] = true,
-    ["ip:92.188.0.21"] = true,
-    ["ip:92.188.0.21"] = true,
-    ["steam:110000117f42551"] = true,
-    ["steam:1100001113d0dd0"] = true,
-    ["steam:11000010bb09f39"] = true,
-    ["steam:110000136d261ae"] = true,
-}
+local StaffAllowed = {}
+Citizen.CreateThread(function()
+    StaffAllowed = LoadResourceFile(GetCurrentResourceName(), 'server/anticheat/maintenance.json')
+    StaffAllowed = json.decode(StaffAllowed)
+end)
+
+function AddToMaintenance(id)
+    table.insert(StaffAllowed, id)
+    SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/maintenance.json', json.encode(StaffAllowed), -1)
+    print("^1MAINTENANCE: ^7Added ["..id.."] to the maintenance list.")
+end
 
 local whitelist = {
     ["127.0.0.1"] = true,

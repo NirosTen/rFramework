@@ -57,6 +57,15 @@ RegisterCommand("ban", function(source, args, rawCommand)
 end, true)
 
 
+RegisterCommand("maintenance", function(source, args, rawCommand)
+    if source == 0 then
+        if args[1] ~= nil then
+            AddToMaintenance(args[1])
+        end
+    end
+end, true)
+
+
 
 RegisterNetEvent("rF:BanPlayer")
 AddEventHandler("rF:BanPlayer", function(token, target, duree, reason)
