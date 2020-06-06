@@ -16,7 +16,8 @@ items = {
     {name="viande4", label="Viande de qualité incroyable", weight=5.0, event=""},
 
     {name="weedseed", label="Graine de chanvre", weight=0.5, event="core:PlantWeed"},
-    {name="weed", label="Weed non traitée", weight=1.0, event=""},
+    {name="weed", label="Canabis non traitée", weight=1.0, event=""},
+    {name="weed2", label="Canabis de bonne qualité", weight=2.0, event=""},
 
 
     -- Weapons
