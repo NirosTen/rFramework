@@ -253,9 +253,14 @@ function GetPlayerJob(id)
 end
 
 -- Callback exemple
+RegisterNetEvent("core:CallBackReady")
+AddEventHandler("core:CallBackReady", function()
 
-RegisterServerCallback('rF:TestCallback', function(source, cb)
-    local money = PlayersData[source].money -- GetPlayerMoney
-    local job = PlayersData[source].job -- GetPlayerJob
-	cb(money, job) -- Send back those data
+    
+    RegisterServerCallback('rF:TestCallback', function(source, cb)
+        local money = PlayersData[source].money -- GetPlayerMoney
+        local job = PlayersData[source].job -- GetPlayerJob
+    	cb(money, job) -- Send back those data
+    end)
+
 end)
