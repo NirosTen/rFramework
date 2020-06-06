@@ -34,6 +34,10 @@ RegisterCommand("suicide", function()
     SetEntityHealth(player, 0)
 end)
 
+RegisterCommand("livery", function(source, args, rawCommand)
+    SetVehicleLivery(GetVehiclePedIsIn(GetPlayerPed(-1), false), tonumber(args[1]))
+end)
+
 local weaps = {  
     "WEAPON_KNIFE", "WEAPON_NIGHTSTICK", "WEAPON_HAMMER", "WEAPON_BAT", "WEAPON_GOLFCLUB",  
     "WEAPON_CROWBAR", "WEAPON_PISTOL", "WEAPON_COMBATPISTOL", "WEAPON_APPISTOL", "WEAPON_PISTOL50",  
