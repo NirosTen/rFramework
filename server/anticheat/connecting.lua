@@ -43,7 +43,7 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
 
     if MaintenanceMod then
         for k,v in pairs(identifiers) do
-            for i,_ in pairs(StaffAllowed) do
+            for _,i in pairs(StaffAllowed) do
                 if v == i then
                     deferrals.done()
                 end
