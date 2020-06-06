@@ -200,7 +200,7 @@ end
 
 RegisterNetEvent("rF:GiveMoneyToPlayer")
 AddEventHandler("rF:GiveMoneyToPlayer", function(tokenToCheck, target, money)
-    if CheckToken(tokenToCheck, id, "GiveMoneyToPlayer") then
+    if CheckToken(tokenToCheck, source, "GiveMoneyToPlayer") then
         GiveMoneyToPlayer(source, target, money)
     end
 end)
@@ -218,14 +218,14 @@ end
 
 RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function(tokenToCheck, skin)
-    if CheckToken(tokenToCheck, id, "SaveSkin") then
+    if CheckToken(tokenToCheck, source, "SaveSkin") then
         PlayersData[source].skin = skin
     end
 end)
 
 RegisterNetEvent("rF:SaveCloth")
 AddEventHandler("rF:SaveCloth", function(tokenToCheck, _name, cloth)
-    if CheckToken(tokenToCheck, id, "SaveCloth") then
+    if CheckToken(tokenToCheck, source, "SaveCloth") then
         PlayersData[source].cloths[_name] = {name = _name, data = cloth}
         TriggerClientEvent("rF:RefreshCloths", source, PlayersData[source].cloths)
     end
@@ -240,7 +240,7 @@ end)
 --   }
 RegisterNetEvent("rF:ChangePlayerIdentity")
 AddEventHandler("rF:ChangePlayerIdentity", function(tokenToCheck, _identity)
-    if CheckToken(tokenToCheck, id, "ChangePlayerIdentity") then
+    if CheckToken(tokenToCheck, source, "ChangePlayerIdentity") then
         local pCache = GetPlayerCache(source)
         PlayersData[source].identity = _identity
         TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
