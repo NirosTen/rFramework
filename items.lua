@@ -15,15 +15,22 @@ items = {
     {name="viande3", label="Viande de bonne qualité", weight=3.5, event=""},
     {name="viande4", label="Viande de qualité incroyable", weight=5.0, event=""},
 
+    {name="weedseed", label="Graine de chanvre", weight=0.5, event="core:PlantWeed"},
+    {name="weed", label="Weed non traitée", weight=1.0, event=""},
+
+
     -- Weapons
     {name="matraque", label="Matraque force de l'ordre", weight=5.0, event="core:GetMattraque"},
-    {name="pistolet", label="Pistolet", weight=10.0, event="core:GetPistol"},
-    {name="tazer", label="Tazer", weight=5.0, event="core:GetTazer"},
+    {name="pistolet", label="Pistolet", weight=5.0, event="core:GetPistol"},
+    {name="tazer", label="Tazer", weight=10.0, event="core:GetTazer"},
     {name="pistoletmk2", label="Pistolet nouvelle génération", weight=10.0, event="core:GetPistolmk2"},
     {name="pistoletlspd", label="Arme de poing force de l'ordre", weight=10.0, event="core:GetPistollspd"},
     {name="m4", label="Fusils d'assault force de l'ordre", weight=20.0, event="core:GetM4"},
     {name="musket", label="Fusils de chasse", weight=25.0, event="core:GetMusket"}, -- chasse
     {name="huntrifle", label="Fusils de précision de chasseur", weight=30.0, event="core:GetHuntSniper"}, -- chasse
+
+    {name="batte", label="Batte De Baseball", weight=10.0, event="core:GetBat"}, -- Armurie
+    {name="knife", label="Couteau de poche", weight=5.0, event="core:GetKnife"}, -- Armurie
 }
 
 
