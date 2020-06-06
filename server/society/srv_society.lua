@@ -69,13 +69,13 @@ function TransferItemFromInvToSociety(id, _name, _item, _label, _olabel, _count)
     if itemCount == nil then
         SocietyCache[_name].inventory[_label] = {name = _item, label = _label, olabel = _olabel, count = _count}
     else
-        SocietyCache[_name].inventory[_label].count = SocietyCache[_name].inventory[_label] + _count
+        SocietyCache[_name].inventory[_label].count = SocietyCache[_name].inventory[_label].count + _count
     end
     local itemCount = PlayersData[id].inventory[_label].count
     if itemCount - _count <= 0 then
         PlayersData[id].inventory[_label] = nil
     else
-        PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label] - _count
+        PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count - _count
     end
 end
 
