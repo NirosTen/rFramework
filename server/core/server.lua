@@ -25,10 +25,10 @@ end
 RegisterServerEvent('rF:spawn') 
 AddEventHandler('rF:spawn', function()
     local source = source
+    TriggerClientEvent("rF:SendToken", source, token) -- Client side
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
     TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip)
-    TriggerClientEvent("rF:SendToken", source, token) -- Client side
     AddToRequestCache(source)
 end) 
 
@@ -129,40 +129,38 @@ function GetPlayerInfoToCache(id)
         ['@identifier'] = player
     })
     
-    if info[1] ~= nil then
-        PlayersData[id].ServerID = id
-        PlayersData[id].identifier = player
-        if info[1].player_inv ~= nil then
-            PlayersData[id].inventory = DecodeInventory(info[1].player_inv)
-        else
-            PlayersData[id].inventory = {}
-        end
-        PlayersData[id].money = info[1].player_money
-        PlayersData[id].bankBalance = info[1].player_bank_balance
-        PlayersData[id].dirtyMoney = info[1].player_dirty_money
-        PlayersData[id].job = info[1].player_job
-        PlayersData[id].job_grade = info[1].player_job_grade
-        PlayersData[id].group = info[1].player_group
-        PlayersData[id].pos = info[1].player_position
-        PlayersData[id].skin = info[1].player_skin
-        PlayersData[id].vip = info[1].vip
-
-        if info[1].player_cloths ~= nil then
-            PlayersData[id].cloths = json.decode(info[1].player_cloths)
-        else
-            PlayersData[id].cloths = {}
-        end
-
-        if info[1].player_identity ~= nil then
-            PlayersData[id].identity = json.decode(info[1].player_identity)
-        else
-            PlayersData[id].identity = {}
-        end
-        if framework._display_logs then
-            print("^2Adding ^7["..id.."] "..GetPlayerName(id).." to dynamic cache.")
-        end
-        return PlayersData[id]
+    PlayersData[id].ServerID = id
+    PlayersData[id].identifier = player
+    if info[1].player_inv ~= nil then
+        PlayersData[id].inventory = DecodeInventory(info[1].player_inv)
+    else
+        PlayersData[id].inventory = {}
     end
+    PlayersData[id].money = info[1].player_money
+    PlayersData[id].bankBalance = info[1].player_bank_balance
+    PlayersData[id].dirtyMoney = info[1].player_dirty_money
+    PlayersData[id].job = info[1].player_job
+    PlayersData[id].job_grade = info[1].player_job_grade
+    PlayersData[id].group = info[1].player_group
+    PlayersData[id].pos = info[1].player_position
+    PlayersData[id].skin = info[1].player_skin
+    PlayersData[id].vip = info[1].vip
+
+    if info[1].player_cloths ~= nil then
+        PlayersData[id].cloths = json.decode(info[1].player_cloths)
+    else
+        PlayersData[id].cloths = {}
+    end
+
+    if info[1].player_identity ~= nil then
+        PlayersData[id].identity = json.decode(info[1].player_identity)
+    else
+        PlayersData[id].identity = {}
+    end
+    if framework._display_logs then
+        print("^2Adding ^7["..id.."] "..GetPlayerName(id).." to dynamic cache.")
+    end
+    return PlayersData[id]
 end
 
 function GetPlayerCache(id)

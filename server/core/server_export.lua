@@ -35,7 +35,7 @@ end
 
 function creation_utilisateur(id)
     local player = _player_get_identifier(id)
-    MySQL.Async.execute("INSERT INTO `player_account` (`player_identifier`, `player_group`, `player_money`, `player_bank_balance`,`player_dirty_money`, `player_inv`, `player_job_grade`) VALUES (@identifier,'user', @money, @player_bank_balance, @dirtymoney, '{}', 0) ", {
+    MySQL.Sync.execute("INSERT INTO `player_account` (`player_identifier`, `player_group`, `player_money`, `player_bank_balance`,`player_dirty_money`, `player_inv`, `player_job_grade`) VALUES (@identifier,'user', @money, @player_bank_balance, @dirtymoney, '{}', 0) ", {
         ['@identifier'] = player,
         ['@money'] = tonumber(config.player_money),
         ['@player_bank_balance'] = tonumber(config.player_bank_balance),
