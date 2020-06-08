@@ -8,7 +8,7 @@ end)
 RegisterNetEvent("rF:RemoveSocietyMoney")
 AddEventHandler("rF:RemoveSocietyMoney", function(token, society, amount)
     if CheckToken(token, source) then
-        AddSocietyMoney(society, amount)
+        RemoveSocietyMoney(society, amount)
     end
 end)
 
