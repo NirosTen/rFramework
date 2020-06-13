@@ -66,7 +66,6 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                                         deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
                                     end
                                 else
-                                    print(v.expiration, os.time())
                                     if tonumber(v.expiration) < os.time() then
                                         unban(v.id)
                                         deferrals.done()

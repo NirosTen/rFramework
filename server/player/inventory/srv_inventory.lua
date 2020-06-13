@@ -119,7 +119,7 @@ function BuyItemIfCanHoldIt(id, item, _count, price)
         local inv = GetInventoryFromCache(id)
         local invWeight = GetInvWeight(inv)
         local itemWeight, itemLabel = GetItemWeight(item, _count)
-        
+
         if invWeight + itemWeight <= framework._default_player_max_weight then
             local pMoney = PlayersData[id].money
             if pMoney >= price * _count then
@@ -267,15 +267,17 @@ function SellItem(id, itemToSell, price, _count)
 end
 
 function RemoveItemFromPlayerInv(id, item, _count)
-    local inv = GetInventoryFromCache(id)
+    print(id, item, _count)
     local count = PlayersData[id].inventory[item]
     if count ~= nil then
         if PlayersData[id].inventory[item].count - _count <= 0 then
             PlayersData[id].inventory[item] = nil
             TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
+            RefreshPlayerInventory(id)
         else
             PlayersData[id].inventory[item].count = PlayersData[id].inventory[item].count - _count
             TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
+            RefreshPlayerInventory(id)
         end
     end
 end

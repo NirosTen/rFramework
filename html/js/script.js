@@ -127,7 +127,6 @@ $(function() {
         }
 
         if (typeof mess.hud !== 'undefined') {
-            console.log(mess.hud)
             if (mess.hud == true) {
                 $('#money').fadeIn();
                 $('#bankbalance').fadeIn();

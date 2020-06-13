@@ -172,3 +172,58 @@ Citizen.CreateThread(function()
         Wait(5000)
     end
 end)
+
+
+
+
+CreateVehicle_ = CreateVehicle
+function CreateVehicle(modelHash, x, y, z, heading, isNetwork, thisScriptCheck)
+    if modelHash == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "CreateVehicle")
+end
+
+CreatePed_ = CreatePed
+function CreatePed(pedType, modelHash, x, y, z, heading, isNetwork, thisScriptCheck)
+    if pedTyped == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "CreatePed")
+end
+
+CreateObject_ = CreateObject
+function CreateObject(modelHash, x, y, z, isNetwork, thisScriptCheck, dynamic)
+    if modelHash == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "CreateObject")
+end
+
+CreateObjectNoOffset_ = CreateObjectNoOffset
+function CreateObjectNoOffset(modelHash, x, y, z, isNetwork, thisScriptCheck, dynamic)
+    if modelHash == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "CreateObjectNoOffset")
+end
+
+GiveWeaponToPed_ = GiveWeaponToPed
+function GiveWeaponToPed(ped, weaponHash, ammoCount, isHidden, equipNow)
+    if ped == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "GiveWeaponToPed")
+end
+
+AddExplosion_ = AddExplosion
+function AddExplosion(x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake)
+    if x == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "AddExplosion")
+end
+
+AddOwnedExplosion_ = AddOwnedExplosion
+function AddOwnedExplosion(ped, x, y, z, explosionType, damageScale, isAudible, isInvisible, cameraShake)
+    if ped == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "AddOwnedExplosion")
+end
+
+function SetVehicleEnginePowerMultiplier(vehicle, value)
+    if vehicle == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "SetVehicleEnginePowerMultiplier")
+end
+
+function ModifyVehicleTopSpeed(vehicle, value)
+    if vehicle == nil then return end
+    TriggerServerEvent("cortana:AddLog", 5, 5, "ModifyVehicleTopSpeed")
+end

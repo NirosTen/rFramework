@@ -4,13 +4,7 @@ RegisterCommand("clearchat", function()
 end)
 
 RegisterCommand("revive", function()
-	local player = GetPlayerPed(-1)
-	local coords = GetEntityCoords(player)
-    SetEntityHealth(player, 200)
-    NetworkResurrectLocalPlayer(coords, 100.0, 0, 0)
-    SetEntityCoords(player, coords)
-    ClearPlayerWantedLevel(GetPlayerIndex())
-    exports.rCore:ResetDeathStatus()
+	TriggerServerEvent("core:ResetDeathStatus", token, GetPlayerServerId(GetPlayerIndex()))
 end)
 
 RegisterCommand("skin", function() 
@@ -105,7 +99,7 @@ RegisterCommand('car', function(source, args, rawCommand)
                 break
             end
         end
-        CreateVehicle(vehiclehash, x, y, z, GetEntityHeading(PlayerPedId())+10, 1, 0)
+        CreateVehicle_(vehiclehash, x, y, z, GetEntityHeading(PlayerPedId())+10, 1, 0)
 		Notification ("Vehicle ~g~spawned~s~", "Mechanic")
     end)
 end)

@@ -5,6 +5,7 @@
 }*/
 
 #money {
+    display: none;
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
@@ -14,6 +15,7 @@
 }
 
 #bankbalance {
+    display: none;
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
@@ -23,6 +25,7 @@
 }
 
 #dirtymoney {
+    display: none;
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
@@ -32,10 +35,11 @@
 }
 
 #job {
+    display: none;
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
-    top: 4em;
+    top: 3em;
     font-size: 2em;
     color: #ffffff;
 }
@@ -45,7 +49,7 @@
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
-    top: 6em;
+    top: 5em;
     font-size: 2em;
     color: #B9121B;
 }
@@ -55,7 +59,7 @@
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
-    top: 5em;
+    top: 4em;
     font-size: 2em;
     color: #07ca00;
 }
@@ -65,7 +69,7 @@
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
-    top: 5em;
+    top: 4em;
     font-size: 2em;
     color: #07ca00;
 }
@@ -75,7 +79,7 @@
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
-    top: 6em;
+    top: 5em;
     font-size: 2em;
     color: #ca0000;
 }
@@ -85,7 +89,7 @@
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
-    top: 5em;
+    top: 4em;
     font-size: 2em;
     color: #00c3ff;
 }
@@ -95,7 +99,7 @@
     font-family: 'Bebas Neue', cursive;
     position: absolute;
     right: 1em;
-    top: 6em;
+    top: 5em;
     font-size: 2em;
     color: #00aeff;
 }
@@ -122,6 +126,7 @@
 }
 
 .progress2 {
+    display: none;
     padding: 3px;
     border-radius: 30px;
     background: rgba(0, 0, 0, 0.171);

@@ -31,6 +31,7 @@ Citizen.CreateThread(function()
             thirst = thirst,
             hunger = hunger,
         })
+        TriggerEvent("rF:UpdateStatus", thirst, hunger)
         Wait(1000)
     end
 end)
@@ -43,9 +44,18 @@ function AddHunger(value)
     end
 end
 
+function RemoveHunger(value)
+    hunger = hunger - value
+end
+
 RegisterNetEvent("rF:AddHunger")
 AddEventHandler("rF:AddHunger", function(value)
     AddHunger(value)
+end)
+
+RegisterNetEvent("rF:RemoveHunger")
+AddEventHandler("rF:RemoveHunger", function(value)
+    RemoveHunger(value)
 end)
 
 function AddThirst(value)
@@ -55,7 +65,16 @@ function AddThirst(value)
     end
 end
 
+function RemoveThirst(value)
+    thirst = thirst - value
+end
+
 RegisterNetEvent("rF:AddThirst")
 AddEventHandler("rF:AddThirst", function(value)
     AddThirst(value)
+end)
+
+RegisterNetEvent("rF:RemoveThirst")
+AddEventHandler("rF:RemoveThirst", function(value)
+    RemoveThirst(value)
 end)

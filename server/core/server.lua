@@ -28,7 +28,7 @@ AddEventHandler('rF:spawn', function()
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip)
+    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip, pCache.dead)
     AddToRequestCache(source)
 end) 
 
@@ -79,7 +79,7 @@ function SavePlayerCache(id, cache)
     local encodedInv = EncodeInventory(cache.inventory)
     local encodedIdentity = json.encode(cache.identity)
     local encodedCloth = json.encode(cache.cloths)
-    MySQL.Async.execute("UPDATE player_account SET player_position = @pos, player_skin = @skin, player_cloths = @cloths, player_identity = @identity, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
+    MySQL.Async.execute("UPDATE player_account SET deadOrNot = @dead, player_position = @pos, player_skin = @skin, player_cloths = @cloths, player_identity = @identity, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
         ['@identifier'] = id,
         ['@inv'] = encodedInv,
         ['@money'] = cache.money,
@@ -92,6 +92,7 @@ function SavePlayerCache(id, cache)
         ['@skin'] = cache.skin,
         ['@cloths'] = encodedCloth,
         ['@identity'] = encodedIdentity,
+        ['@dead'] = cache.dead,
     })
 
     if framework._display_logs then
@@ -139,12 +140,22 @@ function GetPlayerInfoToCache(id)
     PlayersData[id].money = info[1].player_money
     PlayersData[id].bankBalance = info[1].player_bank_balance
     PlayersData[id].dirtyMoney = info[1].player_dirty_money
+    PlayersData[id].dead = info[1].deadOrNot
     PlayersData[id].job = info[1].player_job
     PlayersData[id].job_grade = info[1].player_job_grade
     PlayersData[id].group = info[1].player_group
     PlayersData[id].pos = info[1].player_position
     PlayersData[id].skin = info[1].player_skin
-    PlayersData[id].vip = info[1].vip
+    if info[1].vip ~= 0 then
+        local status = CheckVipStatus(info[1].vip_time, player)
+        if status then
+            PlayersData[id].vip = info[1].vip 
+        else
+            PlayersData[id].vip = 0
+        end
+    else
+        PlayersData[id].vip = 0
+    end
 
     if info[1].player_cloths ~= nil then
         PlayersData[id].cloths = json.decode(info[1].player_cloths)
@@ -161,6 +172,20 @@ function GetPlayerInfoToCache(id)
         print("^2Adding ^7["..id.."] "..GetPlayerName(id).." to dynamic cache.")
     end
     return PlayersData[id]
+end
+
+function CheckVipStatus(time, id)
+    print(tonumber(time), os.time())
+    if tonumber(time) < os.time() then
+        MySQL.Async.execute("UPDATE player_account SET vip = @vip, vip_time = @vip WHERE player_identifier = @identifier", {
+            ['@identifier'] = id,
+            ['@vip'] = 0,
+        })
+        print("^1 VIP RESET ^7")
+        return false
+    end
+    print("^2 CONNEXION AVEC VIP ^7")
+    return true
 end
 
 function GetPlayerCache(id)

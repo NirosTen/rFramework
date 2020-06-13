@@ -12,6 +12,7 @@ Citizen.CreateThread(function()
         else
             local dst = GetDistanceBetweenCoords(pPos, OldPos, true)
             if dst >= 3.0 then
+                OldPos = pPos
                 TriggerServerEvent("rF:save_position", pPos.x, pPos.y, pPos.z)
             end
         end

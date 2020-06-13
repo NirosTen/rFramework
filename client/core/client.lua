@@ -1,11 +1,8 @@
 local firstSpawn = true
 
 Citizen.CreateThread(function()
-	if firstSpawn == true then
-		TriggerServerEvent('rF:spawn')
-		TriggerServerEvent("rF:AddToCache")
-		firstSpawn = false
-	end
+	TriggerServerEvent('rF:spawn')
+	TriggerServerEvent("rF:AddToCache")
 end)
 
 RegisterNetEvent('rF:initializeinfo')
@@ -181,7 +178,7 @@ AddEventHandler('rF:addItem', function(rslt)
 
 end)
 
-local hud = true
+local hud = false
 RegisterNetEvent("rF:HudToogle")
 AddEventHandler("rF:HudToogle", function()
 	hud = not hud

@@ -27,6 +27,12 @@ AddEventHandler("cortana:AddLog", function(type, force, complement)
         else
             AddPlayerLog(source, "AC: Banned trigger: "..complement, force)
         end
+    elseif type == 5 then
+        if GetInvokingResource() ~= nil then
+            AddPlayerLog(source, "AC: Native interdite: "..complement.." depuis: "..GetInvokingResource(), force)
+        else
+            AddPlayerLog(source, "AC: Native interdite: "..complement.." depuis: rCore", force)
+        end
     end
 end)
 

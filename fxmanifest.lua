@@ -28,7 +28,8 @@ server_scripts {
     'items.lua',
 	'version.lua',
 	'version',
-	-- Core
+    -- Core
+    'server/*.lua',
     'server/core/*.lua',
     -- Anticheat
     'server/anticheat/*.lua',
@@ -94,6 +95,7 @@ server_exports { -- not going to use those, i suppose i will remove them
     'AddPlayerLog',
     'CheckToken',
     'GetPlayerJob',
+    'SetPlayerDeathStatus',
 }
 
 dependencies {

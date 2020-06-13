@@ -98,6 +98,11 @@ AddEventHandler("rF:AddMoney", function(tokenToCheck, add)
     _player_add_money(tokenToCheck, source, add)
 end)
 
+RegisterNetEvent("rF:AddMoneyToPlayer")
+AddEventHandler("rF:AddMoneyToPlayer", function(tokenToCheck, add, id)
+    _player_add_money(tokenToCheck, id, add)
+end)
+
 function _player_add_bank_money(tokenToCheck, id, add)
     if CheckToken(tokenToCheck, id, "_player_add_bank_money") then
         local player = _player_get_identifier(id)
@@ -200,7 +205,7 @@ end
 
 RegisterNetEvent("rF:GiveMoneyToPlayer")
 AddEventHandler("rF:GiveMoneyToPlayer", function(tokenToCheck, target, money)
-    if CheckToken(tokenToCheck, id, "GiveMoneyToPlayer") then
+    if CheckToken(tokenToCheck, source, "GiveMoneyToPlayer") then
         GiveMoneyToPlayer(source, target, money)
     end
 end)
@@ -211,21 +216,40 @@ function GiveMoneyToPlayer(source, target, money)
     local tCache = GetPlayerCache(target)
     if PlayersData[source].money >= money then
         PlayersData[source].money = PlayersData[source].money - money
+        TriggerClientEvent('rF:rmvMoney', source, money)
         PlayersData[target].money = PlayersData[target].money + money
+        TriggerClientEvent('rF:addMoney', target, money)
     end
 end
 
 
+RegisterNetEvent("rF:GiveDirtyMoneyToPlayer")
+AddEventHandler("rF:GiveDirtyMoneyToPlayer", function(tokenToCheck, target, money)
+    if CheckToken(tokenToCheck, source, "GiveDirtyMoneyToPlayer") then
+        GiveDirtyMoneyToPlayer(source, target, money)
+    end
+end)
+
+
+function GiveDirtyMoneyToPlayer(source, target, money)
+    local pCache = GetPlayerCache(source)
+    local tCache = GetPlayerCache(target)
+    if PlayersData[source].dirtyMoney >= money then
+        PlayersData[source].dirtyMoney = PlayersData[source].dirtyMoney - money
+        PlayersData[target].dirtyMoney = PlayersData[target].dirtyMoney + money
+    end
+end
+
 RegisterNetEvent("rF:SaveSkin")
 AddEventHandler("rF:SaveSkin", function(tokenToCheck, skin)
-    if CheckToken(tokenToCheck, id, "SaveSkin") then
+    if CheckToken(tokenToCheck, source, "SaveSkin") then
         PlayersData[source].skin = skin
     end
 end)
 
 RegisterNetEvent("rF:SaveCloth")
 AddEventHandler("rF:SaveCloth", function(tokenToCheck, _name, cloth)
-    if CheckToken(tokenToCheck, id, "SaveCloth") then
+    if CheckToken(tokenToCheck, source, "SaveCloth") then
         PlayersData[source].cloths[_name] = {name = _name, data = cloth}
         TriggerClientEvent("rF:RefreshCloths", source, PlayersData[source].cloths)
     end
@@ -240,8 +264,7 @@ end)
 --   }
 RegisterNetEvent("rF:ChangePlayerIdentity")
 AddEventHandler("rF:ChangePlayerIdentity", function(tokenToCheck, _identity)
-    if CheckToken(tokenToCheck, id, "ChangePlayerIdentity") then
-        local pCache = GetPlayerCache(source)
+    if CheckToken(tokenToCheck, source, "rF:ChangePlayerIdentity") then
         PlayersData[source].identity = _identity
         TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
         SetNotFirstSpawn()
@@ -250,6 +273,50 @@ end)
 
 function GetPlayerJob(id)
     return PlayersData[id].job
+end
+
+
+function SetPlayerDeathStatus(id, status)
+    if status then
+        PlayersData[tonumber(id)].dead = 1
+    else
+        PlayersData[tonumber(id)].dead = 0
+    end
+end
+
+RegisterNetEvent("rF:ChangePlayerGroup")
+AddEventHandler("rF:ChangePlayerGroup", function(tokenToCheck, id, _group)
+    if CheckToken(tokenToCheck, id, "rF:ChangePlayerGroup") then
+        PlayersData[tonumber(id)].group = _group
+        TriggerClientEvent("rF:UpdateGroup", tonumber(id), PlayersData[tonumber(id)].group) -- Refresh the player identity in ressource
+        SendLog("``Le joueur ["..source.."] "..GetPlayerName(source).." à changer le groupe de ["..tonumber(id).."] "..GetPlayerName(tonumber(id)).." en : ".._group.."``", "group")
+    end
+end)
+
+
+local stafffmod = {}
+RegisterNetEvent("rF:Staffmod")
+AddEventHandler("rF:Staffmod", function(tokenToCheck, staffmod)
+    if CheckToken(tokenToCheck, id, "rF:Staffmod") then
+        if staffmod then
+            SendLog("``Le staff ["..source.."] "..GetPlayerName(source).." à activer son menu staff``", "staffmod")
+            stafffmod[source] = {time = os.time()}
+        else
+            local min, sec = GetTime(os.difftime(os.time(), stafffmod[source].time))
+            SendLog("``Le staff ["..source.."] "..GetPlayerName(source).." à désactiver son menu staff après "..min.."m et "..sec.."s en staffmod``", "staffmod")
+            stafffmod[source] = nil
+        end
+    end
+end)
+
+function GetTime(time)
+    local time = time
+    local min = 0
+    while time > 60 do
+        time = time - 60
+        min = min + 1
+    end
+    return min, time
 end
 
 -- Callback exemple
