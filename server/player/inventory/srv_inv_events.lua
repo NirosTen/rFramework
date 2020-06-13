@@ -20,6 +20,7 @@ AddEventHandler("rF:GetOtherPlayerInventory", function(token, target)
     if CheckToken(token, source, "GetOtherPlayerInventory") then
         local weight = GetInvWeight(PlayersData[target].inventory)
         TriggerClientEvent("rF:SendPlayerInventory", source, PlayersData[target].inventory, weight)
+        TriggerClientEvent("rF:notification", target, "Quelqu'un te fouille ...")
     end
 end)
 
