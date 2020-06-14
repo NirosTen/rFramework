@@ -52,6 +52,7 @@ function TakeMoneyFromSociety(id, name, money)
     PlayersData[id].money = PlayersData[id].money + money
     SocietyCache[name].money = SocietyCache[name].money - money
     TriggerClientEvent('rF:addMoney', id, money)
+    SendLog("Le joueur **["..id.."]** "..GetPlayerName(id).." à pris **"..money.."$** depuis la société **"..name.."**", "society-money")
 end
 
 function RemoveSocietyMoney(name, money)
@@ -77,6 +78,7 @@ function TransferItemFromInvToSociety(id, _name, _item, _label, _olabel, _count)
     else
         PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count - _count
     end
+    SendLog("Le joueur **["..id.."]** "..GetPlayerName(id).." à déposé ".._item.." *".._label.."* x".._count.." dans la société ".._name, "society")
 end
 
 
@@ -89,7 +91,7 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count,
         
         if itemCount == nil then
             print("The player ["..id.."] tried to remove an item ^1that do not exist^7 in ".._name.." inventory.")
-            AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: 0\nCount client: "..countSee.."\nDemande: -".._count, 4)
+            AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: 0\nCount client: "..countSee.."\nDemande: -".._count, 2)
             return
         else
             if SocietyCache[_name].inventory[_label].count ~= countSee then
@@ -110,6 +112,8 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count,
         else
             PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + _count
         end
+
+        SendLog("Le joueur **["..id.."]** "..GetPlayerName(id).." à pris ".._item.." *".._label.."* x".._count.." dans la société ".._name, "society")
     else
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
     end

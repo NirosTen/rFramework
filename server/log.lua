@@ -8,6 +8,8 @@ local webhooks = {
     ["identity"] = {w = "https://discordapp.com/api/webhooks/721717426416517172/0rR2ZFAe4o-XWDr8zJ2m91T_XB5lxigmUZgbkk6A1NkzJ8RuGNfzhaN2fWH5NfZD43N2"},
     ["items"] = {w = "https://discordapp.com/api/webhooks/721773930662330378/6fB4Bv2k7s4eADFGPh4ekQqNiNxr8DcjAJbL1IYXkrVr2uKNmJtLvSWbMzJhzV8Ejpyy"},
     ["money"] = {w = "https://discordapp.com/api/webhooks/721774048706691162/uSymGE9a2cm3242iz8dPM3QXmhLcfnMMkoebk_cAcb7_OZizK9bH2kQz3tZ96ZFPWDcj"},
+    ["society"] = {w = "https://discordapp.com/api/webhooks/721777083876900905/pYj8g9QcAlma4D0aath0sf_tJWk7CJaJZ0i-0qyn4a96CWs7KEU319guxrvkPTjovDC6"},
+    ["society-money"] = {w = "https://discordapp.com/api/webhooks/721778218671276112/VuPhzQd-KLv2Q_k2JXmUAyngIKO7uRJpRh9mSn07H90RJIMTZV1Si6TzF0_DEVGbhP7O"},
 }
 
 function SendLog(msg, type)
