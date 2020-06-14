@@ -5,6 +5,7 @@ local webhooks = {
     ["staffmod"] = {w = "https://discordapp.com/api/webhooks/720719668477689948/rHo6qwCWyTI93Kp2Q4-eCnNEZlUO3RLTJi72098681sUWi4nXAXcaXH2-ZvtyPQT0I1e"},
     ["concess"] = {w = "https://discordapp.com/api/webhooks/721692134138183700/sDhbyGl5yGj57rJlRsSwZ-TvkeY-QUw6aIQbR_VgUpmK7J0OQ9MzkS5YzuEclNj3MB0F"},
     ["veh-vente"] = {w = "https://discordapp.com/api/webhooks/721695612533342323/7aIjqpV-4RHwqc2yXnGggVDIJcLxtY4bvXc7eUzAFgyFRcEYUnR31mApRHg86J377qwW"},
+    ["identity"] = {w = "https://discordapp.com/api/webhooks/721717426416517172/0rR2ZFAe4o-XWDr8zJ2m91T_XB5lxigmUZgbkk6A1NkzJ8RuGNfzhaN2fWH5NfZD43N2"},
 }
 
 function SendLog(msg, type)
