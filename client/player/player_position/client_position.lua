@@ -57,10 +57,3 @@ AddEventHandler("rF:spawn_last_position", function(data, PosX, PosY, PosZ)
         DebugClient(loaded)
     end
 end)
-
-AddEventHandler('playerSpawned', function(spawn)
-    if firstspawn == 0 then
-        TriggerServerEvent("rF:SpawnPlayer")
-        firstspawn = 1
-    end
-end)

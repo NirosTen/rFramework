@@ -28,6 +28,7 @@ AddEventHandler('rF:spawn', function()
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
+    InitSpawnPlayer(source)
     TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip, pCache.dead)
     AddToRequestCache(source)
 end) 

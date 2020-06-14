@@ -1,27 +1,16 @@
-function GetIdentifiant(id)
-    for _, v in ipairs(id) do
-        return v
-    end
-end
 
-function GetIdentifier(id)
-    local identifiers = GetPlayerIdentifiers(id)
-    local player = GetIdentifiant(identifiers)
-    return player
-end
 
 RegisterServerEvent("rF:save_position")
 AddEventHandler("rF:save_position", function(LastPosX, LastPosY, LastPosZ)
     local source = source
-    local player = GetIdentifier(source)
+    local player = _player_get_identifier(source)
     local lastPosition = "{" .. LastPosX .. ", " .. LastPosY .. ",  " .. LastPosZ .. "}"
     PlayersData[source].pos = lastPosition
 end)
 
-RegisterServerEvent("rF:SpawnPlayer")
-AddEventHandler("rF:SpawnPlayer", function()
+function InitSpawnPlayer(source)
     local source = source
-    local player = GetIdentifier(source)
+    local player = _player_get_identifier(source)
     local player_data = MySQL.Sync.fetchAll('SELECT player_first_spawn, player_position FROM player_account WHERE player_identifier = @player_identifier', {
         ["@player_identifier"] = player
     })
@@ -45,7 +34,7 @@ AddEventHandler("rF:SpawnPlayer", function()
             print('' .. _L("user_reconnect") .. ' | '..player..' ' .. _L("user_reconnect2") .. '')
         end
     end
-end)
+end
 
 
 function SetNotFirstSpawn()
