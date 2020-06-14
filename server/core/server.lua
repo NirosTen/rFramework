@@ -29,7 +29,7 @@ AddEventHandler('rF:spawn', function()
     local player = _player_get_identifier(source)
     local pCache = GetPlayerInfoToCache(source)
     InitSpawnPlayer(source)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip, pCache.dead)
+    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip, pCache.dead, pCache.uniqueId)
     AddToRequestCache(source)
 end) 
 
@@ -131,6 +131,7 @@ function GetPlayerInfoToCache(id)
         ['@identifier'] = player
     })
     
+    PlayersData[id].uniqueId = info[1].id
     PlayersData[id].ServerID = id
     PlayersData[id].identifier = player
     if info[1].player_inv ~= nil then
