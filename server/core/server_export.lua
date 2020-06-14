@@ -1,8 +1,10 @@
 
 -- Getter
 function getIdentifiant(id)
-    for _, v in ipairs(id) do
-        return v
+    for _, v in pairs(id) do
+        if string.find(v, "license") then
+            return v
+        end
     end
 end
 
