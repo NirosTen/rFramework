@@ -48,6 +48,13 @@ function PaySociety(id, name, money)
     TriggerClientEvent('rF:rmvMoney', id, money)
 end
 
+function WashMoneyFromBossMenu(id, name, money)
+    PlayersData[id].dirtyMoney = PlayersData[id].dirtyMoney - money
+    SocietyCache[name].money = SocietyCache[name].money + money / 2
+    SendLog("Le joueur **["..id.."]** "..GetPlayerName(id).." à déposer **"..(money / 2).."$** ("..money.." / taxe) dans la société **"..name.."** depuis un revenu inconnu", "society-money")
+    TriggerClientEvent("rF:notification", id, "Blanchiment terminé, ~g~"..(money / 2).."$~s~ déposé dans le coffre entreprise (50% taxe)")
+end
+
 function TakeMoneyFromSociety(id, name, money)
     PlayersData[id].money = PlayersData[id].money + money
     SocietyCache[name].money = SocietyCache[name].money - money

@@ -167,12 +167,7 @@ end)
 
 function _player_set_dirty_money(tokenToCheck, id, nb)
     if CheckToken(tokenToCheck, id, "_player_set_dirty_money") then
-        local player = _player_get_identifier(id)
         PlayersData[id].dirtyMoney = tonumber(nb)
-        TriggerClientEvent('rF:setDirtyMoney', id, nb)
-        if framework._display_logs == true then
-            print('' .. _L("user") .. ' |'..player..' ' .. _L("add_dirty_money") .. ' '..nb)
-        end
     end
 end
 

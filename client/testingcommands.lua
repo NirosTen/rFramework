@@ -182,6 +182,12 @@ RegisterCommand('givemoney', function(source, args, rawCommand)
     end
 end)
 
+RegisterCommand('dirty', function(source, args, rawCommand)
+    if args[1] ~= nil then
+       TriggerServerEvent("rF:SetDirtyMoney", token, tonumber(args[1])) 
+    end
+end)
+
 RegisterCommand('givebankmoney', function(source, args, rawCommand)
     if args[1] ~= nil then
        TriggerServerEvent("rF:AddBankMoney", token, tonumber(args[1])) 

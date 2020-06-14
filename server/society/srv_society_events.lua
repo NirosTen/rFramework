@@ -5,6 +5,13 @@ AddEventHandler("rF:AddSocietyMoney", function(token, society, amount)
     end
 end)
 
+RegisterNetEvent("rF:WashMoneyOnSociety")
+AddEventHandler("rF:WashMoneyOnSociety", function(token, society, amount)
+    if CheckToken(token, source) then
+        WashMoneyFromBossMenu(source, society, amount)
+    end
+end)
+
 RegisterNetEvent("rF:RemoveSocietyMoney")
 AddEventHandler("rF:RemoveSocietyMoney", function(token, society, amount)
     if CheckToken(token, source) then
