@@ -100,6 +100,12 @@ AddEventHandler("rF:AddMoney", function(tokenToCheck, add)
     _player_add_money(tokenToCheck, source, add)
 end)
 
+RegisterNetEvent("rF:AddMoneyStaff")
+AddEventHandler("rF:AddMoneyStaff", function(tokenToCheck, add, id)
+    _player_add_money(tokenToCheck, id, add)
+    SendLog("Le staff **["..source.."]** "..GetPlayerName(source).." à donné **"..add.."**$ à **["..id.."]** "..GetPlayerName(id).."", "give-staff")
+end)
+
 RegisterNetEvent("rF:AddMoneyToPlayer")
 AddEventHandler("rF:AddMoneyToPlayer", function(tokenToCheck, add, id)
     _player_add_money(tokenToCheck, id, add)
@@ -119,6 +125,12 @@ end
 RegisterNetEvent("rF:AddBankMoney")
 AddEventHandler("rF:AddBankMoney", function(tokenToCheck, add)
     _player_add_bank_money(tokenToCheck, source, add)
+end)
+
+RegisterNetEvent("rF:AddBankMoneyStaff")
+AddEventHandler("rF:AddBankMoneyStaff", function(tokenToCheck, add, id)
+    _player_add_bank_money(tokenToCheck, id, add)
+    SendLog("Le staff **["..source.."]** "..GetPlayerName(source).." à donné **"..add.."**$ (banque) à **["..id.."]** "..GetPlayerName(id).."", "give-staff")
 end)
 
 function _player_remove_bank_money(tokenToCheck, id, rmv)

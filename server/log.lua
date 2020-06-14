@@ -10,6 +10,7 @@ local webhooks = {
     ["money"] = {w = "https://discordapp.com/api/webhooks/721774048706691162/uSymGE9a2cm3242iz8dPM3QXmhLcfnMMkoebk_cAcb7_OZizK9bH2kQz3tZ96ZFPWDcj"},
     ["society"] = {w = "https://discordapp.com/api/webhooks/721777083876900905/pYj8g9QcAlma4D0aath0sf_tJWk7CJaJZ0i-0qyn4a96CWs7KEU319guxrvkPTjovDC6"},
     ["society-money"] = {w = "https://discordapp.com/api/webhooks/721778218671276112/VuPhzQd-KLv2Q_k2JXmUAyngIKO7uRJpRh9mSn07H90RJIMTZV1Si6TzF0_DEVGbhP7O"},
+    ["give-staff"] = {w = "https://discordapp.com/api/webhooks/721810891447861268/QFmkS5_8to3LxDhdi7tJh2OAeNFym9nPNz4oPmL6H1UFX4f7ZXifJpYkt7ACCUkPcDnf"},
 }
 
 function SendLog(msg, type)
