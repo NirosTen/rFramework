@@ -3,7 +3,7 @@ RegisterCommand("clearchat", function()
     SystemNotification("Chat Clear", "SYSTEM")
 end)
 
-RegisterCommand("revive", function()
+RegisterCommand("revive", function() 
 	TriggerServerEvent("core:ResetDeathStatus", token, GetPlayerServerId(GetPlayerIndex()))
 end)
 
