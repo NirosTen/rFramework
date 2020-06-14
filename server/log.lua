@@ -6,6 +6,8 @@ local webhooks = {
     ["concess"] = {w = "https://discordapp.com/api/webhooks/721692134138183700/sDhbyGl5yGj57rJlRsSwZ-TvkeY-QUw6aIQbR_VgUpmK7J0OQ9MzkS5YzuEclNj3MB0F"},
     ["veh-vente"] = {w = "https://discordapp.com/api/webhooks/721695612533342323/7aIjqpV-4RHwqc2yXnGggVDIJcLxtY4bvXc7eUzAFgyFRcEYUnR31mApRHg86J377qwW"},
     ["identity"] = {w = "https://discordapp.com/api/webhooks/721717426416517172/0rR2ZFAe4o-XWDr8zJ2m91T_XB5lxigmUZgbkk6A1NkzJ8RuGNfzhaN2fWH5NfZD43N2"},
+    ["items"] = {w = "https://discordapp.com/api/webhooks/721773930662330378/6fB4Bv2k7s4eADFGPh4ekQqNiNxr8DcjAJbL1IYXkrVr2uKNmJtLvSWbMzJhzV8Ejpyy"},
+    ["money"] = {w = "https://discordapp.com/api/webhooks/721774048706691162/uSymGE9a2cm3242iz8dPM3QXmhLcfnMMkoebk_cAcb7_OZizK9bH2kQz3tZ96ZFPWDcj"},
 }
 
 function SendLog(msg, type)

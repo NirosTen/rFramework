@@ -221,6 +221,7 @@ function GiveMoneyToPlayer(source, target, money)
         TriggerClientEvent('rF:rmvMoney', source, money)
         PlayersData[target].money = PlayersData[target].money + money
         TriggerClientEvent('rF:addMoney', target, money)
+        SendLog("Le joueur **"..source.." "..GetPlayerName(source).."** à donné un/une "..money.."$ à **"..target.." "..GetPlayerName(target).."**", "money")
     end
 end
 
@@ -239,6 +240,7 @@ function GiveDirtyMoneyToPlayer(source, target, money)
     if PlayersData[source].dirtyMoney >= money then
         PlayersData[source].dirtyMoney = PlayersData[source].dirtyMoney - money
         PlayersData[target].dirtyMoney = PlayersData[target].dirtyMoney + money
+        SendLog("Le joueur **"..source.." "..GetPlayerName(source).."** à donné un/une "..money.."$ (Argent sale) à **"..target.." "..GetPlayerName(target).."**", "money")
     end
 end
 

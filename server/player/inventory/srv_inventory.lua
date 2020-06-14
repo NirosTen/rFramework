@@ -171,6 +171,7 @@ function TransferItemIfTargetCanHoldIt(id, target, item, _count, _label, countSe
             TriggerClientEvent("rF:rmvItem", id, item.." x".._count)
         end
 
+        SendLog("Le joueur **"..id.." "..GetPlayerName(id).."** à donné un/une "..item.." *".._label.." x".._count.." à **"..target.." "..GetPlayerName(target).."**", "items")
     else
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~La personne porte trop de chose.")
     end
