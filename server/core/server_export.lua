@@ -176,6 +176,17 @@ AddEventHandler("rF:SetDirtyMoney", function(tokenToCheck, set)
     _player_set_dirty_money(tokenToCheck, source, set)
 end)
 
+function AddDirtyMoney(tokenToCheck, id, nb)
+    if CheckToken(tokenToCheck, id, "AddDirtyMoney") then
+        PlayersData[id].dirtyMoney = PlayersData[id].dirtyMoney + tonumber(nb)
+    end
+end
+
+RegisterNetEvent("rF:GiveDirtyMoney")
+AddEventHandler("rF:GiveDirtyMoney", function(tokenToCheck, set)
+    AddDirtyMoney(tokenToCheck, source, set)
+end)
+
 function _player_remove_money_for_bank(tokenToCheck, id, rmv)
     if CheckToken(tokenToCheck, id, "_player_remove_money_for_bank") then
         local player = _player_get_identifier(id)
