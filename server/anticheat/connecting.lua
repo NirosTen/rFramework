@@ -2,7 +2,7 @@ local RaisonAfficher = "Active anti-cheat detection."
 local AntiVPN = true
 local facteurConfiance = true
 
-local MaintenanceMod = true -- Only accepte player who are in the staff list
+local MaintenanceMod = false -- Only accepte player who are in the staff list
 
 local StaffAllowed = {}
 Citizen.CreateThread(function()
@@ -123,8 +123,52 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                                 for _, i in pairs(v.ids) do
                                     for _,j in pairs(identifiers) do
                                         if j == i then
-                                            UpdateIdentifiers(k, identifiers)
-                                            deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
+                                            if v.temp == false then
+                                                if v.cheat then
+                                                    UpdateIdentifiers(k, identifiers)
+                                                    deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                                else
+                                                    UpdateIdentifiers(k, identifiers)
+                                                    deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                                end
+                                            else
+                                                if tonumber(v.expiration) < os.time() then
+                                                    unban(v.id)
+                                                    deferrals.done()
+                                                else
+                                                    local tempsrestant = (tonumber(v.expiration - os.time()) / 60)
+                
+                                                    if tempsrestant >= 1440 then
+                                                        local day = (tempsrestant / 60) / 24
+                                                        local hrs = (day - math.floor(day)) * 24
+                                                        local minutes = (hrs - math.floor(hrs)) * 60
+                                                        local txtday = math.floor(day)
+                                                        local txthrs = math.floor(hrs)
+                                                        local txtminutes = math.ceil(minutes)
+                
+                                                        UpdateIdentifiers(k, identifiers)
+                                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                                    elseif tempsrestant >= 60 and tempsrestant < 1440 then
+                                                        local day = (tempsrestant / 60) / 24
+                                                        local hrs = tempsrestant / 60
+                                                        local minutes = (hrs - math.floor(hrs)) * 60
+                                                        local txtday = math.floor(day)
+                                                        local txthrs = math.floor(hrs)
+                                                        local txtminutes = math.ceil(minutes)
+                
+                
+                                                        UpdateIdentifiers(k, identifiers)
+                                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                                    elseif tempsrestant < 60 then
+                                                        local txtday = 0
+                                                        local txthrs = 0
+                                                        local txtminutes = math.ceil(tempsrestant)
+                
+                                                        UpdateIdentifiers(k, identifiers)
+                                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                                    end
+                                                end
+                                            end
                                         end
                                     end
                                 end
@@ -147,8 +191,52 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                                 for _, i in pairs(v.ids) do
                                     for _,j in pairs(identifiers) do
                                         if j == i then
-                                            UpdateIdentifiers(k, identifiers)
-                                            deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
+                                            if v.temp == false then
+                                                if v.cheat then
+                                                    UpdateIdentifiers(k, identifiers)
+                                                    deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                                else
+                                                    UpdateIdentifiers(k, identifiers)
+                                                    deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                                end
+                                            else
+                                                if tonumber(v.expiration) < os.time() then
+                                                    unban(v.id)
+                                                    deferrals.done()
+                                                else
+                                                    local tempsrestant = (tonumber(v.expiration - os.time()) / 60)
+                
+                                                    if tempsrestant >= 1440 then
+                                                        local day = (tempsrestant / 60) / 24
+                                                        local hrs = (day - math.floor(day)) * 24
+                                                        local minutes = (hrs - math.floor(hrs)) * 60
+                                                        local txtday = math.floor(day)
+                                                        local txthrs = math.floor(hrs)
+                                                        local txtminutes = math.ceil(minutes)
+                
+                                                        UpdateIdentifiers(k, identifiers)
+                                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                                    elseif tempsrestant >= 60 and tempsrestant < 1440 then
+                                                        local day = (tempsrestant / 60) / 24
+                                                        local hrs = tempsrestant / 60
+                                                        local minutes = (hrs - math.floor(hrs)) * 60
+                                                        local txtday = math.floor(day)
+                                                        local txthrs = math.floor(hrs)
+                                                        local txtminutes = math.ceil(minutes)
+                
+                
+                                                        UpdateIdentifiers(k, identifiers)
+                                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                                    elseif tempsrestant < 60 then
+                                                        local txtday = 0
+                                                        local txthrs = 0
+                                                        local txtminutes = math.ceil(tempsrestant)
+                
+                                                        UpdateIdentifiers(k, identifiers)
+                                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                                    end
+                                                end
+                                            end
                                         end
                                     end
                                 end
@@ -178,8 +266,52 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                 for _, i in pairs(v.ids) do
                     for _,j in pairs(identifiers) do
                         if j == i then
-                            UpdateIdentifiers(k, identifiers)
-                            deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date)
+                            if v.temp == false then
+                                if v.cheat then
+                                    UpdateIdentifiers(k, identifiers)
+                                    deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                else
+                                    UpdateIdentifiers(k, identifiers)
+                                    deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                end
+                            else
+                                if tonumber(v.expiration) < os.time() then
+                                    unban(v.id)
+                                    deferrals.done()
+                                else
+                                    local tempsrestant = (tonumber(v.expiration - os.time()) / 60)
+
+                                    if tempsrestant >= 1440 then
+                                        local day = (tempsrestant / 60) / 24
+                                        local hrs = (day - math.floor(day)) * 24
+                                        local minutes = (hrs - math.floor(hrs)) * 60
+                                        local txtday = math.floor(day)
+                                        local txthrs = math.floor(hrs)
+                                        local txtminutes = math.ceil(minutes)
+
+                                        UpdateIdentifiers(k, identifiers)
+                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                    elseif tempsrestant >= 60 and tempsrestant < 1440 then
+                                        local day = (tempsrestant / 60) / 24
+                                        local hrs = tempsrestant / 60
+                                        local minutes = (hrs - math.floor(hrs)) * 60
+                                        local txtday = math.floor(day)
+                                        local txthrs = math.floor(hrs)
+                                        local txtminutes = math.ceil(minutes)
+
+
+                                        UpdateIdentifiers(k, identifiers)
+                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                    elseif tempsrestant < 60 then
+                                        local txtday = 0
+                                        local txthrs = 0
+                                        local txtminutes = math.ceil(tempsrestant)
+
+                                        UpdateIdentifiers(k, identifiers)
+                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                    end
+                                end
+                            end
                         end
                     end
                 end
