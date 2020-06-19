@@ -165,6 +165,9 @@ AddEventHandler("rF:RemoveDirtyMoney", function(tokenToCheck, rmv)
     _player_remove_dirty_money(tokenToCheck, source, rmv)
 end)
 
+
+
+
 function _player_set_dirty_money(tokenToCheck, id, nb)
     if CheckToken(tokenToCheck, id, "_player_set_dirty_money") then
         PlayersData[id].dirtyMoney = tonumber(nb)

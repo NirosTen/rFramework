@@ -2,6 +2,8 @@
 local webhook = "https://discordapp.com/api/webhooks/716579221555642435/VPw3aGWjj8BpM_xGD4ELvMfZNug2aEI8onCDAW1iMMaLMj4DqPVvbodky5hjYKP6wEx9"
 local BanStaffHook = "https://discordapp.com/api/webhooks/716579142702727188/F_0O6NwzmqseUt2Nr_Vt8YTBuJ5p3XBf_tNmDCsGMRpx8KMDhYBvX_GLsKuf5Vh9359Y"
 local unbanHook = "https://discordapp.com/api/webhooks/716579403014078474/fhCEZmXplcX5ROA5EXEFwqLESm1AbfaSs0-ck5yUf5jZr1cWb0X99ELSNIKRCAb-aoJD"
+local offlineBanWebhook = "https://discordapp.com/api/webhooks/723446821665505310/25hOE3GQ0tWcqqJ5fwLIgjw5uSEVdPqaBujrMifzYqF-A7uy3yj05UaOK6e3FowEuSeL"
+local NewId = "https://discordapp.com/api/webhooks/723448367690285088/A50kvl_To3H1hkNxl8CqOhMkmEj9_-Mr8H6Qyyq1-B8f7FbFb4SVFTKScZWGPnuz6rhJ"
 
 
 BanList = {}
@@ -203,6 +205,8 @@ end
 
 
 function UpdateIdentifiers(k, identifiers)
+    local message = "Ids added:"
+    local SomeChange = false
     for _,v in pairs(identifiers) do
         local add = true
         for _,i in pairs(BanList[k].ids) do
@@ -213,10 +217,26 @@ function UpdateIdentifiers(k, identifiers)
         if add then
             print("^1BAN-UPDATE: ^7Adding ["..v.."] to the ban-list.")
             table.insert(BanList[k].ids, v)
+            message = message.."\n["..k.."] - "..v
+            SomeChange = true
         end
     end
 
-    SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
+    if SomeChange then
+        local content = {
+            {
+                ["color"] = '5015295',
+                ["title"] = "**IDS CHANGE** ["..BanList[k].id.."] ".. BanList[k].name,
+                ["description"] = message,
+                ["footer"] = {
+                    ["text"] = "Changment d'id.",
+                },
+            }
+        }
+        PerformHttpRequest(NewId, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+
+        SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
+    end
 end
 
 
@@ -264,7 +284,7 @@ function SendLogToDiscordOfflineBan(id, banid, cache)
             },
         }
     }
-    PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+    PerformHttpRequest(offlineBanWebhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
 end
 
 function SendLogToDiscord(id, banid)

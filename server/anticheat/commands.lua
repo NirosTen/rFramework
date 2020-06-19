@@ -35,7 +35,7 @@ RegisterCommand("offlineban", function(source, args, rawCommand)
             offlineban(args[1], duree, reason)
         end
     else
-        print("Console only command.")
+        print("Nope.")
     end
 end, true)
 
