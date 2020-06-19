@@ -55,7 +55,7 @@ function CheatBanPlayer(id)
     if id == nil then return end
     if GetPlayerName(id) == nil then return end
     local logs = DetectionCache[id]
-    ban = {}
+    local ban = {}
     ban.name = GetPlayerName(id)
     ban.ids = {}
     ban.reason = {}
@@ -76,11 +76,11 @@ function CheatBanPlayer(id)
     DropPlayer(id, "Vous avez été banni du serveur.\n"..ban.date)
 end
 
-function BanPlayer(id, reason, source)
+function BanPlayer(id, reason, source) 
     if id == nil then return end
     if GetPlayerName(id) == nil then return end
     local logs = DetectionCache[id]
-    ban = {}
+    local ban = {}
     ban.name = GetPlayerName(id)
     ban.ids = {}
     ban.reason = reason
@@ -103,7 +103,7 @@ function TempBanPlayer(id, reason, time, source)
     if id == nil then return end
     if GetPlayerName(id) == nil then return end
     local logs = DetectionCache[id]
-    ban = {}
+    local ban = {}
     ban.name = GetPlayerName(id)
     ban.ids = {}
     ban.reason = reason
@@ -147,12 +147,48 @@ function acofflineban(id)
     if GetPlayerName(id) == nil then return end
     local cache = GetIdsFromCache(id)
     if cache ~= false then
-        ban = {}
+        local ban = {}
         ban.name = cache.name
         ban.ids = {}
         ban.reason = "Manual console ban."
         ban.date = os.date("%y/%m/%d %X")
         ban.id = ""..math.random(1000,9999).."-"..math.random(1000,9999)
+        ban.temp = false
+        SendLogToDiscordOfflineBan(id, ban.id, cache)
+        for k,v in pairs(cache.ids) do
+            table.insert(ban.ids, v)
+        end
+        table.insert(BanList, ban)
+        SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
+        print("^1BAN: ^7Added ["..cache.name.."] to the ban-list.")
+    else
+        print("^1BAN: ^7Player not found in server cache.")
+    end
+end
+
+function offlineban(id, time, reason)
+    if id == nil then return end
+    if GetPlayerName(id) == nil then return end
+    local cache = GetIdsFromCache(id)
+    if cache ~= false then
+        local ban = {}
+        ban.name = cache.name
+        ban.ids = {}
+        ban.reason = reason
+        ban.date = os.date("%y/%m/%d %X")
+        ban.id = ""..math.random(1000,9999).."-"..math.random(1000,9999)
+        ban.temp = true
+
+        if time ~= 0 then
+            local expiration = time * 86400
+            if expiration < os.time() then
+                expiration = os.time()+expiration
+            end
+            ban.expiration = expiration
+        else
+            ban.temp = false
+        end
+
         SendLogToDiscordOfflineBan(id, ban.id, cache)
         for k,v in pairs(cache.ids) do
             table.insert(ban.ids, v)
@@ -221,7 +257,7 @@ function SendLogToDiscordOfflineBan(id, banid, cache)
     local content = {
         {
             ["color"] = '14177041',
-            ["title"] = "**DETECTION ["..id.."] ".. cache.name .."** BAN-ID: "..banid,
+            ["title"] = "**BAN ["..id.."] ".. cache.name .."** BAN-ID: "..banid,
             ["description"] = message,
             ["footer"] = {
                 ["text"] = "Ban offline d'un joueur",
