@@ -26,6 +26,7 @@ local country = {
     ["CHE"] = true,
     ["CA"] = true,
     ["IDF"] = true,
+    ["IT"] = true,
 }
 
 AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
@@ -116,7 +117,7 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                     if tonumber(err) == 200 then
                         local tbl = json.decode(text)
     
-                        print("Passage de ["..IP.."] - "..text)
+                        --print("Passage de ["..IP.."] - "..text)
     
                         if tbl["mobile"] == true then
                             for k, v in pairs(BanList) do

@@ -1,16 +1,16 @@
 
 
 RegisterCommand("unban", function(source, args, rawCommand)
-    if source == 0 then
+    if PlayersData[source].group ~= "user" then
         if args[1] ~= nil then
             unban(args[1])
         else
             print("Aucun ban-id spécifié.")
         end
     else
-        print("Console only command.")
+        print("Staff only command.")
     end
-end, true)
+end, false)
 
 
 
@@ -37,8 +37,32 @@ RegisterCommand("offlineban", function(source, args, rawCommand)
     else
         print("Nope.")
     end
-end, true)
+end, false)
 
+
+RegisterCommand("goto", function(source, args, rawCommand)
+    if PlayersData[source].group ~= "user" then
+        if args[1] ~= nil then
+            TriggerEvent("core:Goto", source, tonumber(args[1]))
+        end
+    end
+end, false)
+
+RegisterCommand("bring", function(source, args, rawCommand)
+    if PlayersData[source].group ~= "user" then
+        if args[1] ~= nil then
+            TriggerEvent("core:Bring", source, tonumber(args[1]))
+        end
+    end
+end, false)
+
+RegisterCommand("revive", function(source, args, rawCommand)
+    if PlayersData[source].group ~= "user" then
+        if args[1] ~= nil then
+            TriggerEvent("core:DeathStatus", tonumber(args[1]))
+        end
+    end
+end, false)
 
 
 RegisterCommand("ban", function(source, args, rawCommand)

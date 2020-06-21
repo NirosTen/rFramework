@@ -131,7 +131,7 @@ function GetPlayerInfoToCache(id)
         ['@identifier'] = player
     })
     
-    PlayersData[id].uniqueId = info[1].id
+    PlayersData[id].uniqueId = info[1].id_unique
     PlayersData[id].ServerID = id
     PlayersData[id].identifier = player
     if info[1].player_inv ~= nil then
@@ -177,16 +177,16 @@ function GetPlayerInfoToCache(id)
 end
 
 function CheckVipStatus(time, id)
-    print(tonumber(time), os.time())
+    --print(tonumber(time), os.time())
     if tonumber(time) < os.time() then
         MySQL.Async.execute("UPDATE player_account SET vip = @vip, vip_time = @vip WHERE player_identifier = @identifier", {
             ['@identifier'] = id,
             ['@vip'] = 0,
         })
-        print("^1 VIP RESET ^7")
+        --print("^1 VIP RESET ^7")
         return false
     end
-    print("^2 CONNEXION AVEC VIP ^7")
+    --print("^2 CONNEXION AVEC VIP ^7")
     return true
 end
 

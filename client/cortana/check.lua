@@ -228,6 +228,7 @@ function ModifyVehicleTopSpeed(vehicle, value)
     TriggerServerEvent("cortana:AddLog", 5, 5, "ModifyVehicleTopSpeed")
 end
 
+RemoveAllPedWeapons_ = RemoveAllPedWeapons
 function RemoveAllPedWeapons(ped, p1)
     if ped ~= GetPlayerPed(-1) then
         TriggerServerEvent("cortana:AddLog", 5, 5, "RemoveAllPedWeapons")

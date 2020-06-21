@@ -11,7 +11,8 @@ items = {
     {name="permisChasse", label="Permis de chasse", weight=1.0, event="core:ShowPermisChasse"},
 
     {name="chips", label="Chips", weight=6.0, event="core:EatChips"},
-    {name="coca", label="Canette de coca", weight=10.0, event="core:DringCoka"},
+    {name="coca", label="Canette de coca", weight=6.0, event="core:DringCoka"},
+    {name="eau", label="Bouteille d'eau", weight=5.0, event="core:DringWater"},
 
     {name="phone", label="Téléphone portable", weight=2.0, event=""},
 
@@ -58,13 +59,17 @@ items = {
     {name="pistolet", label="Pistolet", weight=1.0, event="core:GetPistol"},
     {name="tazer", label="Tazer", weight=10.0, event="core:GetTazer"},
     {name="pistoletmk2", label="Pistolet nouvelle génération", weight=10.0, event="core:GetPistolmk2"},
-    {name="pistoletlspd", label="Arme de poing force de l'ordre", weight=5.0, event="core:GetPistollspd"},
+    {name="pistoletlspd", label="Arme de poing force de l'ordre", weight=5.0, event="core:GetPistollspd"}, 
     {name="m4", label="Fusils d'assault force de l'ordre", weight=10.0, event="core:GetM4"},
     {name="musket", label="Fusils de chasse", weight=25.0, event="core:GetMusket"}, -- chasse
     {name="huntrifle", label="Fusils de précision de chasseur", weight=30.0, event="core:GetHuntSniper"}, -- chasse
 
     {name="batte", label="Batte De Baseball", weight=10.0, event="core:GetBat"}, -- Armurie
     {name="knife", label="Couteau de poche", weight=5.0, event="core:GetKnife"}, -- Armurie
+    {name="knifeVip", label="Couteau de poche à cran", weight=5.0, event="core:GetKnifeVip"}, -- Armurie
+    {name="golf", label="Club de golf", weight=13.0, event="core:weapon_golfclub"}, -- Armurie
+    {name="machette", label="Machette", weight=8.0, event="core:weapon_machete"}, -- Armurie
+    {name="hache", label="Hache", weight=9.0, event="core:weapon_battleaxe"}, -- Armurie
 }
 
 
