@@ -54,6 +54,15 @@ items = {
     {name="avocat", label="Avocat", weight=1.0, event=""},
     {name="saucisson", label="Saucisson", weight=1.0, event=""},
 
+    -- Hotdog
+    {name="hotdog", label="Hotdog simple", weight=6.0, event="core:EatHotDog"},
+    {name="tacos", label="Tacos", weight=10.0, event="core:EatTacos"},
+    {name="kebab", label="Kebab", weight=10.0, event="core:EatKebab"},
+    {name="sauce", label="Sauce", weight=1.0, event=""},
+    {name="tortilla", label="Tortilla", weight=1.0, event=""},
+
+    {name="bouteille", label="Bouteille vide", weight=1.0, event=""},
+
     -- Weapons
     {name="matraque", label="Matraque force de l'ordre", weight=1.0, event="core:GetMattraque"},
     {name="pistolet", label="Pistolet", weight=1.0, event="core:GetPistol"},
@@ -70,8 +79,11 @@ items = {
     {name="golf", label="Club de golf", weight=13.0, event="core:weapon_golfclub"}, -- Armurie
     {name="machette", label="Machette", weight=8.0, event="core:weapon_machete"}, -- Armurie
     {name="hache", label="Hache", weight=9.0, event="core:weapon_battleaxe"}, -- Armurie
-}
+} 
 
+function GetItems()
+    return items
+end
 
 function GetOriginalLabel(item)
     for k,v in pairs(items) do

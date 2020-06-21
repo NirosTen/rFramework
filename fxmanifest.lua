@@ -68,7 +68,8 @@ exports {
     "GetOriginalLabel",
     "GetKeyValue",
     "ReloadPlayerCloth",
-    "TriggerServerCallback"
+    "TriggerServerCallback",
+    "GetItems",
 }
 
 server_exports { -- not going to use those, i suppose i will remove them

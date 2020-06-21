@@ -276,7 +276,6 @@ function SellItem(id, itemToSell, price, _count, clean)
 end
 
 function RemoveItemFromPlayerInv(id, item, _count)
-    print(id, item, _count)
     local count = PlayersData[id].inventory[item]
     if count ~= nil then
         if PlayersData[id].inventory[item].count - _count <= 0 then
