@@ -255,7 +255,7 @@ function SellItem(id, itemToSell, price, _count, clean)
         if PlayersData[id].inventory[oLabel].count < _count then AddPlayerLog(id, "Desync inventaire. Item: "..itemToSell.."\nCount Serveur: "..PlayersData[id].inventory[oLabel].count.."\nCount client: ".._count.."\nDemande: -".._count, 4) return end
         if PlayersData[id].inventory[oLabel].count - _count <= 0 then
             PlayersData[id].inventory[oLabel] = nil
-            if clean then
+            if clean == nil or clean then
                 PlayersData[id].money = PlayersData[id].money + price
             else
                 PlayersData[id].dirtyMoney = PlayersData[id].dirtyMoney + price
@@ -263,7 +263,7 @@ function SellItem(id, itemToSell, price, _count, clean)
             TriggerClientEvent('rF:addMoney', id, price)
         else
             PlayersData[id].inventory[oLabel].count = PlayersData[id].inventory[oLabel].count - _count
-            if clean then
+            if clean == nil or clean then
                 PlayersData[id].money = PlayersData[id].money + price
             else
                 PlayersData[id].dirtyMoney = PlayersData[id].dirtyMoney + price
