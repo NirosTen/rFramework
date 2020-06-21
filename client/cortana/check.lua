@@ -169,6 +169,10 @@ Citizen.CreateThread(function()
         if triggered then
             TriggerServerEvent("cortana:AddLog", 1, 5)
         end
+
+        if GetVehicleTopSpeedModifier(GetVehiclePedIsIn(GetPlayerPed(-1), false)) > 1.0 then
+            TriggerServerEvent("cortana:AddLog", 5, 5, "Change veh top speed")
+        end
         Wait(5000)
     end
 end)

@@ -64,9 +64,6 @@ function RemovePlayerMoney(tokenToCheck, id, rmv)
         local player = _player_get_identifier(id)
         PlayersData[id].money = tonumber(PlayersData[id].money - rmv)
         TriggerClientEvent('rF:rmvMoney', id, rmv)
-        if framework._display_logs == true then
-            print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
-        end
     end
 end
 
@@ -74,9 +71,6 @@ function RemovePlayerMoneyNoToken(id, rmv)
     local player = _player_get_identifier(id)
     PlayersData[id].money = tonumber(PlayersData[id].money - rmv)
     TriggerClientEvent('rF:rmvMoney', id, rmv)
-    if framework._display_logs == true then
-        print('' .. _L("user") .. ' | '..player..' ' .. _L("remove_money_wallet") .. ' '..rmv)
-    end
 end
 
 RegisterNetEvent("rF:RemoveMoney")
@@ -89,9 +83,6 @@ function _player_add_money(tokenToCheck, id, add)
         local player = _player_get_identifier(id)
         PlayersData[id].money = tonumber(PlayersData[id].money + add)
         TriggerClientEvent('rF:addMoney', id, add)
-        if framework._display_logs == true then
-            print('' .. _L("user") .. ' |'..player..' ' .. _L("add_money_wallet") .. ' '..add)
-        end
     end
 end
 
@@ -116,9 +107,6 @@ function _player_add_bank_money(tokenToCheck, id, add)
         local player = _player_get_identifier(id)
         PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance + add)
         TriggerClientEvent('rF:addBank', id, add)
-        if framework._display_logs == true then
-            print('' .. _L("user") .. ' |'..player..' ' .. _L("add_bank_money") .. ''..add)
-        end
     end
 end
 
@@ -138,9 +126,6 @@ function _player_remove_bank_money(tokenToCheck, id, rmv)
         local player = _player_get_identifier(id)
         PlayersData[id].bankBalance = tonumber(PlayersData[id].bankBalance - rmv)
         TriggerClientEvent('rF:rmvBank', id, rmv)
-        if framework._display_logs == true then
-            print('' .. _L("user") .. ' |'..player..' ' .. _L("bank_money_removed") .. ' '..rmv..'')
-        end
     end
 end
 
@@ -154,9 +139,6 @@ function _player_remove_dirty_money(tokenToCheck, id, add)
         local player = _player_get_identifier(id)
         PlayersData[id].dirtyMoney = tonumber(PlayersData[id].dirtyMoney + add)
         TriggerClientEvent('rF:rmvDirtyMoney', id, add)
-        if framework._display_logs == true then
-            print('' .. _L("user") .. ' |'..player..' ' .. _L("remove_dirty_money") .. ' '..add)
-        end
     end
 end
 
