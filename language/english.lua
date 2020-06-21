@@ -1,8 +1,8 @@
 Locales['english'] = {
 	-- Welcome
 	["last_pos"] = "You have been relocated to your old position",
-	["welcome"] = "Welcome, we are preparing your character",
-	["welcome_back"] = "Welcome back, we are preparing your character",
+	["welcome"] = "Bienvenue, nous préparons votre personnage",
+	["welcome_back"] = "Bienvenue, nous préparons de nouveau votre personnage",
 	-- Logs
 	["new_user"] = "New User: ",
 	["user"] = "User: ",
