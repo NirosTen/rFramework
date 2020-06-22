@@ -24,7 +24,7 @@ items = {
 
     {name="weedseed", label="Graine de chanvre", weight=0.5, event="core:PlantWeed"},
     {name="weed", label="Canabis non traitée", weight=1.0, event=""},
-    {name="weed2", label="Canabis de bonne qualité", weight=2.0, event=""},
+    {name="weed2", label="Canabis de bonne qualité", weight=2.0, event="core:UseWeed"}, 
 
     {name="pain", label="Pain de cuisine", weight=4.0, event=""},
     {name="patte", label="Patte de cuisine", weight=4.0, event=""},
@@ -37,6 +37,7 @@ items = {
     {name="patepizza", label="Pâte à pizza", weight=1.0, event=""},
     {name="coulisTomate", label="Coulis de tomate", weight=1.0, event=""},
     {name="fromage", label="Fromage", weight=1.0, event=""},
+    {name="patteBolo", label="Pasta Bolognese", weight=1.0, event="core:EatPatte"},
 
     -- Crucial
     {name="sandwich", label="Sandwich simple", weight=10.0, event="core:EatSandwichSimple"},
@@ -53,7 +54,7 @@ items = {
     {name="quinoa", label="Quinoa", weight=1.0, event=""},
     {name="salade", label="Salade", weight=1.0, event=""},
     {name="avocat", label="Avocat", weight=1.0, event=""},
-    {name="saucisson", label="Saucisson", weight=1.0, event=""},
+    {name="saucisson", label="Saucisson", weight=1.0, event=""}, 
 
     -- Hotdog
     {name="hotdog", label="Hotdog simple", weight=6.0, event="core:EatHotDog"},
