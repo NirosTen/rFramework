@@ -235,7 +235,7 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                                     deferrals.done()
                                 end
                             else
-                                deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.\nSi c'est une erreur, merci d'ouvrir un ticket support.")
+                                deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.\nSi c'est une erreur, merci d'ouvrir un ticket support.\n"..tbl["countryCode"])
                             end
                         
                         
