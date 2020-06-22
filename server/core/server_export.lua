@@ -223,15 +223,13 @@ AddEventHandler("rF:GiveMoneyToPlayer", function(tokenToCheck, target, money)
 end)
 
 
-function GiveMoneyToPlayer(source, target, money)
-    local pCache = GetPlayerCache(source)
-    local tCache = GetPlayerCache(target)
-    if PlayersData[source].money >= money then
-        PlayersData[source].money = PlayersData[source].money - money
-        TriggerClientEvent('rF:rmvMoney', source, money)
-        PlayersData[target].money = PlayersData[target].money + money
-        TriggerClientEvent('rF:addMoney', target, money)
-        SendLog("Le joueur **"..source.." "..GetPlayerName(source).."** à donné un/une "..money.."$ à **"..target.." "..GetPlayerName(target).."**", "money")
+function GiveMoneyToPlayer(source, target, _money)
+    if PlayersData[source].money >= _money then
+        PlayersData[source].money = PlayersData[source].money - _money
+        TriggerClientEvent('rF:rmvMoney', source, _money)
+        PlayersData[target].money = PlayersData[target].money + _money
+        TriggerClientEvent('rF:addMoney', target, _money)
+        SendLog("Le joueur **"..source.." "..GetPlayerName(source).."** à donné un/une ".._money.."$ à **"..target.." "..GetPlayerName(target).."**", "money")
     end
 end
 
