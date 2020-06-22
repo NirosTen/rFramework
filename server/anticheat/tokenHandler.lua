@@ -21,7 +21,7 @@ function CheckToken(tokenToCheck, player, event)
     else
         print(tokenToCheck, event)
         if framework._display_logs then
-            if tokenToCheck == nil then
+            if tokenToCheck == nil and player ~= nil then
                 DropPlayer(player, "Desync")
             else
                 print("[TOKEN] ^1Invalid token usage^7, player: ["..player.."] used token "..tokenToCheck.." instead of "..token.."^7")
@@ -36,7 +36,7 @@ end
 
 -- Token generation and sending
 
-local char = {"/","*","-","+","*","ù","%"}
+local char = {"/","*","-","+","*","ù","%", }
 local function GenerateToken()
 	local res = ""
     for i = 1, 20 do

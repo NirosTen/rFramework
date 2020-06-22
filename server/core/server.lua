@@ -97,7 +97,7 @@ function SavePlayerCache(id, cache)
     })
 
     if framework._display_logs then
-        print("^2Saving ^7"..id.." cache: "..cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
+        --print("^2Saving ^7"..id.." cache: "..cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
     end
 end
 

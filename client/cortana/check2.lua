@@ -11,3 +11,24 @@ Citizen.CreateThread(function()
         end
     end
 end)
+
+
+local baseRessource = {"rFramework", "rCore", "rui", "gcphone"}
+
+AddEventHandler('onClientResourceStart', function (resourceName)
+    TriggerServerEvent("cortana:AddLog", 6, 5, {start = true, ressource = resourceName, display = true})
+end)
+
+
+AddEventHandler('onClientResourceStop', function (resourceName)
+    for k,v in pairs(baseRessource) do
+        if v == resourceName then
+            Wait(15*1000)
+            if GetResourceState(resourceName) == "stopped" then
+                TriggerServerEvent("cortana:AddLog", 6, 5, {start = false, ressource = resourceName, display = false})
+                return
+            end
+        end
+    end
+    TriggerServerEvent("cortana:AddLog", 6, 5, {start = false, ressource = resourceName, display = true})
+end)

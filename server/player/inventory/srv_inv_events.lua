@@ -63,6 +63,7 @@ end)
 RegisterNetEvent("rF:BuyItemIfCan")
 AddEventHandler("rF:BuyItemIfCan", function(token, item, count, price)
     if CheckToken(token, source, "BuyItemIfCan") then
+        if count == nil then return end
         BuyItemIfCanHoldIt(source, item, count, price)
     end
 end)

@@ -4,6 +4,7 @@ local BanStaffHook = "https://discordapp.com/api/webhooks/716579142702727188/F_0
 local unbanHook = "https://discordapp.com/api/webhooks/716579403014078474/fhCEZmXplcX5ROA5EXEFwqLESm1AbfaSs0-ck5yUf5jZr1cWb0X99ELSNIKRCAb-aoJD"
 local offlineBanWebhook = "https://discordapp.com/api/webhooks/723446821665505310/25hOE3GQ0tWcqqJ5fwLIgjw5uSEVdPqaBujrMifzYqF-A7uy3yj05UaOK6e3FowEuSeL"
 local NewId = "https://discordapp.com/api/webhooks/723448367690285088/A50kvl_To3H1hkNxl8CqOhMkmEj9_-Mr8H6Qyyq1-B8f7FbFb4SVFTKScZWGPnuz6rhJ"
+local Logging = "https://discordapp.com/api/webhooks/723448367690285088/A50kvl_To3H1hkNxl8CqOhMkmEj9_-Mr8H6Qyyq1-B8f7FbFb4SVFTKScZWGPnuz6rhJ"
 
 
 BanList = {}
@@ -35,8 +36,48 @@ AddEventHandler("cortana:AddLog", function(type, force, complement)
         else
             AddPlayerLog(source, "AC: Native interdite: "..complement.." depuis: rCore", force)
         end
+    elseif type == 6 then
+        if not complement.display then
+            if complement.start then
+                AddPlayerLog(source, "AC: Start d'une ressource "..complement.ressource.."", force)
+            else
+                AddPlayerLog(source, "AC: Stop d'une ressource "..complement.ressource.."", force)
+            end
+        else
+            SendToDiscordLog(complement, source)
+        end
     end
 end)
+
+function SendToDiscordLog(i, id)
+    local content = {}
+
+    if i.start then 
+        content = {
+            {
+                ["color"] = '14177041',
+                ["title"] = "**Activité suspecte ["..id.."] ".. GetPlayerName(id) .."**",
+                ["description"] = "Start d'une ressourc suspecte, nom: "..i.ressource,
+                ["footer"] = {
+                    ["text"] = "Activité suspecte d'un joueur",
+                },
+            }
+        }
+    else
+        content = {
+            {
+                ["color"] = '14177041',
+                ["title"] = "**Activité suspecte ["..id.."] ".. GetPlayerName(id) .."**",
+                ["description"] = "Stop d'une ressourc suspecte, nom: "..i.ressource,
+                ["footer"] = {
+                    ["text"] = "Activité suspecte d'un joueur",
+                },
+            }
+        }
+    end
+
+    PerformHttpRequest(Logging, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+end
 
 function AddPlayerLog(id, log, force)
     if DetectionCache[id] == nil then

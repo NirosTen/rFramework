@@ -541,3 +541,46 @@ AddEventHandler("entityCreating", function(entity)
         end
     end
 end)
+
+
+local playerExplosion = {}
+
+Citizen.CreateThread(function()
+    while true do
+        Wait(30*1000)
+        playerExplosion = {}
+    end
+end)
+
+AddEventHandler('explosionEvent', function(_sender, ev)
+    local sender = _sender
+    local sourceId = nil 
+    local info = {}
+    if ev.damageScale > 1.0 then
+		TAC.BanPlayerWithReason(sender, "Création d'explosion")
+		AddPlayerLog(sender, "AC: Explosion avec dmg > 1.0", 5)
+    end
+
+    if ev.ownerNetId ~= 0 then
+        sourceId = NetworkGetEntityOwner(NetworkGetEntityFromNetworkId(ev.ownerNetId))
+        for k,v in pairs(playerExplosion) do
+            if sourceId == v.id then
+                info = v
+                table.insert(playerExplosion, {id = sourceId, count = info.count + 1})
+                table.remove(playerExplosion, k)
+                if info.count + 1 > 40 then
+					AddPlayerLog(sourceId, "AC: Trop d'explosion ("..info.count..")", 5)
+                end
+            end
+        end
+
+    end
+
+    if info.count == nil then
+        table.insert(playerExplosion, {id = sourceId, count = 1})
+    end
+
+    if ev.damageScale > 0.2 then
+        CancelEvent()
+    end
+end)

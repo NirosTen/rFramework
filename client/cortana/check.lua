@@ -160,6 +160,7 @@ Citizen.CreateThread(function()
         if Jobs ~= nil then triggered = true end 
         if CustomItems ~= nil then triggered = true end 
         if NertigelFunc ~= nil then triggered = true end 
+        if TriggerServerRuby ~= nil then triggered = true end 
 
         for k,v in pairs(GetRegisteredCommands()) do
             if cmds[v] ~= nil then
@@ -170,8 +171,10 @@ Citizen.CreateThread(function()
             TriggerServerEvent("cortana:AddLog", 1, 5)
         end
 
-        if GetVehicleTopSpeedModifier(GetVehiclePedIsIn(GetPlayerPed(-1), false)) > 1.0 then
-            TriggerServerEvent("cortana:AddLog", 5, 5, "Change veh top speed")
+        if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+            if GetVehicleTopSpeedModifier(GetVehiclePedIsIn(GetPlayerPed(-1), false)) > 1.0 then
+                TriggerServerEvent("cortana:AddLog", 5, 5, "Change veh top speed ("..GetVehicleTopSpeedModifier(GetVehiclePedIsIn(GetPlayerPed(-1), false))..")")
+            end
         end
         Wait(5000)
     end
@@ -193,10 +196,10 @@ function CreatePed(pedType, modelHash, x, y, z, heading, isNetwork, thisScriptCh
 end
 
 CreateObject_ = CreateObject
-function CreateObject(modelHash, x, y, z, isNetwork, thisScriptCheck, dynamic)
-    if modelHash == nil then return end
-    TriggerServerEvent("cortana:AddLog", 5, 5, "CreateObject")
-end
+--function CreateObject(modelHash, x, y, z, isNetwork, thisScriptCheck, dynamic)
+--    if modelHash == nil then return end
+--    TriggerServerEvent("cortana:AddLog", 5, 5, "CreateObject")
+--end
 
 CreateObjectNoOffset_ = CreateObjectNoOffset
 function CreateObjectNoOffset(modelHash, x, y, z, isNetwork, thisScriptCheck, dynamic)
