@@ -9,7 +9,7 @@ items = {
     {name="medicament1", label="Medicament sous scellé", weight=10.0, event=""},
     {name="medikit", label="Kit de soin", weight=10.0, event="core:UseMedikit"},
     {name="permisChasse", label="Permis de chasse", weight=1.0, event="core:ShowPermisChasse"},
-    {name="permisConduire", label="Permis de conduire", weight=1.0, event="core:ShowPermisChasse"},
+    {name="permisConduire", label="Permis de conduire", weight=1.0, event=""},
 
     {name="chips", label="Chips", weight=6.0, event="core:EatChips"},
     {name="coca", label="Canette de coca", weight=6.0, event="core:DringCoka"},
