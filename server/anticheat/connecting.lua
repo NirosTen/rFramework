@@ -39,7 +39,7 @@ local country = {
     ["CHE"] = true,
     ["CA"] = true,
     ["IDF"] = true,
-    ["CHE"] = true,
+    ["GBR"] = true,
 }
 
 local playerLimite = 300
