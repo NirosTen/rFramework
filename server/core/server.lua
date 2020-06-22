@@ -80,6 +80,7 @@ function SavePlayerCache(id, cache)
     local encodedInv = EncodeInventory(cache.inventory)
     local encodedIdentity = json.encode(cache.identity)
     local encodedCloth = json.encode(cache.cloths)
+    if cache.job_grade == nil then cache.job_grade = 0 end
     MySQL.Async.execute("UPDATE player_account SET deadOrNot = @dead, player_position = @pos, player_skin = @skin, player_cloths = @cloths, player_identity = @identity, player_inv = @inv, player_money = @money, player_bank_balance = @bankBalance, player_dirty_money = @bankBalance, player_dirty_money = @dirtyMoney, player_job = @job, player_job_grade = @job_grade, player_group = @group WHERE player_identifier = @identifier", {
         ['@identifier'] = id,
         ['@inv'] = encodedInv,
