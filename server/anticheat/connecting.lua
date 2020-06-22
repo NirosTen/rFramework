@@ -18,6 +18,7 @@ end
 
 local whitelist = {
     ["steam:110000140ce11c4"] = true,
+    ["steam:110000117f42551"] = true,
 }
 
 function CheckWhitelist(ids)
@@ -41,6 +42,7 @@ local country = {
     ["IDF"] = true,
     ["GBR"] = true,
     ["CH"] = true,
+    ["IT"] = true,
 }
 
 local playerLimite = 300
