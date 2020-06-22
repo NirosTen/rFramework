@@ -84,7 +84,7 @@ function _player_add_money(tokenToCheck, id, add)
         PlayersData[id].money = tonumber(PlayersData[id].money + add)
         TriggerClientEvent('rF:addMoney', id, add)
         if add > 4500 then
-            SendLog("Grosse transaction de **["..id.."]** "..GetPlayerName(id).." - montant: **"..add.."$** job: "..PlayersData[id].job, "gross-transaction")
+            SendLog("@here Grosse transaction à vérifier de **["..id.."]** "..GetPlayerName(id).." - montant: **"..add.."$** job: "..PlayersData[id].job, "gross-transaction")
         end
     end
 end
