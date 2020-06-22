@@ -42,6 +42,9 @@ function InitSpawnPlayer(source)
 end
 
 
-function SetNotFirstSpawn()
-    MySQL.Async.execute("UPDATE player_account SET player_first_spawn = @player_first_spawn", { ["@player_first_spawn"] = 'not_first_spawn', })
+function SetNotFirstSpawn(license)
+    MySQL.Async.execute("UPDATE player_account SET player_first_spawn = @player_first_spawn WHERE player_identifier = @id", { 
+        ["@player_first_spawn"] = 'not_first_spawn', 
+        ["@id"] = license, 
+    })
 end

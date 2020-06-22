@@ -96,9 +96,13 @@ function SavePlayerCache(id, cache)
         ['@dead'] = cache.dead,
     })
 
-    if framework._display_logs then
-        --print("^2Saving ^7"..id.." cache: "..cache.money, cache.bankBalance, cache.dirtyMoney, cache.job, cache.group)
+    if encodedIdentity == "[]" then
+        MySQL.Async.execute("UPDATE player_account SET player_first_spawn = @player_first_spawn WHERE player_identifier = @id", { 
+            ["@player_first_spawn"] = 'first_spawn', 
+            ["@id"] = id, 
+        })
     end
+    
 end
 
 

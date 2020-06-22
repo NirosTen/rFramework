@@ -281,7 +281,8 @@ AddEventHandler("rF:ChangePlayerIdentity", function(tokenToCheck, _identity)
     if CheckToken(tokenToCheck, source, "rF:ChangePlayerIdentity") then
         PlayersData[source].identity = _identity
         TriggerClientEvent("rF:UpdateIdentity", source, _identity) -- Refresh the player identity in ressource
-        SetNotFirstSpawn()
+        local license = _player_get_identifier(source)
+        SetNotFirstSpawn(license)
         SendLog("Nouvelle identité de ["..source.."] **"..GetPlayerName(source).."**. nom: **".._identity.nom.."** prénom: **".._identity.prenom.."** age: **".._identity.age.."**", "identity")
     end
 end)
