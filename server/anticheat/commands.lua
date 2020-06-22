@@ -1,14 +1,22 @@
 
 
 RegisterCommand("unban", function(source, args, rawCommand)
-    if PlayersData[source].group ~= "user" then
+    if source ~= 0 then
+        if PlayersData[source].group ~= "user" then
+            if args[1] ~= nil then
+                unban(args[1])
+            else
+                print("Aucun ban-id spécifié.")
+            end
+        else
+            print("Staff only command.")
+        end
+    else
         if args[1] ~= nil then
             unban(args[1])
         else
             print("Aucun ban-id spécifié.")
         end
-    else
-        print("Staff only command.")
     end
 end, false)
 
