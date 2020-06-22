@@ -18,7 +18,7 @@ function AddItemToPlayerInvBypass(id, item, _count, _label, _olabel)
     end
 end
 
-function AddItemToPlayerInv(id, item, _count, _label)
+function AddItemToPlayerInv(id, item, _count, _label) 
     if DoesItemExist(item) then
         local inv =  PlayersData[id].inventory
         local invWeight = GetInvWeight(inv)
@@ -34,12 +34,19 @@ function AddItemToPlayerInv(id, item, _count, _label)
             if countOld == nil then
                 PlayersData[id].inventory[_label] = {name = item, label = itemLabel, olabel = itemLabel, count = _count}
                 TriggerClientEvent("rF:addItem", id, _label.." x".._count)
+
+                local weight = GetInvWeight(PlayersData[id].inventory)
+                TriggerClientEvent("rF:SendPlayerInventory", id, PlayersData[id].inventory, weight)
             else                  
                 PlayersData[id].inventory[_label].name = item
                 PlayersData[id].inventory[_label].label = _label
                 PlayersData[id].inventory[_label].olabel = itemLabel
                 PlayersData[id].inventory[_label].count = PlayersData[id].inventory[_label].count + _count
                 TriggerClientEvent("rF:addItem", id, _label.." x".._count)
+
+
+                local weight = GetInvWeight(PlayersData[id].inventory)
+                TriggerClientEvent("rF:SendPlayerInventory", id, PlayersData[id].inventory, weight)
             end
         else
             TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu porte trop de chose.")
