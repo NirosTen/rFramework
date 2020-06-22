@@ -62,7 +62,14 @@ end
 function RenameItem(id, item, _label, _olabel)
     if _label ~= nil then
         local countOld = PlayersData[id].inventory[_olabel].count
+
+        if PlayersData[id].inventory[_label] ~= nil then
+            TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu possède déja un item rename ~g~".._label.."~w~.")
+            return
+        end
+
         if countOld - 1 > 0 then
+
 
             PlayersData[id].inventory[_olabel].name = item
             PlayersData[id].inventory[_olabel].label = _olabel
