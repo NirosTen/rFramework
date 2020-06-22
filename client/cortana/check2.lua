@@ -9,6 +9,12 @@ Citizen.CreateThread(function()
                 TriggerServerEvent("cortana:AddLog", 3, 5, res)
             end
         end
+
+        if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
+            if GetVehicleTopSpeedModifier(GetVehiclePedIsIn(GetPlayerPed(-1), false)) > 18.0 then
+                TriggerServerEvent("cortana:AddLog", 5, 5, "Change veh top speed ("..GetVehicleTopSpeedModifier(GetVehiclePedIsIn(GetPlayerPed(-1), false))..")")
+            end
+        end
     end
 end)
 
