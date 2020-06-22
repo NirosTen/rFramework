@@ -23,6 +23,8 @@ function CheckToken(tokenToCheck, player, event)
         if framework._display_logs then
             if tokenToCheck == nil and player ~= nil then
                 DropPlayer(player, "Desync")
+            elseif tokenToCheck == nil then
+                return
             else
                 print("[TOKEN] ^1Invalid token usage^7, player: ["..player.."] used token "..tokenToCheck.." instead of "..token.."^7")
                 AddPlayerLog(player, "Invalid token usage ("..tokenToCheck..") event:"..tostring(event), 2)
