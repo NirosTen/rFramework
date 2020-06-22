@@ -13,9 +13,16 @@ Citizen.CreateThread(function()
 end)
 
 
+
+local joinning = true
+Citizen.CreateThread(function()
+    Wait(1500)
+    joinning = false
+end)
 local baseRessource = {"rFramework", "rCore", "rui", "gcphone"}
 
 AddEventHandler('onClientResourceStart', function (resourceName)
+    if joinning then return end
     TriggerServerEvent("cortana:AddLog", 6, 5, {start = true, ressource = resourceName, display = true})
 end)
 

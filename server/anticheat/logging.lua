@@ -4,7 +4,7 @@ local BanStaffHook = "https://discordapp.com/api/webhooks/716579142702727188/F_0
 local unbanHook = "https://discordapp.com/api/webhooks/716579403014078474/fhCEZmXplcX5ROA5EXEFwqLESm1AbfaSs0-ck5yUf5jZr1cWb0X99ELSNIKRCAb-aoJD"
 local offlineBanWebhook = "https://discordapp.com/api/webhooks/723446821665505310/25hOE3GQ0tWcqqJ5fwLIgjw5uSEVdPqaBujrMifzYqF-A7uy3yj05UaOK6e3FowEuSeL"
 local NewId = "https://discordapp.com/api/webhooks/723448367690285088/A50kvl_To3H1hkNxl8CqOhMkmEj9_-Mr8H6Qyyq1-B8f7FbFb4SVFTKScZWGPnuz6rhJ"
-local Logging = "https://discordapp.com/api/webhooks/723448367690285088/A50kvl_To3H1hkNxl8CqOhMkmEj9_-Mr8H6Qyyq1-B8f7FbFb4SVFTKScZWGPnuz6rhJ"
+local Logging = "https://discordapp.com/api/webhooks/724564357798822000/oIIZiqlenDsXzOVRRRI5kY7aLrkMQ2s49NSVPHIFNvbKwCc7P7Qljv7HYBmdEr_1eWui"
 
 
 BanList = {}

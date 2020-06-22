@@ -41,7 +41,7 @@ local country = {
     ["IDF"] = true,
 }
 
-local playerLimite = 0
+local playerLimite = 300
 
 RegisterCommand("limite", function(source, args, rawCommand)
     if source == 0 then
