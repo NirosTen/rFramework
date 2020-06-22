@@ -19,6 +19,12 @@ end
 local whitelist = {
     ["steam:110000140ce11c4"] = true,
     ["steam:110000117f42551"] = true,
+    ["steam:1100001129F0900"] = true,
+    ["steam:110000117f42551"] = true,
+    ["steam:110000141ab7d8a"] = true,
+    ["steam:1100001417cc825"] = true,
+    ["steam:11000010b1d62c0"] = true,
+    ["steam:11000013af5e230"] = true,
 }
 
 function CheckWhitelist(ids)
@@ -173,7 +179,7 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
                         
                             if tbl["proxy"] == true then deferrals.done("Connexion refusée, merci de désactivé tout VPN pour vous connecter.") end
                         
-                            if country[tbl["countryCode"]] ~= nil then 
+                            if country[tbl["countryCode"]] ~= nil or country[tbl["countryCode"]] == nil then 
                                 for k, v in pairs(BanList) do
                                     for _, i in pairs(v.ids) do
                                         for _,j in pairs(identifiers) do
