@@ -111,6 +111,20 @@ RegisterCommand("maintenance", function(source, args, rawCommand)
 end, true)
 
 
+RegisterCommand("kickall", function(source, args, rawCommand)
+    if source == 0 then
+        local players = GetPlayers()
+        local count = 0
+        print("^2Ready ^7to kick "..#players.." players !")
+        for k,v in pairs(players) do
+            Wait(500)
+            count = count + 1
+            print("^2Kicked ^7#"..count)
+            DropPlayer(v, "Restart du serveur en cours, merci d'attendre une annonce pour te reconnecter pour éviter toute corruption de personnage.")
+        end
+    end
+end, true)
+
 
 RegisterNetEvent("rF:BanPlayer")
 AddEventHandler("rF:BanPlayer", function(token, target, duree, reason)
