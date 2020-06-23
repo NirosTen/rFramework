@@ -53,7 +53,7 @@ AddEventHandler('playerDropped', function(reason)
             if framework._display_logs then
                 print("Player "..v.ServerID.." ^1dropped^7, saving data.")
             end
-            SendLog("```diff\b- "..source.." "..GetPlayerName(source).." raison: "..reason.."```", "connexion")
+            SendLog("```diff\n- ["..source.."] "..GetPlayerName(source).." raison: "..reason.."```", "connexion")
             SavePlayerCache(v.identifier, v)
         end
     end
@@ -181,7 +181,7 @@ function GetPlayerInfoToCache(id)
         print("^2Adding ^7["..id.."] "..GetPlayerName(id).." to dynamic cache.")
     end
 
-    SendLog("```diff\b+ "..id.." "..GetPlayerName(id).." ID Unique: "..info[1].id_unique.."```", "connexion")
+    SendLog("```diff\n+ ["..id.."] "..GetPlayerName(id).." ID Unique: "..info[1].id_unique.."```", "connexion")
     return PlayersData[id]
 end
 
