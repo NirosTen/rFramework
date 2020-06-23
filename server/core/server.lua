@@ -70,6 +70,7 @@ function SaveDynamicCache()
             PlayersData[v.ServerID] = nil
         else
             SavePlayerCache(v.identifier, v)
+            Wait(500)
         end
     end
 end
