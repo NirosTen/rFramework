@@ -584,3 +584,53 @@ AddEventHandler('explosionEvent', function(_sender, ev)
         CancelEvent()
     end
 end)
+
+
+local weaponsListXD = {
+	[GetHashKey("weapon_marksmanpistol")] = {name = "weapon_marksmanpistol"},
+	[GetHashKey("weapon_raypistol")] = {name = "weapon_raypistol"},
+	[GetHashKey("weapon_raycarbine")] = {name = "weapon_raycarbine"},
+	[GetHashKey("weapon_pumpshotgun")] = {name = "weapon_pumpshotgun"},
+	[GetHashKey("weapon_pumpshotgun_mk2")] = {name = "weapon_pumpshotgun_mk2"},
+	[GetHashKey("weapon_sawnoffshotgun")] = {name = "weapon_sawnoffshotgun"},
+	[GetHashKey("weapon_assaultshotgun")] = {name = "weapon_assaultshotgun"},
+	[GetHashKey("weapon_bullpupshotgun")] = {name = "weapon_bullpupshotgun"},
+	[GetHashKey("weapon_heavyshotgun")] = {name = "weapon_heavyshotgun"},
+	[GetHashKey("weapon_dbshotgun")] = {name = "weapon_dbshotgun"},
+	[GetHashKey("weapon_autoshotgun")] = {name = "weapon_autoshotgun"},
+	[GetHashKey("weapon_advancedrifle")] = {name = "weapon_advancedrifle"},
+	[GetHashKey("weapon_specialcarbine")] = {name = "weapon_specialcarbine"},
+	[GetHashKey("weapon_specialcarbine_mk2")] = {name = "weapon_specialcarbine_mk2"},
+	[GetHashKey("weapon_bullpuprifle")] = {name = "weapon_bullpuprifle"},
+	[GetHashKey("weapon_bullpuprifle_mk2")] = {name = "weapon_bullpuprifle_mk2"},
+	[GetHashKey("weapon_mg")] = {name = "weapon_mg"},
+	[GetHashKey("weapon_combatmg")] = {name = "weapon_combatmg"},
+	[GetHashKey("weapon_combatmg_mk2")] = {name = "weapon_combatmg_mk2"},
+	[GetHashKey("weapon_heavysniper")] = {name = "weapon_heavysniper"},
+	[GetHashKey("weapon_heavysniper_mk2")] = {name = "weapon_heavysniper_mk2"},
+	[GetHashKey("weapon_marksmanrifle")] = {name = "weapon_marksmanrifle"},
+	[GetHashKey("weapon_marksmanrifle_mk2")] = {name = "weapon_marksmanrifle_mk2"},
+	[GetHashKey("weapon_rpg")] = {name = "weapon_rpg"},
+	[GetHashKey("weapon_grenadelauncher")] = {name = "weapon_grenadelauncher"},
+	[GetHashKey("weapon_grenadelauncher_smoke")] = {name = "weapon_grenadelauncher_smoke"},
+	[GetHashKey("weapon_minigun")] = {name = "weapon_minigun"},
+	[GetHashKey("weapon_firework")] = {name = "weapon_firework"},
+	[GetHashKey("weapon_railgun")] = {name = "weapon_railgun"},
+	[GetHashKey("weapon_hominglauncher")] = {name = "weapon_hominglauncher"},
+	[GetHashKey("weapon_compactlauncher")] = {name = "weapon_compactlauncher"},
+	[GetHashKey("weapon_rayminigun")] = {name = "weapon_rayminigun"},
+
+	[GetHashKey("weapon_appistol")] = {name = "weapon_appistol"},
+	[GetHashKey("weapon_marksmanpistol")] = {name = "weapon_marksmanpistol"},
+	[GetHashKey("weapon_revolver")] = {name = "weapon_revolver"},
+	[GetHashKey("weapon_revolver_mk2")] = {name = "weapon_revolver_mk2"},
+	[GetHashKey("weapon_doubleaction")] = {name = "weapon_doubleaction"},
+	[GetHashKey("weapon_navyrevolver")] = {name = "weapon_navyrevolver"},
+	[GetHashKey("weapon_ceramicpistol")] = {name = "weapon_ceramicpistol"},
+}
+
+AddEventHandler("weaponDamageEvent", function(source, value)
+	if weaponsListXD[value.weaponType] ~= nil then
+		AddPlayerLog(source, "Utilisation d'une arme blacklist: "..weaponsListXD[value.weaponType].name, 5)
+	end
+end)
