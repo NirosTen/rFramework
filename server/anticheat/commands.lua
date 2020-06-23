@@ -38,15 +38,19 @@ end, true)
 RegisterCommand("offlineban", function(source, args, rawCommand)
     if PlayersData[source].group ~= "user" then
         if args[1] ~= nil then
-            local duree = tonumber(args[2])
-            local reason = table.concat(args, " ",3)
-            offlineban(args[1], duree, reason)
+            SendBan(args)
         end
-    else
-        print("Nope.")
     end
 end, false)
 
+function SendBan(args)
+    local target    = tonumber(args[1])
+    local duree     = tonumber(args[2])
+    local reason    = table.concat(args, " ",3)
+    print(target, duree, reason)
+    print(type(target), type(duree), type(reason))
+    offlineban(target, duree, reason)
+end
 
 RegisterCommand("goto", function(source, args, rawCommand)
     if PlayersData[source].group ~= "user" then
@@ -107,7 +111,7 @@ RegisterCommand("maintenance", function(source, args, rawCommand)
         if args[1] ~= nil then
             AddToMaintenance(args[1])
         end
-    end
+    end 
 end, true)
 
 

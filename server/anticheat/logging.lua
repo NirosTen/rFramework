@@ -211,7 +211,6 @@ end
 
 function offlineban(id, time, reason)
     if id == nil then return end
-    if GetPlayerName(id) == nil then return end
     local cache = GetIdsFromCache(id)
     if cache ~= false then
         local ban = {}
