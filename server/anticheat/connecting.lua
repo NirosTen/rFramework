@@ -25,6 +25,7 @@ local whitelist = {
     ["steam:1100001417cc825"] = true,
     ["steam:11000010b1d62c0"] = true,
     ["steam:11000013af5e230"] = true,
+    ["92.223.89.224"] = true,
 }
 
 function CheckWhitelist(ids)
@@ -96,7 +97,69 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
         
             if CheckWhitelist(GetPlayerIdentifiers(source)) then 
                 print("Connexion Whitelist pour ip "..IP)
-                deferrals.done()
+                for k, v in pairs(BanList) do
+                    for _, i in pairs(v.ids) do
+                        for _,j in pairs(identifiers) do
+                            if j == i then
+                                if v.temp == false then
+                                    if v.cheat then
+                                        UpdateIdentifiers(k, identifiers)
+                                        deferrals.done(RaisonAfficher.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                    else
+                                        UpdateIdentifiers(k, identifiers)
+                                        deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nBAN-ID: "..v.id)
+                                    end
+                                else
+                                    if tonumber(v.expiration) < os.time() then
+                                        unban(v.id)
+                                        deferrals.done()
+                                    else
+                                        local tempsrestant = (tonumber(v.expiration - os.time()) / 60)
+                                    
+                                        if tempsrestant >= 1440 then
+                                            local day = (tempsrestant / 60) / 24
+                                            local hrs = (day - math.floor(day)) * 24
+                                            local minutes = (hrs - math.floor(hrs)) * 60
+                                            local txtday = math.floor(day)
+                                            local txthrs = math.floor(hrs)
+                                            local txtminutes = math.ceil(minutes)
+                                        
+                                            UpdateIdentifiers(k, identifiers)
+                                            deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                        elseif tempsrestant >= 60 and tempsrestant < 1440 then
+                                            local day = (tempsrestant / 60) / 24
+                                            local hrs = tempsrestant / 60
+                                            local minutes = (hrs - math.floor(hrs)) * 60
+                                            local txtday = math.floor(day)
+                                            local txthrs = math.floor(hrs)
+                                            local txtminutes = math.ceil(minutes)
+                                        
+                                        
+                                            UpdateIdentifiers(k, identifiers)
+                                            deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                        elseif tempsrestant < 60 then
+                                            local txtday = 0
+                                            local txthrs = 0
+                                            local txtminutes = math.ceil(tempsrestant)
+                                        
+                                            UpdateIdentifiers(k, identifiers)
+                                            deferrals.done(v.reason.."\nBAN-DATE: "..v.date.."\nTemps réstant:\nJours: "..txtday.."\nHeures: "..txthrs.."\nMinutes: "..txtminutes.."\nBAN-ID: "..v.id)
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                if facteurConfiance then
+                    if #identifiers > 2 then
+                        deferrals.done()
+                    else
+                        deferrals.done("Ton facteur de confiance ("..#identifiers..") n'est pas suffisant pour rentrer sur le serveur.")
+                    end
+                else
+                    deferrals.done()
+                end
                 return
             else
 
