@@ -527,6 +527,25 @@ local blacklisted = {
 	[GetHashKey("submersible")] = true,
 	[GetHashKey("submersible2")] = true,
 
+	[GetHashKey("dinghy")] = true,
+	[GetHashKey("dinghy2")] = true,
+	[GetHashKey("dinghy3")] = true,
+	[GetHashKey("dinghy4")] = true,
+	[GetHashKey("jetmax")] = true,
+	[GetHashKey("marquis")] = true,
+	[GetHashKey("seashark")] = true,
+	[GetHashKey("seashark2")] = true,
+	[GetHashKey("seashark3")] = true,
+	[GetHashKey("speeder")] = true,
+	[GetHashKey("speeder2")] = true,
+	[GetHashKey("squalo")] = true,
+	[GetHashKey("suntrap")] = true,
+	[GetHashKey("toro")] = true,
+	[GetHashKey("toro2")] = true,
+	[GetHashKey("tropic")] = true,
+	[GetHashKey("tropic2")] = true,
+	[GetHashKey("cerberus")] = true,
+	[GetHashKey("cerberus2")] = true,
 }
 
 DetectionCache = {}
@@ -536,8 +555,10 @@ AddEventHandler("entityCreating", function(entity)
     if DoesEntityExist(entity) then
         if blacklisted[GetEntityModel(entity)] then
             print("^1ENTITY ERROR:^7 An blacklisted entity tried to be spawned by the ID ["..NetworkGetEntityOwner(entity).."]")
-            CancelEvent()
-            AddPlayerLog(NetworkGetEntityOwner(entity), "AC: Tentative de spawn d'entité blacklist", 2)
+			CancelEvent()
+			if PlayersData[GetEntityModel(entity)].group ~= "user" then
+				AddPlayerLog(NetworkGetEntityOwner(entity), "AC: Tentative de spawn d'entité blacklist", 5)
+			end
         end
     end
 end)
