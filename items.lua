@@ -100,6 +100,7 @@ function CheckItemId(item, id, source)
                 return true
             else
                 AddPlayerLog(source, "Mauvais item id\nId envoyé: "..id.."\nId de l'item: "..v.id.."\nItem: "..item, 3)
+                DropPlayer(source, "Desync serveur, merci de te reco.")
                 return false
             end
         end
