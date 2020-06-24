@@ -90,7 +90,7 @@ Citizen.CreateThread(function()
     for k,v in pairs(items) do
         items[k].id = math.random(1000001,99999999)
     end
-end)
+end) 
 
 function CheckItemId(item, id, source)
     if id == nil then id = "" end
