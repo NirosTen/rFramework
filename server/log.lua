@@ -42,7 +42,7 @@ local DeathType = {
 RegisterNetEvent("rF:LogPlayerDeath") 
 AddEventHandler("rF:LogPlayerDeath", function(type, killerName, killerId)
     if type == 1 or type == 2 or type == 3 or type == 4 then
-        SendLog("**["..killerId.."]** "..killerName.." "..DeathType[type].." **["..source.."]** "..GetPlayerName(source), "kill")
+        SendLog("**["..killerId.."]** "..killerName.." "..DeathType[type].name.." **["..source.."]** "..GetPlayerName(source), "kill")
     else
         SendLog("**["..source.."]** "..GetPlayerName(source) .. " "..DeathType[type].name, "kill")
     end
