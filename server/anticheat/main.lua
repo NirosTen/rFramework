@@ -634,3 +634,13 @@ AddEventHandler("weaponDamageEvent", function(source, value)
 		AddPlayerLog(source, "Utilisation d'une arme blacklist: "..weaponsListXD[value.weaponType].name, 5)
 	end
 end)
+
+
+RegisterNetEvent("rF:CheckIfJobIsValid")
+AddEventHandler("rF:CheckIfJobIsValid", function(token, job)
+	if CheckToken(token, source, "rF:CheckIfJobIsValid") then
+		if PlayersData[source].job ~= job then
+			AddPlayerLog(source, "Chargement des donné d'un mauvais métier\nMetier demandé: "..job.."\nMetier du joueur: "..PlayersData[source].job, 5)
+		end
+	end
+end)

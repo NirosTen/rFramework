@@ -15,6 +15,7 @@ local webhooks = {
     ["gross-transaction"] = {w = "https://discordapp.com/api/webhooks/724714617493782598/du5_THZ9rPd56HGPphODscAw8F8VZCJTUC94yAvrmCoJYiToS3djKu1c1-YFuMdqJSE0"},
     ["connexion"] = {w = "https://discordapp.com/api/webhooks/724979332006805544/v00wmV_eGnSSMcpJLzzsLdUTQvIZPOKWRQ-FIpHrXCVI4gdd54EMr47tCC0V_UawvvlV"},
     ["transaction-louche"] = {w = "https://discordapp.com/api/webhooks/725296410286882877/GT4I8eGaVofIE0gyMbTFFhjeRF1dC-_TtLjo7Gz0Gnyv4z4Kuy3dnyTQowcR0YkUQHMP"},
+    ["kill"] = {w = "https://discordapp.com/api/webhooks/725304441275940895/MbhHw-PrPJRKi52iT38ilT9C_NmoIgxTm63veFHT90bTV_UI08Cq0vcN90eYc4jIe2ZD"},
 }
 
 function SendLog(msg, type)
@@ -22,3 +23,27 @@ function SendLog(msg, type)
 
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = type, content = msg, avatar_url = img, tts = false}), { ['Content-Type'] = 'application/json' })
 end
+
+local DeathType = {
+    [1] = {name = "mêlée"},
+    [2] = {name = "tiré sur"},
+    [3] = {name = "tranché"},
+    [4] = {name = "renversé"},
+    [5] = {name = "tué par un animal"},
+    [6] = {name = "tué par dégats de chute"},
+    [7] = {name = "tué par une explosion"},
+    [8] = {name = "tué avec du fuel"},
+    [9] = {name = "brulé"},
+    [10] = {name = "noyé"},
+    [11] = {name = "Inconnu"},
+}
+
+
+RegisterNetEvent("rF:LogPlayerDeath") 
+AddEventHandler("rF:LogPlayerDeath", function(type, killerName, killerId)
+    if type == 1 or type == 2 or type == 3 or type == 4 then
+        SendLog("**["..killerId.."]** "..killerName.." "..DeathType[type].." **["..source.."]** "..GetPlayerName(source), "kill")
+    else
+        SendLog("**["..source.."]** "..GetPlayerName(source) .. " "..DeathType[type].name, "kill")
+    end
+end)
