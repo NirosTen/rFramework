@@ -30,14 +30,16 @@ RegisterServerCallback('rF:GetOtherPlayerData', function(source, cb, target)
 end)
 
 RegisterNetEvent("rF:GiveItem")
-AddEventHandler("rF:GiveItem", function(token, item, count)
+AddEventHandler("rF:GiveItem", function(token, item, count, id)
+    if not CheckItemId(item, id, source) then return end
     if CheckToken(token, source, "GiveItem") then
         AddItemToPlayerInv(source, item, count)
     end
 end)
 
 RegisterNetEvent("rF:GiveItemToPlayer")
-AddEventHandler("rF:GiveItemToPlayer", function(token, target, item, count)
+AddEventHandler("rF:GiveItemToPlayer", function(token, target, item, count, id)
+    if not CheckItemId(item, id, source) then return end
     if CheckToken(token, source, "GiveItemToPlayer") then
         AddItemToPlayerInv(target, item, count)
     end
@@ -61,7 +63,8 @@ end)
 
 
 RegisterNetEvent("rF:BuyItemIfCan")
-AddEventHandler("rF:BuyItemIfCan", function(token, item, count, price)
+AddEventHandler("rF:BuyItemIfCan", function(token, item, count, price, id)
+    if not CheckItemId(item, id, source) then return end
     if CheckToken(token, source, "BuyItemIfCan") then
         if count == nil then return end
         BuyItemIfCanHoldIt(source, item, count, price)
@@ -115,7 +118,8 @@ AddEventHandler("rF:ExhangeItem", function(token, OriginalItem, ItemToGet)
 end)
 
 RegisterNetEvent("rF:SellItem")
-AddEventHandler("rF:SellItem", function(token, item, price, count, clean)
+AddEventHandler("rF:SellItem", function(token, item, price, count, clean, id)
+    if not CheckItemId(item, id, source) then return end
     if CheckToken(token, source, "SellItem") then
         SellItem(source, item, price, count, clean)
     end

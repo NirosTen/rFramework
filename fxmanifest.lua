@@ -49,7 +49,6 @@ server_scripts {
 
 client_scripts {
     'config.lua',
-    'items.lua',
 	-- Core
     'client/core/*.lua',
     'client/*.lua',
@@ -69,7 +68,6 @@ exports {
     "GetKeyValue",
     "ReloadPlayerCloth",
     "TriggerServerCallback",
-    "GetItems",
 }
 
 server_exports { -- not going to use those, i suppose i will remove them
@@ -98,6 +96,7 @@ server_exports { -- not going to use those, i suppose i will remove them
     'GetPlayerJob',
     'SetPlayerDeathStatus',
     'SendLog',
+    'GetItems',
 }
 
 dependencies {

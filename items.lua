@@ -83,14 +83,25 @@ items = {
     {name="hache", label="Hache", weight=9.0, event="core:weapon_battleaxe"}, -- Armurie
 } 
 
-function GetItems()
-    return items
-end
+Citizen.CreateThread(function()
+    for k,v in pairs(items) do
+        v[k].id = math.random(1000001,99999999)
+    end
+end)
 
-function GetOriginalLabel(item)
+function CheckItemId(item, id, source)
     for k,v in pairs(items) do
         if v.name == item then
-            return v.label
+            if v.id == id then
+                return true
+            else
+                AddPlayerLog(source, "Mauvais item id\nId envoyé: "..id.."\nId de l'item: "..v.id.."\nItem: "..item)
+                return false
+            end
         end
     end
 end
+
+function GetItems()
+    return items
+end 
