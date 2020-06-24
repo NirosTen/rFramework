@@ -83,19 +83,23 @@ items = {
     {name="hache", label="Hache", weight=9.0, event="core:weapon_battleaxe"}, -- Armurie
 } 
 
+
+
+
 Citizen.CreateThread(function()
     for k,v in pairs(items) do
-        v[k].id = math.random(1000001,99999999)
+        items[k].id = math.random(1000001,99999999)
     end
 end)
 
 function CheckItemId(item, id, source)
+    if id == nil then id = "" end
     for k,v in pairs(items) do
         if v.name == item then
             if v.id == id then
                 return true
             else
-                AddPlayerLog(source, "Mauvais item id\nId envoyé: "..id.."\nId de l'item: "..v.id.."\nItem: "..item)
+                AddPlayerLog(source, "Mauvais item id\nId envoyé: "..id.."\nId de l'item: "..v.id.."\nItem: "..item, 3)
                 return false
             end
         end

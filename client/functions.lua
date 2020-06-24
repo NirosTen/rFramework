@@ -42,7 +42,7 @@ end)
 
 
 RegisterNetEvent("rF:UseItem")
-AddEventHandler("rF:UseItem", function(item)
+AddEventHandler("rF:UseItem", function(item, items)
     for k,v in pairs(items) do
         if v.name == item then
             TriggerEvent(v.event)
