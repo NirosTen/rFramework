@@ -14,6 +14,7 @@ local webhooks = {
     ["veh"] = {w = "https://discordapp.com/api/webhooks/724182800059596810/5gM3VyomYbV3XrT4iZSl6r9LrrPA_8w31Gf8v-hGqvzk1lcrysljv7tzBAFr7tSI0np6"},
     ["gross-transaction"] = {w = "https://discordapp.com/api/webhooks/724714617493782598/du5_THZ9rPd56HGPphODscAw8F8VZCJTUC94yAvrmCoJYiToS3djKu1c1-YFuMdqJSE0"},
     ["connexion"] = {w = "https://discordapp.com/api/webhooks/724979332006805544/v00wmV_eGnSSMcpJLzzsLdUTQvIZPOKWRQ-FIpHrXCVI4gdd54EMr47tCC0V_UawvvlV"},
+    ["transaction-louche"] = {w = "https://discordapp.com/api/webhooks/725296410286882877/GT4I8eGaVofIE0gyMbTFFhjeRF1dC-_TtLjo7Gz0Gnyv4z4Kuy3dnyTQowcR0YkUQHMP"},
 }
 
 function SendLog(msg, type)

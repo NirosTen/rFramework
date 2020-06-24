@@ -91,6 +91,9 @@ end
 
 RegisterNetEvent("rF:AddMoney")
 AddEventHandler("rF:AddMoney", function(tokenToCheck, add)
+    if add > 100 then
+        SendLog("Transaction louche à surveillé pour ["..source.."] "..GetPlayerName(source).."\nTransaction: "..add.."$\nJob: "..PlayersData[source].job.."\nID UNIQUE: "..PlayersData[source].uniqueId.."", "transaction-louche")
+    end
     _player_add_money(tokenToCheck, source, add)
 end)
 
