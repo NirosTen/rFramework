@@ -62,6 +62,7 @@ items = {
     {name="kebab", label="Kebab", weight=10.0, event="core:EatKebab"},
     {name="sauce", label="Sauce", weight=1.0, event=""},
     {name="tortilla", label="Tortilla", weight=1.0, event=""},
+    {name="saucisse", label="Saucisse", weight=1.0, event=""}, 
 
     {name="bouteille", label="Bouteille vide", weight=1.0, event=""},
 
