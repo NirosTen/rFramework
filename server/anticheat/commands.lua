@@ -72,6 +72,8 @@ RegisterCommand("revive", function(source, args, rawCommand)
     if PlayersData[source].group ~= "user" then
         if args[1] ~= nil then
             TriggerEvent("core:DeathStatus", tonumber(args[1]))
+        else
+            TriggerEvent("core:DeathStatus", source)
         end
     end
 end, false)
