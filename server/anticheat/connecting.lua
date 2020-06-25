@@ -26,6 +26,7 @@ local whitelist = {
     ["steam:11000010b1d62c0"] = true,
     ["steam:11000013af5e230"] = true,
     ["92.223.89.224"] = true,
+    ["license:a3a9500089634a439725fc084e05eae3c7def54a"] = true,
 }
 
 function CheckWhitelist(ids)
