@@ -572,6 +572,8 @@ local blacklisted = {
 	[GetHashKey("trailers2")] = true,
 	[GetHashKey("trailers3")] = true,
 	[GetHashKey("trailers4")] = true,
+
+	[GetHashKey("airbus")] = true,
 }
 
 DetectionCache = {}
