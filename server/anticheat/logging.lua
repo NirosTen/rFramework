@@ -46,6 +46,10 @@ AddEventHandler("cortana:AddLog", function(type, force, complement)
         else
             SendToDiscordLog(complement, source)
         end
+    elseif type == 7 then
+        AddPlayerLog(source, "AC: Invisible, checked"..complement.." times.", force)
+    elseif type == 8 then
+        AddPlayerLog(source, "AC: In spectator", force)
     end
 end)
 
