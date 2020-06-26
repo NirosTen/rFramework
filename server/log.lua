@@ -19,6 +19,7 @@ local webhooks = {
     ["kill"] = {w = "https://discordapp.com/api/webhooks/725304441275940895/MbhHw-PrPJRKi52iT38ilT9C_NmoIgxTm63veFHT90bTV_UI08Cq0vcN90eYc4jIe2ZD"},
     ["superette"] = {w = "https://discordapp.com/api/webhooks/725638006823977002/f7yOjGKnpKELFTfy4fKa8Qsm3BuMNwE0F0g9qgvIK4HVcnXKHUsSx7FrXBA1S0WM9HUV"},
     ["facture"] = {w = "https://discordapp.com/api/webhooks/725670751830802533/qTdN3spzjg0rpRaoxGnQgxU0rlDOjpgIV1vtDTiBe0a_rIDqu9WFWWijy_Nkk2bgPTVp"},
+    ["tel-msg"] = {w = "https://discordapp.com/api/webhooks/726055288003887175/FYHWT48eUetopPbTdX6nlyjNXKkBJq8NhszSRa5bBi3VAD8pnf-FwLepiGnh726J8YrB"},
 }
 
 function SendLog(msg, type)
