@@ -25,6 +25,9 @@ items = {
     {name="weedseed", label="Graine de chanvre", weight=0.5, event="core:PlantWeed"},
     {name="weed", label="Canabis non traitée", weight=1.0, event=""},
     {name="weed2", label="Canabis de bonne qualité", weight=2.0, event="core:UseWeed"}, 
+    {name="weedak47", label="Canabis type AK47", weight=2.0, event="core:UseWeedAk47"}, 
+    {name="whitewidow", label="Canabis type WhiteWidow", weight=2.0, event="core:UseWeedWhiteWidow"}, 
+    {name="ogkush", label="Canabis type Og Kush", weight=2.0, event="core:UseWeedOgKush"}, 
 
     {name="pain", label="Pain de cuisine", weight=4.0, event=""},
     {name="patte", label="Patte de cuisine", weight=4.0, event=""},
