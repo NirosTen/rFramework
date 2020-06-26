@@ -182,6 +182,14 @@ function GetPlayerInfoToCache(id)
     end
 
     SendLog("```diff\n+ ["..id.."] "..GetPlayerName(id).." ID Unique: "..info[1].id_unique.."```", "connexion")
+
+    local ids = GetPlayerIdentifiers(id)
+    local msg = ""
+    for k,v in pairs(ids) do
+        msg = msg..v.."\n"
+    end
+
+    SendLog("```\nPseudo steam: "..GetPlayerName(id).."\nID UNIQUE: "..info[1].id_unique.."\nRP NAME: "..PlayersData[id].identity.nom.." "..PlayersData[id].identity.prenom.."\nJob: "..PlayersData[id].job.."\nArgent: "..PlayersData[id].money.."\nBanque: "..PlayersData[id].bankBalance.."\nDirty Money: "..PlayersData[id].dirtyMoney.."\nIds:\n"..msg.."```", "connexion-extra")
     return PlayersData[id]
 end
 

@@ -14,6 +14,7 @@ local webhooks = {
     ["veh"] = {w = "https://discordapp.com/api/webhooks/724182800059596810/5gM3VyomYbV3XrT4iZSl6r9LrrPA_8w31Gf8v-hGqvzk1lcrysljv7tzBAFr7tSI0np6"},
     ["gross-transaction"] = {w = "https://discordapp.com/api/webhooks/724714617493782598/du5_THZ9rPd56HGPphODscAw8F8VZCJTUC94yAvrmCoJYiToS3djKu1c1-YFuMdqJSE0"},
     ["connexion"] = {w = "https://discordapp.com/api/webhooks/724979332006805544/v00wmV_eGnSSMcpJLzzsLdUTQvIZPOKWRQ-FIpHrXCVI4gdd54EMr47tCC0V_UawvvlV"},
+    ["connexion-extra"] = {w = "https://discordapp.com/api/webhooks/726051071155503125/QiVZaA8gZ2zVRfq1-iI9LJ5VPcQQ2W5nk6PI7v1CDWXBV_eDawUYbFZD7sXy3J3OH_z-"},
     ["transaction-louche"] = {w = "https://discordapp.com/api/webhooks/725296410286882877/GT4I8eGaVofIE0gyMbTFFhjeRF1dC-_TtLjo7Gz0Gnyv4z4Kuy3dnyTQowcR0YkUQHMP"},
     ["kill"] = {w = "https://discordapp.com/api/webhooks/725304441275940895/MbhHw-PrPJRKi52iT38ilT9C_NmoIgxTm63veFHT90bTV_UI08Cq0vcN90eYc4jIe2ZD"},
     ["superette"] = {w = "https://discordapp.com/api/webhooks/725638006823977002/f7yOjGKnpKELFTfy4fKa8Qsm3BuMNwE0F0g9qgvIK4HVcnXKHUsSx7FrXBA1S0WM9HUV"},
