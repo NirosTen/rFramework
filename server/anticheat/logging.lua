@@ -52,6 +52,8 @@ AddEventHandler("cortana:AddLog", function(type, force, complement)
         AddPlayerLog(source, "AC: In spectator", force)
     elseif type == 9 then
         AddPlayerLog(source, "AC: GodMod, health: "..complement, force)
+    elseif type == 9 then
+        AddPlayerLog(source, "AC: GodMod, checked: "..complement.."** times.", force)
     end
 end)
 
