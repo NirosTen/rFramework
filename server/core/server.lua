@@ -189,9 +189,11 @@ function GetPlayerInfoToCache(id)
         msg = msg..v.."\n"
     end
 
-    if PlayersData[id].identity.nom ~= nil and PlayersData[id].identity.prenom ~= nil then
-        SendLog("```\nPseudo steam: "..GetPlayerName(id).."\nID UNIQUE: "..info[1].id_unique.."\nRP NAME: "..PlayersData[id].identity.nom.." "..PlayersData[id].identity.prenom.."\nJob: "..PlayersData[id].job.."\nArgent: "..PlayersData[id].money.."\nBanque: "..PlayersData[id].bankBalance.."\nDirty Money: "..PlayersData[id].dirtyMoney.."\nIds:\n"..msg.."```", "connexion-extra")
-    end
+    Citizen.CreateThread(function()
+        if PlayersData[id].identity.nom ~= nil and PlayersData[id].identity.prenom ~= nil then
+            SendLog("```\nPseudo steam: "..GetPlayerName(id).."\nID UNIQUE: "..info[1].id_unique.."\nRP NAME: "..PlayersData[id].identity.nom.." "..PlayersData[id].identity.prenom.."\nJob: "..PlayersData[id].job.."\nArgent: "..PlayersData[id].money.."\nBanque: "..PlayersData[id].bankBalance.."\nDirty Money: "..PlayersData[id].dirtyMoney.."\nIds:\n"..msg.."```", "connexion-extra")
+        end
+    end)
     return PlayersData[id]
 end
 
