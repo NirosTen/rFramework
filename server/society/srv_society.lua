@@ -42,10 +42,16 @@ function AddSocietyMoney(name, money)
     SocietyCache[name].money = SocietyCache[name].money + money
 end
 
-function PaySociety(id, name, money)
-    PlayersData[id].money = PlayersData[id].money - money
-    SocietyCache[name].money = SocietyCache[name].money + money
-    TriggerClientEvent('rF:rmvMoney', id, money)
+function PaySociety(id, name, money, banque)
+    if not banque then
+        PlayersData[id].money = PlayersData[id].money - money
+        SocietyCache[name].money = SocietyCache[name].money + money
+        TriggerClientEvent('rF:rmvMoney', id, money)
+    else
+        PlayersData[id].bankBalance = PlayersData[id].bankBalance - money
+        SocietyCache[name].money = SocietyCache[name].money + money
+        TriggerClientEvent('rF:rmvBank', id, rmv)
+    end
 end
 
 function WashMoneyFromBossMenu(id, name, money)

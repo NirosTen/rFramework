@@ -20,9 +20,9 @@ AddEventHandler("rF:RemoveSocietyMoney", function(token, society, amount)
 end)
 
 RegisterNetEvent("rF:PaySociety")
-AddEventHandler("rF:PaySociety", function(token, society, amount)
+AddEventHandler("rF:PaySociety", function(token, society, amount, banque)
     if CheckToken(token, source) then
-        PaySociety(source, society, amount)
+        PaySociety(source, society, amount, banque)
     end
 end)
 
