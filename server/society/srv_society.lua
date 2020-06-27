@@ -50,7 +50,7 @@ function PaySociety(id, name, money, banque)
     else
         PlayersData[id].bankBalance = PlayersData[id].bankBalance - money
         SocietyCache[name].money = SocietyCache[name].money + money
-        TriggerClientEvent('rF:rmvBank', id, rmv)
+        TriggerClientEvent('rF:rmvBank', id, money)
     end
 end
 
