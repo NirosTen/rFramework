@@ -98,11 +98,13 @@ function TransferItemFromSocietyToInv(id, _name, _item, _label, _olabel, _count,
         
         if itemCount == nil then
             print("The player ["..id.."] tried to remove an item ^1that do not exist^7 in ".._name.." inventory.")
-            AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: 0\nCount client: "..countSee.."\nDemande: -".._count, 2)
+            TriggerClientEvent("rF:notification", id, "~r~Désync inventaire / client serveur. Merci de fermer t'es menus et de les ouvrir de nouveau.")
+            --AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: 0\nCount client: "..countSee.."\nDemande: -".._count, 2)
             return
         else
             if SocietyCache[_name].inventory[_label].count ~= countSee then
-                AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: "..SocietyCache[_name].inventory[_label].count.."\nCount client: "..countSee.."\nDemande: -".._count, 4)
+                TriggerClientEvent("rF:notification", id, "~r~Désync inventaire / client serveur. Merci de fermer t'es menus et de les ouvrir de nouveau.")
+                --AddPlayerLog(id, "Desync inventaire society. Society: ".._name.."\nItem: ".._item.."\nCount Serveur: "..SocietyCache[_name].inventory[_label].count.."\nCount client: "..countSee.."\nDemande: -".._count, 4)
                 return
             end
         end
