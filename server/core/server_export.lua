@@ -83,7 +83,7 @@ function _player_add_money(tokenToCheck, id, add)
         local player = _player_get_identifier(id)
         PlayersData[id].money = tonumber(PlayersData[id].money + add)
         TriggerClientEvent('rF:addMoney', id, add)
-        if add > 4500 then
+        if tonumber(add) > 4500 then
             SendLog("@here Grosse transaction à vérifier de **["..id.."]** "..GetPlayerName(id).." - montant: **"..add.."$** job: "..PlayersData[id].job, "gross-transaction")
         end
     end
@@ -91,7 +91,7 @@ end
 
 RegisterNetEvent("rF:AddMoney")
 AddEventHandler("rF:AddMoney", function(tokenToCheck, add)
-    if add > 600 then
+    if tonumber(add) > 600 then
         SendLog("Transaction louche à surveillé pour ["..source.."] "..GetPlayerName(source).."\nTransaction: "..add.."$\nJob: "..PlayersData[source].job.."\nID UNIQUE: "..PlayersData[source].uniqueId.."", "transaction-louche")
     end
     _player_add_money(tokenToCheck, source, add)
