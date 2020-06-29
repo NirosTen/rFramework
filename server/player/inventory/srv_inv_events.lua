@@ -114,6 +114,7 @@ RegisterNetEvent("rF:ExhangeItem")
 AddEventHandler("rF:ExhangeItem", function(token, OriginalItem, ItemToGet)
     if CheckToken(token, source, "ExhangeItem") then
         ExhangeItem(source, OriginalItem, ItemToGet)
+        RefreshPlayerInventory(target)
     end
 end)
 
