@@ -225,7 +225,6 @@ end
 
 
 function ExhangeItem(id, OriginalItem, ItemToGet)
-    local inv = GetInventoryFromCache(id)
     local invWeight = GetInvWeight(inv)
     local oWheight, oLabel = GetItemWeight(OriginalItem, 1)
     if oLabel == nil then oLabel = GetOriginalLabel(itemToSell) end
@@ -274,7 +273,6 @@ function SellItem(id, itemToSell, price, _count, clean)
             else
                 PlayersData[id].dirtyMoney = PlayersData[id].dirtyMoney + price
             end
-            TriggerClientEvent('rF:addMoney', id, price)
         else
             PlayersData[id].inventory[oLabel].count = PlayersData[id].inventory[oLabel].count - _count
             if clean == nil or clean then
@@ -282,7 +280,6 @@ function SellItem(id, itemToSell, price, _count, clean)
             else
                 PlayersData[id].dirtyMoney = PlayersData[id].dirtyMoney + price
             end
-            TriggerClientEvent('rF:addMoney', id, price)
         end
     else
         TriggerClientEvent("rF:notification", id, "~r~Action impossible.\n~w~Tu ne possède pas assez de ~g~"..oLabel.."~w~.") 

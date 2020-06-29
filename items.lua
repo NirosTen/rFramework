@@ -85,6 +85,10 @@ items = {
     {name="golf", label="Club de golf", weight=13.0, event="core:weapon_golfclub"}, -- Armurie
     {name="machette", label="Machette", weight=8.0, event="core:weapon_machete"}, -- Armurie
     {name="hache", label="Hache", weight=9.0, event="core:weapon_battleaxe"}, -- Armurie
+
+
+    {name="coke", label="Coke non traité", weight=1.0, event=""},
+    {name="coke2", label="Coke traité", weight=1.0, event=""},
 } 
 
 
