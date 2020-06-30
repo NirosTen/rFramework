@@ -225,7 +225,7 @@ end
 
 
 function ExhangeItem(id, OriginalItem, ItemToGet)
-    local invWeight = GetInvWeight(inv)
+    local invWeight = GetInvWeight(PlayersData[id].inventory)
     local oWheight, oLabel = GetItemWeight(OriginalItem, 1)
     if oLabel == nil then oLabel = GetOriginalLabel(itemToSell) end
     local iWheight, iLabel = GetItemWeight(ItemToGet, 1)
