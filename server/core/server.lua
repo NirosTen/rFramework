@@ -41,10 +41,13 @@ function IsAllowedToJoin(id)
     local license = _player_get_identifier(id)
     local players = GetPlayers()
     for k,v in pairs(players) do
-        local oLicense = _player_get_identifier(v)
-        if license == oLicense then
-            print("^1CONNEXION ERROR:^7 Someone tried to join the server with the same license than someone else.")
-            return false
+        if tonumber(v) ~= tonumber(id) then
+            print(v, id)
+            local oLicense = _player_get_identifier(v)
+            if license == oLicense then
+                print("^1CONNEXION ERROR:^7 Someone tried to join the server with the same license than someone else.")
+                return false
+            end
         end
     end
     return true
