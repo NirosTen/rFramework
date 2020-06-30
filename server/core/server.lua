@@ -24,14 +24,31 @@ end
 
 RegisterServerEvent('rF:spawn') 
 AddEventHandler('rF:spawn', function()
-    local source = source
     TriggerClientEvent("rF:SendToken", source, token) -- Client side
-    local player = _player_get_identifier(source)
-    local pCache = GetPlayerInfoToCache(source)
-    InitSpawnPlayer(source)
-    TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip, pCache.dead, pCache.uniqueId)
-    AddToRequestCache(source)
+    if IsAllowedToJoin(source) then
+        local source = source
+        local player = _player_get_identifier(source)
+        local pCache = GetPlayerInfoToCache(source)
+        InitSpawnPlayer(source)
+        TriggerClientEvent('rF:initializeinfo', source, pCache.money, pCache.dirtyMoney, pCache.bankBalance, pCache.job, pCache.job_grade, pCache.skin, pCache.identity, pCache.cloths, pCache.group, pCache.vip, pCache.dead, pCache.uniqueId)
+        AddToRequestCache(source)
+    else
+        DropPlayer(source, "Tu es déjà connecté au serveur avec ce compte Rockstar.")
+    end
 end) 
+
+function IsAllowedToJoin(id)
+    local license = _player_get_identifier(id)
+    local players = GetPlayers()
+    for k,v in pairs(players) do
+        local oLicense = _player_get_identifier(v)
+        if license == oLicense then
+            print("^1CONNEXION ERROR:^7 Someone tried to join the server with the same license than someone else.")
+            return false
+        end
+    end
+    return true
+end
 
 
 
