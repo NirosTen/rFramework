@@ -143,7 +143,7 @@ end)
 function _player_remove_dirty_money(tokenToCheck, id, add)
     if CheckToken(tokenToCheck, id, "_player_remove_dirty_money") then
         local player = _player_get_identifier(id)
-        PlayersData[id].dirtyMoney = tonumber(PlayersData[id].dirtyMoney + add)
+        PlayersData[id].dirtyMoney = tonumber(PlayersData[id].dirtyMoney - add)
         TriggerClientEvent('rF:rmvDirtyMoney', id, add)
     end
 end
