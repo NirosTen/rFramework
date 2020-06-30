@@ -235,7 +235,11 @@ function GiveMoneyToPlayer(source, target, _money)
         TriggerClientEvent('rF:rmvMoney', source, _money)
         PlayersData[target].money = PlayersData[target].money + _money
         TriggerClientEvent('rF:addMoney', target, _money)
-        SendLog("Le joueur **"..source.." "..GetPlayerName(source).."** à donné un/une ".._money.."$ à **"..target.." "..GetPlayerName(target).."**", "money")
+        if _money > 9500 then
+            SendLog("@here Le joueur **"..source.." "..GetPlayerName(source).."** à donné un/une ".._money.."$ à **"..target.." "..GetPlayerName(target).."**", "money")
+        else
+            SendLog("Le joueur **"..source.." "..GetPlayerName(source).."** à donné un/une ".._money.."$ à **"..target.." "..GetPlayerName(target).."**", "money")
+        end
     end
 end
 
