@@ -4,7 +4,7 @@ RegisterCommand("unban", function(source, args, rawCommand)
     if source ~= 0 then
         if PlayersData[source].group ~= "user" then
             if args[1] ~= nil then
-                unban(args[1])
+                unban(args[1], source)
             else
                 print("Aucun ban-id spécifié.")
             end
@@ -38,18 +38,16 @@ end, true)
 RegisterCommand("offlineban", function(source, args, rawCommand)
     if PlayersData[source].group ~= "user" then
         if args[1] ~= nil then
-            SendBan(args)
+            SendBan(args, source)
         end
     end
 end, false)
 
-function SendBan(args)
+function SendBan(args, source)
     local target    = tonumber(args[1])
     local duree     = tonumber(args[2])
     local reason    = table.concat(args, " ",3)
-    print(target, duree, reason)
-    print(type(target), type(duree), type(reason))
-    offlineban(target, duree, reason)
+    offlineban(target, duree, reason, source)
 end
 
 RegisterCommand("goto", function(source, args, rawCommand)

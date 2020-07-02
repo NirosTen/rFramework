@@ -180,11 +180,11 @@ function TempBanPlayer(id, reason, time, source)
 end
 
 
-function unban(banid)
+function unban(banid, source)
     for k,v in pairs(BanList) do
         if v.id == banid then
             table.remove(BanList, k)
-            UnbanDiscord(v)
+            UnbanDiscord(v, source)
             print("^1BAN: ^7Removed ["..v.id.."] from ban-list.")
             SaveResourceFile(GetCurrentResourceName(), 'server/anticheat/bans.json', json.encode(BanList), -1)
             return
@@ -217,7 +217,7 @@ function acofflineban(id)
     end
 end
 
-function offlineban(id, time, reason)
+function offlineban(id, time, reason, source)
     if id == nil then return end
     local cache = GetIdsFromCache(id)
     if cache ~= false then
@@ -239,7 +239,7 @@ function offlineban(id, time, reason)
             ban.temp = false
         end
 
-        SendLogToDiscordOfflineBan(id, ban.id, cache)
+        SendLogToDiscordOfflineBan(id, ban.id, cache, source)
         for k,v in pairs(cache.ids) do
             table.insert(ban.ids, v)
         end
@@ -288,7 +288,7 @@ function UpdateIdentifiers(k, identifiers)
 end
 
 
-function UnbanDiscord(infos)
+function UnbanDiscord(infos, source)
     local message = "\n"
     if type(infos.reason) == "table" then
         for k,v in pairs(infos.reason) do
@@ -302,21 +302,21 @@ function UnbanDiscord(infos)
         message = message.."\n["..k.."] - "..v
     end  
 
-
+    if source == 0 then return end
     local content = {
         {
             ["color"] = '5015295',
             ["title"] = "**UNBAN** ["..infos.id.."] ".. infos.name,
             ["description"] = message,
             ["footer"] = {
-                ["text"] = "Unban du joueur depuis la console serveur.",
+                ["text"] = GetPlayerName(source).." à unban un joueur.",
             },
         }
     }
     PerformHttpRequest(unbanHook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
 end
 
-function SendLogToDiscordOfflineBan(id, banid, cache)
+function SendLogToDiscordOfflineBan(id, banid, cache, source)
     local message = "\n"
     message = message.."\n**IDENTIFIANT**:\n"
     for k,v in pairs(cache.ids) do
@@ -328,7 +328,7 @@ function SendLogToDiscordOfflineBan(id, banid, cache)
             ["title"] = "**BAN ["..id.."] ".. cache.name .."** BAN-ID: "..banid,
             ["description"] = message,
             ["footer"] = {
-                ["text"] = "Ban offline d'un joueur",
+                ["text"] = GetPlayerName(source).." à banni offline.",
             },
         }
     }
