@@ -121,7 +121,7 @@ RegisterCommand("kickall", function(source, args, rawCommand)
         local count = 0
         print("^2Ready ^7to kick "..#players.." players !")
         for k,v in pairs(players) do
-            Wait(500)
+            Wait(150)
             count = count + 1
             print("^2Kicked ^7#"..count)
             DropPlayer(v, "Restart du serveur en cours, merci d'attendre une annonce pour te reconnecter pour éviter toute corruption de personnage.")
