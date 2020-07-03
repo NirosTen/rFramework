@@ -41,6 +41,10 @@ items = {
     {name="coulisTomate", label="Coulis de tomate", weight=1.0, event=""},
     {name="fromage", label="Fromage", weight=1.0, event=""},
     {name="patteBolo", label="Pasta Bolognese", weight=1.0, event="core:EatPatte"},
+    {name="cafe", label="Nespresso", weight=1.0, event="core:EatCafe"},
+    {name="vin", label="Vin", weight=1.0, event="core:EatVin"},
+    {name="tiramisu", label="Tiramisù", weight=1.0, event="core:EatTiramisu"},
+    {name="pannacotta", label="Panna Cotta", weight=1.0, event="core:EatPannacotta"},
 
     -- Crucial
     {name="sandwich", label="Sandwich simple", weight=10.0, event="core:EatSandwichSimple"},
