@@ -1,20 +1,4 @@
-# rFramework
-Private RP Framework based of OMG Framework.
+Allez, regardez le code et comparé à ESX, osé dire que j'ai fait du copier coller.
+Nique bien ta mère la pute dictateur ma bite, tu te sens plus pisser car ta fait une tablette . Putin redescend sur terre grosse merde et apprend à respecter les autres.
 
-**Base code:** https://github.com/OMG-Framework/omg_framework by Dev | OMG#7338
-*See the wiki for more info on how to use*
-
-**Wiki:** https://github.com/Rubylium/rFramework/wiki
-
-**Fully working**
-
-* Money
-* Bank money
-* Salty money
-* Inventory
-* Weight for inventory
-* Dynamic cache for Player Data
-* Dynamic cache for society Data
-* More soon... 
-
-Archived
+![alt text](https://cdn.discordapp.com/attachments/582120765923524619/780842684482584586/unknown.png)
